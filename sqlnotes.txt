@@ -1,8 +1,8 @@
-SQL> select * from tab;
+SQL> select*from tab;
 
 no rows selected
 
-SQL> desc emp
+SQL> desc emp;
 ERROR:
 ORA-04043: object emp does not exist 
 
@@ -17,7 +17,14 @@ SQL> create table cgdemo1(eno number);
 
 Table created.
 
-SQL> select * from tab;
+SQL> select*from tab;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+CGDEMO1                        TABLE                                            
+
+SQL> spool off
+SQL> select*from tab;
 
 TNAME                          TABTYPE  CLUSTERID                               
 ------------------------------ ------- ----------                               
@@ -25,150 +32,176 @@ CGDEMO1                        TABLE
 
 SQL> spool off
 SQL> create table cgdept1(deptno number(4) primary key,
-  2  dname varchar2(20) not null,
+  2  dname varchar(20) not null,
   3  locid number(4));
 
 Table created.
 
 SQL> create table cgemp1(empno number(4) primary key,
-  2  ename varchar2(20) not null,
-  3  esal number(4) check (esal>27000),
+  2  ename varchar(20) not null,
+  3  esal number(6) check(esal>27000),
   4  deptno number(4) references cgdept1(deptno),
-  5  email varchar2(20),
-  6  
-SQL> 
-SQL> 
-SQL> create table cgemp1(empno number(4) primary key,
-  2  ename varchar2(20) not null,
-  3  esal number(4) check (esal>27000),
-  4  deptno number(4) references cgdept1(deptno),
-  5  email varchar2(20) unique,
+  5  email varchar(20) unique,
   6  jdate date);
 
 Table created.
 
-SQL> create table cgdept2(deptno number(4) constraints deptnopk primary key,)
-  2  dname varchar2(20) constraints dnamenn not null,
-  3  jdate date);
-create table cgdept2(deptno number(4) constraints deptnopk primary key,)
-                                                                       *
-ERROR at line 1:
-ORA-00904: : invalid identifier 
-
-
-SQL> create table cgdept2(deptno number(4) constraints deptnopk primary key,
-  2  dname varchar2(20) constraints dnamenn not null,
-  3  jdate date);
+SQL> cerate table cgdept2(deptno number(4) constraint dnopk primary key,
+SP2-0734: unknown command beginning "cerate tab..." - rest of line ignored.
+SQL> create table cgdept2(deptno number(4) constraint dnopk primary key,
+  2  dname varchar(20) constraint dnamenn not null,
+  3  locid number(4));
 
 Table created.
 
-SQL> create table cgemp2(empno number(4) constraint empnopk primary key,
-  2  ename varchar2(20) constraint enamenn not null,
-  3  esal number(4) constraint esalchk check(esal>27000),
-  4  deptno
-  5  
-SQL> create table cgemp2(empno number(4) constraint empnopk primary key,
-  2  ename varchar2(20) constraint enamenn not null,
-  3  esal number(6) constraint esalchk check(esal>27000),
-  4  deptno number(4) constraint deptnofk references cgdept2(deptno),
-  5  email varchar2(25) constraint emailunq unique,
+SQL> create table cgemp2(empno number(4) constraints enopk primary key,
+  2  enamne varchar(20) constarints enamenn not null,
+  3  esal number(6) constraints esalchk check(esal>27000),
+  4  deptno number(4) constarints dnofk foreign key references cgdept2(deptno),
+  5  email varcahr2(20) constarints emailunq unique,
+  6  jdate date);
+enamne varchar(20) constarints enamenn not null,
+                   *
+ERROR at line 2:
+ORA-00907: missing right parenthesis 
+
+
+SQL> cerate table cgdept2(deptno number(4) constraint dnopk primary key,
+SP2-0734: unknown command beginning "cerate tab..." - rest of line ignored.
+SQL> create table cgdept2(deptno number(4) constraint dnopk primary key,
+  2  create table cgemp2(empno number(4) constraints enopk primary key,
+  3  dname varchar(20) constraint dnamenn not null,
+  4  
+SQL> create table cgemp2(empno number(4) constraints enopk primary key,
+  2  enamne varchar(20) constraints enamenn not null,
+  3  esal number(6) constraints esalchk check(esal>27000),
+  4  deptno number(4) constraints dnofk foreign key references cgdept2(deptno),
+  5  email varcahr2(20) constraints emailunq unique,
+  6  jdate date);
+deptno number(4) constraints dnofk foreign key references cgdept2(deptno),
+                 *
+ERROR at line 4:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> create table cgemp2(empno number(4) constraints enopk primary key,
+  2  deptno number(4) constraints dnofk foreign key references cgdept2(deptno),
+  3  esal number(6) constraints esalchk check(esal>27000),
+  4  
+SQL> create table cgemp2(empno number(4) constraints enopk primary key,
+  2  enamne varchar(20) constraints enamenn not null,
+  3  esal number(6) constraints esalchk check(esal>27000),
+  4  deptno number(4) constraints dnofk references cgdept2(deptno),
+  5  email varcahr2(20) constraints emailunq unique,
+  6  jdate date);
+email varcahr2(20) constraints emailunq unique,
+              *
+ERROR at line 5:
+ORA-00907: missing right parenthesis 
+
+
+SQL> create table cgemp2(empno number(4) constraints enopk primary key,
+  2  enamne varchar(20) constraints enamenn not null,
+  3  esal number(6) constraints esalchk check(esal>27000),
+  4  deptno number(4) constraints dnofk references cgdept2(deptno),
+  5  email varchar2(20) constraints emailunq unique,
   6  jdate date);
 
 Table created.
 
-SQL> create table cgdept3(deptno number(4),dname varchar2(20) not null,locid number(4), primary key(deptno));
+SQL> craete table cgdept3(deptno number(4), dname varchar2(20) not null, locid number(4),primary key(deptno));
+SP2-0734: unknown command beginning "craete tab..." - rest of line ignored.
+SQL> create table cgdept3(deptno number(4), dname varchar2(20) not null, locid number(4),primary key(deptno));
 
 Table created.
 
-SQL> create table cgemp3(empno number(4),empname varchar2(20) not null,esal number(6),depno number(4),email varchar2(20),jdate date,
-  2  primary key(empno),check (esal>27000), foreign key(dept)
-  3  
-SQL> create table cgemp3(empno number(4),empname varchar2(20) not null,esal number(6),deptno number(4),email varchar2(20),jdate date,
-  2  primary key(empno),check (esal>27000), foreign key(deptno) references cgdept3(deptno),unique (emailid));
-primary key(empno),check (esal>27000), foreign key(deptno) references cgdept3(deptno),unique (emailid))
-                                                                                              *
-ERROR at line 2:
-ORA-00904: "EMAILID": invalid identifier 
-
-
-SQL> create table cgemp3(empno number(4),empname varchar2(20) not null,esal number(6),deptno number(4),email varchar2(20),jdate date,
-  2  primary key(empno),check (esal>27000), foreign key(deptno) references cgdept3(deptno),unique (email));
-
-Table created.
-
-SQL> create table cgdept3(deptno number(4),dname varchar2(20) constraint dnamenn not null,locid number(4),constraints deptnopk primary key(deptno));
-create table cgdept3(deptno number(4),dname varchar2(20) constraint dnamenn not null,locid number(4),constraints deptnopk primary key(deptno))
-             *
+SQL> create table cgemp3(empno number(4),ename varchar2(20) not null,esal number(6).deptno number(4),email varchar2(20),jdate date,
+  2  primary key(empno),
+  3  check(esal>27000),
+  4  foreign key(deptno references cgdept3(deptno),
+  5  unique(email));
+create table cgemp3(empno number(4),ename varchar2(20) not null,esal number(6).deptno number(4),email varchar2(20),jdate date,
+                                                                              *
 ERROR at line 1:
-ORA-00955: name is already used by an existing object 
-
-
-SQL> create table cgdept4(deptno number(4),dname varchar2(20) constraint dnamenn not null,locid number(4),constraints deptnopk primary key(deptno));
-create table cgdept4(deptno number(4),dname varchar2(20) constraint dnamenn not null,locid number(4),constraints deptnopk primary key(deptno))
-                                                                    *
-ERROR at line 1:
-ORA-02264: name already used by an existing constraint 
-
-
-SQL> create table cgdept4(deptno number(4),dname varchar2(20) constraint dnamenn4 not null,locid number(4),constraints deptnopk4 primary key(deptno));
-
-Table created.
-
-SQL> create table cgemp4(empno number(4),ename varchar2(20) constraints enamenn4 not null,esal number(6),deptno number(4),email varchar2(20),jdate date,
-  2  constraints empnopk4 primary key(emp no), constraint esalchk4 check (esal>27000), constraint depnofk4 foreign key(deptno) references cgdept4(deptno),constraints emailunq4 unique(email));
-constraints empnopk4 primary key(emp no), constraint esalchk4 check (esal>27000), constraint depnofk4 foreign key(deptno) references cgdept4(deptno),constraints emailunq4 unique(email))
-                                     *
-ERROR at line 2:
 ORA-00907: missing right parenthesis 
 
 
-SQL> create table cgemp4(empno number(4),ename varchar2(20) constraints enamenn4 not null,esal number(6),deptno number(4),email varchar2(20),jdate date,
-  2  constraints empnopk4 primary key(emp no), constraint esalchk4 check (esal>27000), constraint depnofk4 foreign key(deptno) references cgdept4(deptno),constraints emailunq4 unique(email));
-constraints empnopk4 primary key(emp no), constraint esalchk4 check (esal>27000), constraint depnofk4 foreign key(deptno) references cgdept4(deptno),constraints emailunq4 unique(email))
-                                     *
-ERROR at line 2:
+SQL> create table cgemp3(empno number(4), ename varchar2(20) not null, esal number(6), deptno number(4), email varchar2(20), jdate date,
+  2  primary key(empno),
+  3  check(esal>27000),
+  4  foreign key(deptno references cgdept3(deptno),
+  5  unique(email));
+foreign key(deptno references cgdept3(deptno),
+                   *
+ERROR at line 4:
 ORA-00907: missing right parenthesis 
 
 
-SQL> create table cgemp4(empno number(4),ename varchar2(20) constraints enamenn4 not null,esal number(6),deptno number(4),email varchar2(20),jdate date,
-  2  constraints empnopk4 primary key(empno), constraint esalchk4 check (esal>27000), constraint depnofk4 foreign key(deptno) references cgdept4(deptno),constraints emailunq4 unique(email));
+SQL> create table cgemp3(empno number(4), ename varchar2(20) not null, esal number(6), deptno number(4), email varchar2(20), jdate date,
+  2  primary key(empno),
+  3  check(esal>27000),
+  4  foreign key(deptno references cgdept3(deptno)),
+  5  unique(email));
+foreign key(deptno references cgdept3(deptno)),
+                   *
+ERROR at line 4:
+ORA-00907: missing right parenthesis 
+
+
+SQL> create table cgemp3(empno number(4), ename varchar2(20) not null, esal number(6), deptno number(4), email varchar2(20), jdate date,
+  2  primary key(empno),
+  3  check(esal>27000),
+  4  foreign key(deptno) references cgdept3(deptno),
+  5  unique(email));
 
 Table created.
 
-SQL> desc cgemp1
- Name                                      Null?    Type
- ----------------------------------------- -------- ----------------------------
- EMPNO                                     NOT NULL NUMBER(4)
- ENAME                                     NOT NULL VARCHAR2(20)
- ESAL                                               NUMBER(4)
- DEPTNO                                             NUMBER(4)
- EMAIL                                              VARCHAR2(20)
- JDATE                                              DATE
+SQL> create table cgdept4(deptno number(4),
+  2  dname varchar2(20) constraint dnamenn4 not null,
+  3  locid number(4),
+  4  constraint dnopk4 primarykey(deptno));
+constraint dnopk4 primarykey(deptno))
+                            *
+ERROR at line 4:
+ORA-00902: invalid datatype 
 
-SQL> desc cgemp2
- Name                                      Null?    Type
- ----------------------------------------- -------- ----------------------------
- EMPNO                                     NOT NULL NUMBER(4)
- ENAME                                     NOT NULL VARCHAR2(20)
- ESAL                                               NUMBER(6)
- DEPTNO                                             NUMBER(4)
- EMAIL                                              VARCHAR2(25)
- JDATE                                              DATE
 
-SQL> desc cgemp3
- Name                                      Null?    Type
- ----------------------------------------- -------- ----------------------------
- EMPNO                                     NOT NULL NUMBER(4)
- EMPNAME                                   NOT NULL VARCHAR2(20)
- ESAL                                               NUMBER(6)
- DEPTNO                                             NUMBER(4)
- EMAIL                                              VARCHAR2(20)
- JDATE                                              DATE
+SQL> create table cgdept4(deptno number(4),
+  2  dname varchar2(20) constraint dnamenn4 not null,
+  3  locid number(4),
+  4  constraint dnopk4 primary key(deptno));
 
-SQL> desc cdept1
-ERROR:
-ORA-04043: object cdept1 does not exist 
+Table created.
 
+SQL> create table cgemp4(empno number(4), ename varchar2(20) constraint enamenn4 not null, esal number(6), deptno number(4), email varchar2(20), jdate date,
+  2  constraint enopk4 primary key(empno),
+  3  constraint esalchk4 check(esal>27000),
+  4  constarint dnofk4 foreign key (deptno) references cgdept4(deptno).
+  5  constraint emailunq4 unique(email));
+constarint dnofk4 foreign key (deptno) references cgdept4(deptno).
+                  *
+ERROR at line 4:
+ORA-00907: missing right parenthesis 
+
+
+SQL> create table cgemp4(empno number(4), ename varchar2(20) constraint enamenn4 not null, esal number(6), deptno number(4), email varchar2(20), jdate date,
+  2  constraint enopk4 primary key(empno),
+  3  constraint esalchk4 check(esal>27000),
+  4  constraint dnofk4 foreign key (deptno) references cgdept4(deptno).
+  5  constraint emailunq4 unique(email));
+constraint dnofk4 foreign key (deptno) references cgdept4(deptno).
+                                                                 *
+ERROR at line 4:
+ORA-00907: missing right parenthesis 
+
+
+SQL> create table cgemp4(empno number(4), ename varchar2(20) constraint enamenn4 not null, esal number(6), deptno number(4), email varchar2(20), jdate date,
+  2  constraint enopk4 primary key(empno),
+  3  constraint esalchk4 check(esal>27000),
+  4  constraint dnofk4 foreign key (deptno) references cgdept4(deptno),
+  5  constraint emailunq4 unique(email));
+
+Table created.
 
 SQL> desc cgdept1
  Name                                      Null?    Type
@@ -177,11 +210,33 @@ SQL> desc cgdept1
  DNAME                                     NOT NULL VARCHAR2(20)
  LOCID                                              NUMBER(4)
 
+SQL> cgemp1
+SP2-0042: unknown command "cgemp1" - rest of line ignored.
+SQL> desc cgemp1
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                     NOT NULL VARCHAR2(20)
+ ESAL                                               NUMBER(6)
+ DEPTNO                                             NUMBER(4)
+ EMAIL                                              VARCHAR2(20)
+ JDATE                                              DATE
+
 SQL> desc cgdept2
  Name                                      Null?    Type
  ----------------------------------------- -------- ----------------------------
  DEPTNO                                    NOT NULL NUMBER(4)
  DNAME                                     NOT NULL VARCHAR2(20)
+ LOCID                                              NUMBER(4)
+
+SQL> desc cgemp2
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAMNE                                    NOT NULL VARCHAR2(20)
+ ESAL                                               NUMBER(6)
+ DEPTNO                                             NUMBER(4)
+ EMAIL                                              VARCHAR2(20)
  JDATE                                              DATE
 
 SQL> desc cgdept3
@@ -191,19 +246,49 @@ SQL> desc cgdept3
  DNAME                                     NOT NULL VARCHAR2(20)
  LOCID                                              NUMBER(4)
 
+SQL> desc cgemp3
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                     NOT NULL VARCHAR2(20)
+ ESAL                                               NUMBER(6)
+ DEPTNO                                             NUMBER(4)
+ EMAIL                                              VARCHAR2(20)
+ JDATE                                              DATE
+
+SQL> desc cgdept4
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPTNO                                    NOT NULL NUMBER(4)
+ DNAME                                     NOT NULL VARCHAR2(20)
+ LOCID                                              NUMBER(4)
+
+SQL> desc cgemp4
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                     NOT NULL VARCHAR2(20)
+ ESAL                                               NUMBER(6)
+ DEPTNO                                             NUMBER(4)
+ EMAIL                                              VARCHAR2(20)
+ JDATE                                              DATE
+
 SQL> spool off
+SQL> spool c:/sql_naman/sqlnotes.txt append
 SQL> create table altdemocg(eno number(3),
   2  ename varchar2(20));
 
 Table created.
 
-SQL> desc altdemocg
+SQL> desc altdemocg;
  Name                                      Null?    Type
  ----------------------------------------- -------- ----------------------------
  ENO                                                NUMBER(3)
  ENAME                                              VARCHAR2(20)
 
-SQL> alter table altdemocg add(jdate date, address varchar2(20),email varchar2(20));
+SQL> alter table altdemocg
+  2  add( jdate date, address varchar2(20),
+  3  email varchar2(20));
 
 Table altered.
 
@@ -228,7 +313,7 @@ SQL> desc altdemocg
  JDATE                                              DATE
  ADDRESS                                            VARCHAR2(20)
 
-SQL> alter table altdemocg modify (eno number(6));
+SQL> alter table altdemocg modify(eno number(6));
 
 Table altered.
 
@@ -240,42 +325,53 @@ SQL> desc altdemocg
  JDATE                                              DATE
  ADDRESS                                            VARCHAR2(20)
 
+SQL> alter table altdemocg rename(eno to empno));
+alter table altdemocg rename(eno to empno))
+                            *
+ERROR at line 1:
+ORA-14155: missing PARTITION or SUBPARTITION keyword 
+
+
+SQL> alter table altdemocg rename(eno to empno);
+alter table altdemocg rename(eno to empno)
+                            *
+ERROR at line 1:
+ORA-14155: missing PARTITION or SUBPARTITION keyword 
+
+
 SQL> alter table altdemocg rename column eno to empno;
 
 Table altered.
 
-SQL> desc altdemocg
- Name                                      Null?    Type
- ----------------------------------------- -------- ----------------------------
- EMPNO                                              NUMBER(6)
- ENAME                                              VARCHAR2(20)
- JDATE                                              DATE
- ADDRESS                                            VARCHAR2(20)
+SQL> alter table altdemocg modify (jdate to timestamp);
+alter table altdemocg modify (jdate to timestamp)
+                                    *
+ERROR at line 1:
+ORA-00902: invalid datatype 
+
 
 SQL> alter table altdemocg modify (jdate timestamp);
 
 Table altered.
 
+SQL> alter table altdemocg add constraint eno_pckgdemo primary key(empno);
+
+Table altered.
+
+SQL> desc altdeocg
+ERROR:
+ORA-04043: object altdeocg does not exist 
+
+
 SQL> desc altdemocg
  Name                                      Null?    Type
  ----------------------------------------- -------- ----------------------------
- EMPNO                                              NUMBER(6)
+ EMPNO                                     NOT NULL NUMBER(6)
  ENAME                                              VARCHAR2(20)
  JDATE                                              TIMESTAMP(6)
  ADDRESS                                            VARCHAR2(20)
 
-SQL> alter table altdemocg add constraint eno_pkcgdemo primary key(emmpno);
-alter table altdemocg add constraint eno_pkcgdemo primary key(emmpno)
-                                                              *
-ERROR at line 1:
-ORA-00904: "EMMPNO": invalid identifier 
-
-
-SQL> alter table altdemocg add constraint eno_pkcgdemo primary key(empno);
-
-Table altered.
-
-SQL> alter table altdemocg modify(ename not null);
+SQL> alter table altdemocg modify (ename not null);
 
 Table altered.
 
@@ -287,7 +383,7 @@ SQL> desc altdemocg
  JDATE                                              TIMESTAMP(6)
  ADDRESS                                            VARCHAR2(20)
 
-SQL> alter table altdemocg add (col1 number(4),col2 number(4));
+SQL> alter table altdemocg add(col1 number(4), col2 number(4));
 
 Table altered.
 
@@ -314,11 +410,50 @@ SQL> desc altdemocg
  ADDRESS                                            VARCHAR2(20)
  COL1                                               NUMBER(4)
 
+SQL> alter table altdemocg drop column col2;
+alter table altdemocg drop column col2
+                                  *
+ERROR at line 1:
+ORA-00904: "COL2": invalid identifier 
+
+
 SQL> alter table altdemocg drop unused column;
 
 Table altered.
 
+SQL> alter table altdemocg drop column col1;
+
+Table altered.
+
+SQL> desc altdemocg
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(6)
+ ENAME                                     NOT NULL VARCHAR2(20)
+ JDATE                                              TIMESTAMP(6)
+ ADDRESS                                            VARCHAR2(20)
+
+SQL> alter table altdemocg add(col1 number(4));
+
+Table altered.
+
+SQL> desc altdemocg
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(6)
+ ENAME                                     NOT NULL VARCHAR2(20)
+ JDATE                                              TIMESTAMP(6)
+ ADDRESS                                            VARCHAR2(20)
+ COL1                                               NUMBER(4)
+
 SQL> alter table altdemocg drop constraint eno_pkcgdemo;
+alter table altdemocg drop constraint eno_pkcgdemo
+                                      *
+ERROR at line 1:
+ORA-02443: Cannot drop constraint  - nonexistent constraint 
+
+
+SQL> alter table altdemocg drop constraint eno_pckgdemo;
 
 Table altered.
 
@@ -335,11 +470,6 @@ SQL> rename altdemocg to newdemo;
 
 Table renamed.
 
-SQL> desc altdemocg
-ERROR:
-ORA-04043: object altdemocg does not exist 
-
-
 SQL> desc newdemo
  Name                                      Null?    Type
  ----------------------------------------- -------- ----------------------------
@@ -353,40 +483,20 @@ SQL> insert into newdemo values(1101,'jony','12-jan-2012','delhi',998);
 
 1 row created.
 
-SQL> insert into newdemo values(1102,'james','12-feb-2012','hyd',991);
+SQL> insert into newdemo values(1102,'james','12-feb-2012','hyd',989);
 
 1 row created.
 
-SQL> select * from newdemo;
-
-     EMPNO ENAME                                                                
----------- --------------------                                                 
-JDATE                                                                           
----------------------------------------------------------------------------     
-ADDRESS                    COL1                                                 
--------------------- ----------                                                 
-      1101 jony                                                                 
-12-JAN-20 12.00.00.000000 PM                                                    
-delhi                       998                                                 
-                                                                                
-      1102 james                                                                
-12-FEB-20 12.00.00.000000 PM                                                    
-hyd                         991                                                 
-
-     EMPNO ENAME                                                                
----------- --------------------                                                 
-JDATE                                                                           
----------------------------------------------------------------------------     
-ADDRESS                    COL1                                                 
--------------------- ----------                                                 
-                                                                                
-
 SQL> commit
+  2  select *from newdemo;
+select *from newdemo
+*
+ERROR at line 2:
+ORA-02185: a token other than WORK follows COMMIT 
+
+
+SQL> select *from newdemo
   2  
-SQL> commit;
-
-Commit complete.
-
 SQL> select * from newdemo;
 
      EMPNO ENAME                                                                
@@ -401,7 +511,7 @@ delhi                       998
                                                                                 
       1102 james                                                                
 12-FEB-20 12.00.00.000000 PM                                                    
-hyd                         991                                                 
+hyd                         989                                                 
 
      EMPNO ENAME                                                                
 ---------- --------------------                                                 
@@ -410,38 +520,33 @@ JDATE
 ADDRESS                    COL1                                                 
 -------------------- ----------                                                 
                                                                                 
-
-SQL> truncate table newdwmo;
-truncate table newdwmo
-               *
-ERROR at line 1:
-ORA-00942: table or view does not exist 
-
 
 SQL> truncate table newdemo;
 
 Table truncated.
 
-SQL> select * from tab;
+SQL> 
+SQL> select * from newdemo;
 
-TNAME                          TABTYPE  CLUSTERID                               
------------------------------- ------- ----------                               
-CGDEMO1                        TABLE                                            
-CGDEPT1                        TABLE                                            
-CGDEPT2                        TABLE                                            
-CGDEPT3                        TABLE                                            
-CGDEPT4                        TABLE                                            
-CGEMP1                         TABLE                                            
-CGEMP2                         TABLE                                            
-CGEMP3                         TABLE                                            
-CGEMP4                         TABLE                                            
-NEWDEMO                        TABLE                                            
+no rows selected
 
-10 rows selected.
+SQL> desc newdemo
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER(6)
+ ENAME                                     NOT NULL VARCHAR2(20)
+ JDATE                                              TIMESTAMP(6)
+ ADDRESS                                            VARCHAR2(20)
+ COL1                                               NUMBER(4)
 
 SQL> drop table newdemo;
 
 Table dropped.
+
+SQL> desc newdemo
+ERROR:
+ORA-04043: object newdemo does not exist 
+
 
 SQL> select * from tab;
 
@@ -459,7 +564,6 @@ CGEMP4                         TABLE
 
 9 rows selected.
 
-SQL> show recyclebin
 SQL> flashback table newdemo to before drop;
 flashback table newdemo to before drop
 *
@@ -467,19 +571,48 @@ ERROR at line 1:
 ORA-38305: object not in RECYCLE BIN 
 
 
-SQL> cle scr
-
-SQL> create table dmldemocg(empno number(4),ename varchar2(20),esal varchar(6),dept number(4),jdate date);
+SQL> create table dmldemocg(empno number(4), ename varchar2(20), esal number(6), deptno number(
+  2  
+SQL> create table dmldemocg(empno number(4), ename varchar2(20), esal number(6), deptno number(4),jadate date);
 
 Table created.
 
-SQL> insert into dmldemocg values(1101,'verma',1200,10,'12-jan-2010');
+SQL> clr scr
+SP2-0042: unknown command "clr scr" - rest of line ignored.
+SQL> cle scr
+
+SQL> create table dmldemocg(empno number(4), ename varchar2(20), esal number(6), deptno number(4),jadate date);
+create table dmldemocg(empno number(4), ename varchar2(20), esal number(6), deptno number(4),jadate date)
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> clescr
+SP2-0042: unknown command "clescr" - rest of line ignored.
+SQL> cle scr
+
+SQL> insert into dmldemocg values(1101,'varma',1200,10,'12-jan-2010');
 
 1 row created.
 
 SQL> insert into dmldemocg values(1102,'sharma',1300,10,'13-feb-2010');
 
 1 row created.
+
+SQL> insert into dmldemocg values(1102,nll,null,20,null);
+insert into dmldemocg values(1102,nll,null,20,null)
+                                  *
+ERROR at line 1:
+ORA-00984: column not allowed here 
+
+
+SQL> insert into dmldemocg values(1103,nll,null,20,null);
+insert into dmldemocg values(1103,nll,null,20,null)
+                                  *
+ERROR at line 1:
+ORA-00984: column not allowed here 
+
 
 SQL> insert into dmldemocg values(1103,null,null,20,null);
 
@@ -489,271 +622,659 @@ SQL> insert into dmldemocg values(1104,'bond',1500,30,null);
 
 1 row created.
 
+SQL> commit
+  2  commit;
+commit
+*
+ERROR at line 2:
+ORA-02185: a token other than WORK follows COMMIT 
+
+
+SQL> 
 SQL> commit;
 
 Commit complete.
 
-SQL> select * from dmldemocg;
+SQL> select*from dmldemocg;
 
-     EMPNO ENAME                ESAL         DEPT JDATE                         
----------- -------------------- ------ ---------- ---------                     
-      1101 verma                1200           10 12-JAN-10                     
-      1102 sharma               1300           10 13-FEB-10                     
-      1103                                     20                               
-      1104 bond                 1500           30                               
+     EMPNO ENAME                      ESAL     DEPTNO JADATE                    
+---------- -------------------- ---------- ---------- ---------                 
+      1101 varma                      1200         10 12-JAN-10                 
+      1102 sharma                     1300         10 13-FEB-10                 
+      1103                                         20                           
+      1104 bond                       1500         30                           
 
-SQL> insert into dmldemocg(empno,esal,jdate) values(1106,1800,'16-feb-2010');
+SQL> insert into dmldemocg (empno, esal, jdate) values(1106,1600,'12-may-2012);
+ERROR:
+ORA-01756: quoted string not properly terminated 
 
-1 row created.
 
-SQL> insert into dmldemocg(empno,esal,jdate) values(1107,1700,'19-feb-2010');
-
-1 row created.
-
-SQL> select * from dmldemocg;
-
-     EMPNO ENAME                ESAL         DEPT JDATE                         
----------- -------------------- ------ ---------- ---------                     
-      1101 verma                1200           10 12-JAN-10                     
-      1102 sharma               1300           10 13-FEB-10                     
-      1103                                     20                               
-      1104 bond                 1500           30                               
-      1106                      1800              16-FEB-10                     
-      1107                      1700              19-FEB-10                     
-
-6 rows selected.
-
-SQL> commit;
-
-Commit complete.
-
-SQL> insert into dmldemocg(&empno,'&empname',&esal,&deptno,'&jdate');
-Enter value for empno: 2001
-Enter value for empname: aggarwal
-Enter value for esal: 12000
-Enter value for deptno: 50
-Enter value for jdate: 17-dec-2019
-old   1: insert into dmldemocg(&empno,'&empname',&esal,&deptno,'&jdate')
-new   1: insert into dmldemocg(2001,'aggarwal',12000,50,'17-dec-2019')
-insert into dmldemocg(2001,'aggarwal',12000,50,'17-dec-2019')
-                      *
+SQL> insert into dmldemocg (empno, esal, jdate) values(1106,1600,'12-may-2012');
+insert into dmldemocg (empno, esal, jdate) values(1106,1600,'12-may-2012')
+                                    *
 ERROR at line 1:
-ORA-00928: missing SELECT keyword 
+ORA-00904: "JDATE": invalid identifier 
 
 
-SQL> /
-Enter value for empno: 3001
-Enter value for empname: agg
-Enter value for esal: 6700
+SQL> insert into dmldemocg (empno, esal, jadate) values(1106,1600,'12-may-2012');
+
+1 row created.
+
+SQL> insert into dmldemocg (empno, esal, jadate) values(1107,1700,'23-dec-2012');
+
+1 row created.
+
+SQL> commit
+  2  
+SQL> commit;
+
+Commit complete.
+
+SQL> insert into dmldemocg values(&empno,.&ename',&esal,&deptno,'&jadate');
+Enter value for empno: 2001
+Enter value for ename: naveen
+Enter value for esal: 12000
 Enter value for deptno: 40
-Enter value for jdate: 12-jul-1997
-old   1: insert into dmldemocg(&empno,'&empname',&esal,&deptno,'&jdate')
-new   1: insert into dmldemocg(3001,'agg',6700,40,'12-jul-1997')
-insert into dmldemocg(3001,'agg',6700,40,'12-jul-1997')
-                      *
-ERROR at line 1:
-ORA-00928: missing SELECT keyword 
+Enter value for jadate: 12-dec-2017
+old   1: insert into dmldemocg values(&empno,.&ename',&esal,&deptno,'&jadate')
+new   1: insert into dmldemocg values(2001,.naveen',12000,40,'12-dec-2017')
+ERROR:
+ORA-01756: quoted string not properly terminated 
 
 
-SQL> commit;
-
-Commit complete.
-
-SQL> insert into dmldemocg values(&empno,'&empname',&esal,&deptno,'&jdate');
+SQL> insert into dmldemocg values(&empno,'&ename',&esal,&deptno,'&jadate');
 Enter value for empno: 2001
-Enter value for empname: aggarwal
+Enter value for ename: naveen
 Enter value for esal: 12000
-Enter value for deptno: 50
-Enter value for jdate: 17-dec-2019
-old   1: insert into dmldemocg values(&empno,'&empname',&esal,&deptno,'&jdate')
-new   1: insert into dmldemocg values(2001,'aggarwal',12000,50,'17-dec-2019')
+Enter value for deptno: 40
+Enter value for jadate: 12-dec-2017
+old   1: insert into dmldemocg values(&empno,'&ename',&esal,&deptno,'&jadate')
+new   1: insert into dmldemocg values(2001,'naveen',12000,40,'12-dec-2017')
 
 1 row created.
 
 SQL> /
-Enter value for empno: 3001
-Enter value for empname: add
+Enter value for empno: 2002
+Enter value for ename: naman
 Enter value for esal: 13000
-Enter value for deptno: 70
-Enter value for jdate: 14-feb-1998
-old   1: insert into dmldemocg values(&empno,'&empname',&esal,&deptno,'&jdate')
-new   1: insert into dmldemocg values(3001,'add',13000,70,'14-feb-1998')
+Enter value for deptno: 40
+Enter value for jadate: 12-may-2017
+old   1: insert into dmldemocg values(&empno,'&ename',&esal,&deptno,'&jadate')
+new   1: insert into dmldemocg values(2002,'naman',13000,40,'12-may-2017')
 
 1 row created.
 
-SQL> commit;
-
-Commit complete.
-
-SQL> select * from dmldemocg;
-
-     EMPNO ENAME                ESAL         DEPT JDATE                         
----------- -------------------- ------ ---------- ---------                     
-      1101 verma                1200           10 12-JAN-10                     
-      1102 sharma               1300           10 13-FEB-10                     
-      1103                                     20                               
-      1104 bond                 1500           30                               
-      1106                      1800              16-FEB-10                     
-      1107                      1700              19-FEB-10                     
-      2001 aggarwal             12000          50 17-DEC-19                     
-      3001 add                  13000          70 14-FEB-98                     
-
-8 rows selected.
-
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> update altdemocg set ename='rohit' , esal=3400,jdate='12-apr-2019' where empno=1103;
-update altdemocg set ename='rohit' , esal=3400,jdate='12-apr-2019' where empno=1103
-       *
+SQL> /
+Enter value for empno: 
+Enter value for ename: 
+Enter value for esal: 
+Enter value for deptno: 
+Enter value for jadate: 
+old   1: insert into dmldemocg values(&empno,'&ename',&esal,&deptno,'&jadate')
+new   1: insert into dmldemocg values(,'',,,'')
+insert into dmldemocg values(,'',,,'')
+                             *
 ERROR at line 1:
-ORA-00942: table or view does not exist 
+ORA-00936: missing expression 
 
 
-SQL> update dmldemocg set ename='rohit' , esal=3400,jdate='12-apr-2019' where empno=1103;
+SQL> alter table dmldemocg rename column jadate to jdate;
+
+Table altered.
+
+SQL> desc dmldemocg
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER(4)
+ ENAME                                              VARCHAR2(20)
+ ESAL                                               NUMBER(6)
+ DEPTNO                                             NUMBER(4)
+ JDATE                                              DATE
+
+SQL> /
+alter table dmldemocg rename column jadate to jdate
+*
+ERROR at line 1:
+ORA-00957: duplicate column name 
+
+
+SQL> insert into dmldemocg values(&empno,'&ename',&esal,&deptno,'&jadate');
+Enter value for empno: 22
+Enter value for ename: naaaa
+Enter value for esal: 20000
+Enter value for deptno: 30
+Enter value for jadate: 12-may-2222
+old   1: insert into dmldemocg values(&empno,'&ename',&esal,&deptno,'&jadate')
+new   1: insert into dmldemocg values(22,'naaaa',20000,30,'12-may-2222')
+
+1 row created.
+
+SQL> select*from dmldemocg
+  2  
+SQL> select*from dmldemocg;
+
+     EMPNO ENAME                      ESAL     DEPTNO JDATE                     
+---------- -------------------- ---------- ---------- ---------                 
+      1101 varma                      1200         10 12-JAN-10                 
+      1102 sharma                     1300         10 13-FEB-10                 
+      1103                                         20                           
+      1104 bond                       1500         30                           
+      1106                            1600            12-MAY-12                 
+      1107                            1700            23-DEC-12                 
+      2001 naveen                    12000         40 12-DEC-17                 
+      2002 naman                     13000         40 12-MAY-17                 
+        22 naaaa                     20000         30 12-MAY-22                 
+
+9 rows selected.
+
+SQL> update dmldemocg
+  2  set ename='rohit' , esal=14000,      jdate='18-jan-2016'
+  3  where empno=1103
+  4  
+SQL> update dmldemocg
+  2  set ename='rohit' , esal=14000,      jdate='18-jan-2016'
+  3  * where empno=1103
+  4  
+SQL> update dmldemocg
+  2  set ename='rohit' , esal=14000,      jdate='18-jan-2016'
+  3  where empno=1103;
 
 1 row updated.
 
 SQL> select * from dmldemocg;
 
-     EMPNO ENAME                ESAL         DEPT JDATE                         
----------- -------------------- ------ ---------- ---------                     
-      1101 verma                1200           10 12-JAN-10                     
-      1102 sharma               1300           10 13-FEB-10                     
-      1103 rohit                3400           20 12-APR-19                     
-      1104 bond                 1500           30                               
-      1106                      1800              16-FEB-10                     
-      1107                      1700              19-FEB-10                     
-      2001 aggarwal             12000          50 17-DEC-19                     
-      3001 add                  13000          70 14-FEB-98                     
+     EMPNO ENAME                      ESAL     DEPTNO JDATE                     
+---------- -------------------- ---------- ---------- ---------                 
+      1101 varma                      1200         10 12-JAN-10                 
+      1102 sharma                     1300         10 13-FEB-10                 
+      1103 rohit                     14000         20 18-JAN-16                 
+      1104 bond                       1500         30                           
+      1106                            1600            12-MAY-12                 
+      1107                            1700            23-DEC-12                 
+      2001 naveen                    12000         40 12-DEC-17                 
+      2002 naman                     13000         40 12-MAY-17                 
+        22 naaaa                     20000         30 12-MAY-22                 
 
-8 rows selected.
+9 rows selected.
 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> delete from dmldemocg where ename=null;
+SQL> commit;
 
-0 rows deleted.
+Commit complete.
 
-SQL> delete from dmldemocg where ename is null;
+SQL> delete from dmldemocg
+  2  where deptno=10;
 
 2 rows deleted.
 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> 
-SQL> create table agg1(empno number(4),ename varchar2(20),esal number(6),deptno number(2));
+SQL> select * from dmldemocg;
+
+     EMPNO ENAME                      ESAL     DEPTNO JDATE                     
+---------- -------------------- ---------- ---------- ---------                 
+      1103 rohit                     14000         20 18-JAN-16                 
+      1104 bond                       1500         30                           
+      1106                            1600            12-MAY-12                 
+      1107                            1700            23-DEC-12                 
+      2001 naveen                    12000         40 12-DEC-17                 
+      2002 naman                     13000         40 12-MAY-17                 
+        22 naaaa                     20000         30 12-MAY-22                 
+
+7 rows selected.
+
+SQL> delete from dmldemocg
+  2  where empno=22;
+
+1 row deleted.
+
+SQL> select * from dmldemocg;
+
+     EMPNO ENAME                      ESAL     DEPTNO JDATE                     
+---------- -------------------- ---------- ---------- ---------                 
+      1103 rohit                     14000         20 18-JAN-16                 
+      1104 bond                       1500         30                           
+      1106                            1600            12-MAY-12                 
+      1107                            1700            23-DEC-12                 
+      2001 naveen                    12000         40 12-DEC-17                 
+      2002 naman                     13000         40 12-MAY-17                 
+
+6 rows selected.
+
+SQL> delete from dmldemocg
+  2  where ename=null;
+
+0 rows deleted.
+
+SQL> delete from dmldemocg
+  2  where ename is null;
+
+2 rows deleted.
+
+SQL> create table mempcg
+  2  (empno number(4), ename varchar2(20), esal number(6), deptno number(4));
 
 Table created.
 
-SQL> insert into agg1 values(1101,'james',1000,10);
+SQL> insert into mempcg values(1101, 'james',1000,10);
 
 1 row created.
 
-SQL> insert into agg1 values(1102,'bond',5600,10);
+SQL> insert into mempcg values(1102, 'bond',5600,10);
 
 1 row created.
 
-SQL> insert into agg1 values(1103,'varma',2300,20);
+SQL> insert into mempcg values(1103, 'verma',2300,20);
 
 1 row created.
 
-SQL> insert into agg1 values(1104,'sharma',3210,20);
+SQL> insert into mempcg values(1104, 'sharma',3210,20);
 
 1 row created.
 
-SQL> insert into agg1 values(1105,'vikram',5400,30);
+SQL> insert into mempcg values(1105, 'vikram',5400,30);
 
 1 row created.
 
-SQL> insert into agg1 values(1106,'ravi',6600,30);
+SQL> insert into mempcg values(1106, 'ravi',6600,30);
 
 1 row created.
 
-SQL> rename agg1 to mempcg
-  2  
-SQL> rename agg1 to mempcg;
+SQL> commit;
 
-Table renamed.
+Commit complete.
 
-SQL> select * from mempcg;
+SQL> select*from mempcg;
 
      EMPNO ENAME                      ESAL     DEPTNO                           
 ---------- -------------------- ---------- ----------                           
       1101 james                      1000         10                           
       1102 bond                       5600         10                           
-      1103 varma                      2300         20                           
+      1103 verma                      2300         20                           
       1104 sharma                     3210         20                           
       1105 vikram                     5400         30                           
       1106 ravi                       6600         30                           
 
 6 rows selected.
 
+SQL> spoon on
+SP2-0042: unknown command "spoon on" - rest of line ignored.
+SQL> spoon on;
+SP2-0042: unknown command "spoon on" - rest of line ignored.
+SQL> spool on
+SQL> create table nvldemo( empno number(4), ename varchar2(20), esal number(6), deptno number(2), comm1 number(4), comm2 number(4), comm3 number(4));
+
+Table created.
+
+SQL> insert into nvldemo values(&empno, '&ename', &esal, &deptno, &comm1, &comm2, &comm3);
+Enter value for empno: 1101
+Enter value for ename: scott
+Enter value for esal: 29000
+Enter value for deptno: 10
+Enter value for comm1: null
+Enter value for comm2: null
+Enter value for comm3: null
+old   1: insert into nvldemo values(&empno, '&ename', &esal, &deptno, &comm1, &comm2, &comm3)
+new   1: insert into nvldemo values(1101, 'scott', 29000, 10, null, null, null)
+
+1 row created.
+
+SQL> /
+Enter value for empno: 1102
+Enter value for ename: miller
+Enter value for esal: 22000
+Enter value for deptno: 10
+Enter value for comm1: 101
+Enter value for comm2: 102
+Enter value for comm3: 103
+old   1: insert into nvldemo values(&empno, '&ename', &esal, &deptno, &comm1, &comm2, &comm3)
+new   1: insert into nvldemo values(1102, 'miller', 22000, 10, 101, 102, 103)
+
+1 row created.
+
+SQL> /
+Enter value for empno: 1103
+Enter value for ename: sharma
+Enter value for esal: 21000
+Enter value for deptno: 10
+Enter value for comm1: 101
+Enter value for comm2: null
+Enter value for comm3: 103
+old   1: insert into nvldemo values(&empno, '&ename', &esal, &deptno, &comm1, &comm2, &comm3)
+new   1: insert into nvldemo values(1103, 'sharma', 21000, 10, 101, null, 103)
+
+1 row created.
+
+SQL> /
+Enter value for empno: varma
+Enter value for ename: 19000
+Enter value for esal: 20
+Enter value for deptno: .
+Enter value for comm1: \
+Enter value for comm2: .
+Enter value for comm3: .
+old   1: insert into nvldemo values(&empno, '&ename', &esal, &deptno, &comm1, &comm2, &comm3)
+new   1: insert into nvldemo values(varma, '19000', 20, ., \, ., .)
+insert into nvldemo values(varma, '19000', 20, ., \, ., .)
+                                               *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> /
+Enter value for empno: 1104
+Enter value for ename: varma
+Enter value for esal: 19000
+Enter value for deptno: 20
+Enter value for comm1: null
+Enter value for comm2: 102
+Enter value for comm3: 103
+old   1: insert into nvldemo values(&empno, '&ename', &esal, &deptno, &comm1, &comm2, &comm3)
+new   1: insert into nvldemo values(1104, 'varma', 19000, 20, null, 102, 103)
+
+1 row created.
+
+SQL> /
+Enter value for empno: 1105
+Enter value for ename: ravi
+Enter value for esal: 28000
+Enter value for deptno: 20
+Enter value for comm1: null
+Enter value for comm2: null
+Enter value for comm3: 103
+old   1: insert into nvldemo values(&empno, '&ename', &esal, &deptno, &comm1, &comm2, &comm3)
+new   1: insert into nvldemo values(1105, 'ravi', 28000, 20, null, null, 103)
+
+1 row created.
+
+SQL> /
+Enter value for empno: 1106
+Enter value for ename: tom
+Enter value for esal: 12000
+Enter value for deptno: 30
+Enter value for comm1: null
+Enter value for comm2: null
+Enter value for comm3: null
+old   1: insert into nvldemo values(&empno, '&ename', &esal, &deptno, &comm1, &comm2, &comm3)
+new   1: insert into nvldemo values(1106, 'tom', 12000, 30, null, null, null)
+
+1 row created.
+
+SQL> /
+Enter value for empno: 1107
+Enter value for ename: jerry
+Enter value for esal: 22000
+Enter value for deptno: 30
+Enter value for comm1: null
+Enter value for comm2: 102
+Enter value for comm3: 103
+old   1: insert into nvldemo values(&empno, '&ename', &esal, &deptno, &comm1, &comm2, &comm3)
+new   1: insert into nvldemo values(1107, 'jerry', 22000, 30, null, 102, 103)
+
+1 row created.
+
+SQL> /
+Enter value for empno: 1108
+Enter value for ename: kims
+Enter value for esal: 34000
+Enter value for deptno: 40
+Enter value for comm1: 101
+Enter value for comm2: null
+Enter value for comm3: null
+old   1: insert into nvldemo values(&empno, '&ename', &esal, &deptno, &comm1, &comm2, &comm3)
+new   1: insert into nvldemo values(1108, 'kims', 34000, 40, 101, null, null)
+
+1 row created.
+
+SQL> select *from nvl demo
+  2  
+SQL> select *from nvl demo;
+select *from nvl demo
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select *from nvldemo;
+
+     EMPNO ENAME                      ESAL     DEPTNO      COMM1      COMM2     
+---------- -------------------- ---------- ---------- ---------- ----------     
+     COMM3                                                                      
+----------                                                                      
+      1101 scott                     29000         10                           
+                                                                                
+                                                                                
+      1102 miller                    22000         10        101        102     
+       103                                                                      
+                                                                                
+      1103 sharma                    21000         10        101                
+       103                                                                      
+                                                                                
+
+     EMPNO ENAME                      ESAL     DEPTNO      COMM1      COMM2     
+---------- -------------------- ---------- ---------- ---------- ----------     
+     COMM3                                                                      
+----------                                                                      
+      1104 varma                     19000         20                   102     
+       103                                                                      
+                                                                                
+      1105 ravi                      28000         20                           
+       103                                                                      
+                                                                                
+      1106 tom                       12000         30                           
+                                                                                
+                                                                                
+
+     EMPNO ENAME                      ESAL     DEPTNO      COMM1      COMM2     
+---------- -------------------- ---------- ---------- ---------- ----------     
+     COMM3                                                                      
+----------                                                                      
+      1107 jerry                     22000         30                   102     
+       103                                                                      
+                                                                                
+      1108 kims                      34000         40        101                
+                                                                                
+                                                                                
+
+8 rows selected.
+
+SQL> commit
+  2  
 SQL> commit;
 
 Commit complete.
 
-SQL> spool on
+SQL> delete from nvldemo
+  2  where empno=1108;
+
+1 row deleted.
+
+SQL> select *from nvldemo;
+
+     EMPNO ENAME                      ESAL     DEPTNO      COMM1      COMM2     
+---------- -------------------- ---------- ---------- ---------- ----------     
+     COMM3                                                                      
+----------                                                                      
+      1101 scott                     29000         10                           
+                                                                                
+                                                                                
+      1102 miller                    22000         10        101        102     
+       103                                                                      
+                                                                                
+      1103 sharma                    21000         10        101                
+       103                                                                      
+                                                                                
+
+     EMPNO ENAME                      ESAL     DEPTNO      COMM1      COMM2     
+---------- -------------------- ---------- ---------- ---------- ----------     
+     COMM3                                                                      
+----------                                                                      
+      1104 varma                     19000         20                   102     
+       103                                                                      
+                                                                                
+      1105 ravi                      28000         20                           
+       103                                                                      
+                                                                                
+      1106 tom                       12000         30                           
+                                                                                
+                                                                                
+
+     EMPNO ENAME                      ESAL     DEPTNO      COMM1      COMM2     
+---------- -------------------- ---------- ---------- ---------- ----------     
+     COMM3                                                                      
+----------                                                                      
+      1107 jerry                     22000         30                   102     
+       103                                                                      
+                                                                                
+
+7 rows selected.
+
+SQL> /
+
+     EMPNO ENAME                      ESAL     DEPTNO      COMM1      COMM2     
+---------- -------------------- ---------- ---------- ---------- ----------     
+     COMM3                                                                      
+----------                                                                      
+      1101 scott                     29000         10                           
+                                                                                
+                                                                                
+      1102 miller                    22000         10        101        102     
+       103                                                                      
+                                                                                
+      1103 sharma                    21000         10        101                
+       103                                                                      
+                                                                                
+
+     EMPNO ENAME                      ESAL     DEPTNO      COMM1      COMM2     
+---------- -------------------- ---------- ---------- ---------- ----------     
+     COMM3                                                                      
+----------                                                                      
+      1104 varma                     19000         20                   102     
+       103                                                                      
+                                                                                
+      1105 ravi                      28000         20                           
+       103                                                                      
+                                                                                
+      1106 tom                       12000         30                           
+                                                                                
+                                                                                
+
+     EMPNO ENAME                      ESAL     DEPTNO      COMM1      COMM2     
+---------- -------------------- ---------- ---------- ---------- ----------     
+     COMM3                                                                      
+----------                                                                      
+      1107 jerry                     22000         30                   102     
+       103                                                                      
+                                                                                
+
+7 rows selected.
+
+SQL> /
+
+     EMPNO ENAME                      ESAL     DEPTNO      COMM1      COMM2     
+---------- -------------------- ---------- ---------- ---------- ----------     
+     COMM3                                                                      
+----------                                                                      
+      1101 scott                     29000         10                           
+                                                                                
+                                                                                
+      1102 miller                    22000         10        101        102     
+       103                                                                      
+                                                                                
+      1103 sharma                    21000         10        101                
+       103                                                                      
+                                                                                
+
+     EMPNO ENAME                      ESAL     DEPTNO      COMM1      COMM2     
+---------- -------------------- ---------- ---------- ---------- ----------     
+     COMM3                                                                      
+----------                                                                      
+      1104 varma                     19000         20                   102     
+       103                                                                      
+                                                                                
+      1105 ravi                      28000         20                           
+       103                                                                      
+                                                                                
+      1106 tom                       12000         30                           
+                                                                                
+                                                                                
+
+     EMPNO ENAME                      ESAL     DEPTNO      COMM1      COMM2     
+---------- -------------------- ---------- ---------- ---------- ----------     
+     COMM3                                                                      
+----------                                                                      
+      1107 jerry                     22000         30                   102     
+       103                                                                      
+                                                                                
+
+7 rows selected.
+
+SQL> insert into nvldemo values(1108,'kims',34000,40,101,null,null);
+
+1 row created.
+
+SQL> select*from nvldemo;
+
+     EMPNO ENAME                      ESAL     DEPTNO      COMM1      COMM2     
+---------- -------------------- ---------- ---------- ---------- ----------     
+     COMM3                                                                      
+----------                                                                      
+      1101 scott                     29000         10                           
+                                                                                
+                                                                                
+      1102 miller                    22000         10        101        102     
+       103                                                                      
+                                                                                
+      1103 sharma                    21000         10        101                
+       103                                                                      
+                                                                                
+
+     EMPNO ENAME                      ESAL     DEPTNO      COMM1      COMM2     
+---------- -------------------- ---------- ---------- ---------- ----------     
+     COMM3                                                                      
+----------                                                                      
+      1104 varma                     19000         20                   102     
+       103                                                                      
+                                                                                
+      1105 ravi                      28000         20                           
+       103                                                                      
+                                                                                
+      1106 tom                       12000         30                           
+                                                                                
+                                                                                
+
+     EMPNO ENAME                      ESAL     DEPTNO      COMM1      COMM2     
+---------- -------------------- ---------- ---------- ---------- ----------     
+     COMM3                                                                      
+----------                                                                      
+      1107 jerry                     22000         30                   102     
+       103                                                                      
+                                                                                
+      1108 kims                      34000         40        101                
+                                                                                
+                                                                                
+
+8 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> set lines 120
+SQL> 
+SQL> set lines 120;
+SQL> select*from nvldemo;
+
+     EMPNO ENAME                      ESAL     DEPTNO      COMM1      COMM2      COMM3                                  
+---------- -------------------- ---------- ---------- ---------- ---------- ----------                                  
+      1101 scott                     29000         10                                                                   
+      1102 miller                    22000         10        101        102        103                                  
+      1103 sharma                    21000         10        101                   103                                  
+      1104 varma                     19000         20                   102        103                                  
+      1105 ravi                      28000         20                              103                                  
+      1106 tom                       12000         30                                                                   
+      1107 jerry                     22000         30                   102        103                                  
+      1108 kims                      34000         40        101                                                        
+
+8 rows selected.
+
+SQL> cle scr;
+
+SQL> spool off;

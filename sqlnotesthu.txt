@@ -1,0 +1,2585 @@
+SQL> select lower('oracle') res from dual;
+
+RES                                                                                                                     
+------                                                                                                                  
+oracle                                                                                                                  
+
+
+
+
+SQL> select lower('ename') from nvldemo;
+
+LOWER                                                                                                                   
+-----                                                                                                                   
+ename                                                                                                                   
+ename                                                                                                                   
+ename                                                                                                                   
+ename                                                                                                                   
+ename                                                                                                                   
+ename                                                                                                                   
+ename                                                                                                                   
+ename                                                                                                                   
+
+8 rows selected.
+
+SQL> select lower(ename) from nvldemo;
+
+LOWER(ENAME)                                                                                                            
+--------------------                                                                                                    
+scott                                                                                                                   
+miller                                                                                                                  
+sharma                                                                                                                  
+varma                                                                                                                   
+ravi                                                                                                                    
+tom                                                                                                                     
+jerry                                                                                                                   
+kims                                                                                                                    
+
+8 rows selected.
+
+SQL> select upper(ename) from nvldemo;
+
+UPPER(ENAME)                                                                                                            
+--------------------                                                                                                    
+SCOTT                                                                                                                   
+MILLER                                                                                                                  
+SHARMA                                                                                                                  
+VARMA                                                                                                                   
+RAVI                                                                                                                    
+TOM                                                                                                                     
+JERRY                                                                                                                   
+KIMS                                                                                                                    
+
+8 rows selected.
+
+SQL> select *from dual;
+
+D                                                                                                                       
+-                                                                                                                       
+X                                                                                                                       
+
+
+SQL> select initcap('bangalore is a garden city') res
+  2  from dual;
+
+RES                                                                                                                     
+--------------------------                                                                                              
+Bangalore Is A Garden City                                                                                              
+
+SQL> cle scr;
+
+
+
+SQL> select concat('oracle','capgemini') res from dual;
+
+RES                                                                                                                     
+---------------                                                                                                         
+oraclecapgemini                                                                                                         
+
+SQL> select length('oracle')res  from dual
+  2  
+SQL> select length('oracle') res  from dual;
+
+       RES                                                                                                              
+----------                                                                                                              
+         6                                                                                                              
+
+SQL> select replace('MAT','M','*') res from dual;
+
+RES                                                                                                                     
+---                                                                                                                     
+*AT                                                                                                                     
+
+SQL> select lpad('sql',8,'*')res from dual;
+
+RES                                                                                                                     
+--------                                                                                                                
+*****sql                                                                                                                
+
+SQL> select rpad('sql',8,'*')res from dual;
+
+RES                                                                                                                     
+--------                                                                                                                
+sql*****                                                                                                                
+
+
+SQL> select substr ('helloworld',6,3) res from dual;
+
+RES                                                                                                                     
+---                                                                                                                     
+wor                                                                                                                     
+
+SQL> select substr ('helloworld',2,6) res from dual;
+
+RES                                                                                                                     
+------                                                                                                                  
+ellowo                                                                                                                  
+
+SQL> select trunc(45.7) from dual;
+
+TRUNC(45.7)                                                                                                             
+-----------                                                                                                             
+         45                                                                                                             
+
+SQL> select mod(48,12) from dual;
+
+MOD(48,12)                                                                                                              
+----------                                                                                                              
+         0                                                                                                              
+
+SQL> select sysdate-4 from dual;
+
+SYSDATE-4                                                                                                               
+---------                                                                                                               
+21-JUL-19                                                                                                               
+
+
+SQL> select add_months(sysdate,5) res from dual;
+
+RES                                                                                                                     
+---------                                                                                                               
+25-DEC-19                                                                                                               
+
+
+SQL> select next_day(sysdate,'monday') res from dual;
+
+RES                                                                                                                     
+---------                                                                                                               
+29-JUL-19                                                                                                               
+
+SQL> select last_day(sysdate) from dual;
+
+LAST_DAY(                                                                                                               
+---------                                                                                                               
+31-JUL-19                                                                                                               
+
+
+SQL> select months_between('12-dec 2012','12-dec-2020') res from dual;
+
+       RES                                                                                                              
+----------                                                                                                              
+       -96                                                                                                              
+
+SQL> select months between('12-dec 2022','12-dec-2020') res from dual;
+select months between('12-dec 2022','12-dec-2020') res from dual
+              *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> 
+SQL> select months_between('12-dec 2022','12-dec-2020') res from dual;
+
+       RES                                                                                                              
+----------                                                                                                              
+        24                                                                                                              
+
+SQL> cle scr;
+
+SQL> select * from nvldemo;
+
+     EMPNO ENAME                      ESAL     DEPTNO      COMM1      COMM2      COMM3                                  
+---------- -------------------- ---------- ---------- ---------- ---------- ----------                                  
+      1101 scott                     29000         10                                                                   
+      1102 miller                    22000         10        101        102        103                                  
+      1103 sharma                    21000         10        101                   103                                  
+      1104 varma                     19000         20                   102        103                                  
+      1105 ravi                      28000         20                              103                                  
+      1106 tom                       12000         30                                                                   
+      1107 jerry                     22000         30                   102        103                                  
+      1108 kims                      34000         40        101                                                        
+
+8 rows selected.
+
+SQL> select empno,ename,comm1,nvl(comm1,2020) res from nvldemo;
+
+     EMPNO ENAME                     COMM1        RES                                                                   
+---------- -------------------- ---------- ----------                                                                   
+      1101 scott                                 2020                                                                   
+      1102 miller                      101        101                                                                   
+      1103 sharma                      101        101                                                                   
+      1104 varma                                 2020                                                                   
+      1105 ravi                                  2020                                                                   
+      1106 tom                                   2020                                                                   
+      1107 jerry                                 2020                                                                   
+      1108 kims                        101        101                                                                   
+
+8 rows selected.
+
+SQL> select empno,ename,comm1,nvl2(comm1,2020,3030) res from nvldemo;
+
+     EMPNO ENAME                     COMM1        RES                                                                   
+---------- -------------------- ---------- ----------                                                                   
+      1101 scott                                 3030                                                                   
+      1102 miller                      101       2020                                                                   
+      1103 sharma                      101       2020                                                                   
+      1104 varma                                 3030                                                                   
+      1105 ravi                                  3030                                                                   
+      1106 tom                                   3030                                                                   
+      1107 jerry                                 3030                                                                   
+      1108 kims                        101       2020                                                                   
+
+8 rows selected.
+
+SQL> select empno,ename,comm1,nvl2(comm1,'yes','no') res from nvldemo;
+
+     EMPNO ENAME                     COMM1 RES                                                                          
+---------- -------------------- ---------- ---                                                                          
+      1101 scott                           no                                                                           
+      1102 miller                      101 yes                                                                          
+      1103 sharma                      101 yes                                                                          
+      1104 varma                           no                                                                           
+      1105 ravi                            no                                                                           
+      1106 tom                             no                                                                           
+      1107 jerry                           no                                                                           
+      1108 kims                        101 yes                                                                          
+
+8 rows selected.
+
+SQL> select comm1,comm2,comm3,coalesce(comm1,comm2,comm3,2020)res from nvldemo;
+
+     COMM1      COMM2      COMM3        RES                                                                             
+---------- ---------- ---------- ----------                                                                             
+                                       2020                                                                             
+       101        102        103        101                                                                             
+       101                   103        101                                                                             
+                  102        103        102                                                                             
+                             103        103                                                                             
+                                       2020                                                                             
+                  102        103        102                                                                             
+       101                              101                                                                             
+
+8 rows selected.
+
+
+SQL> select esal,deptno,case deptno when 10 then esal+1001
+  2  when 20 then esal+2020
+  3  else esal end res from nvldemo;
+
+      ESAL     DEPTNO        RES                                                                                        
+---------- ---------- ----------                                                                                        
+     29000         10      30001                                                                                        
+     22000         10      23001                                                                                        
+     21000         10      22001                                                                                        
+     19000         20      21020                                                                                        
+     28000         20      30020                                                                                        
+     12000         30      12000                                                                                        
+     22000         30      22000                                                                                        
+     34000         40      34000                                                                                        
+
+8 rows selected.
+
+
+SQL> cle scr
+
+SQL> create table  jemo(empno number(4), ename varchar2(20), esal number(6), mgrno number(4), deptno number(2));
+
+Table created.
+
+SQL> rename jemo to jemp;
+
+Table renamed.
+
+SQL> insert into jemp values(&empno,'&ename',&esal,&mgrno,&deptno);
+Enter value for empno: 1104
+Enter value for ename: james
+Enter value for esal: 58234
+Enter value for mgrno: 1101
+Enter value for deptno: 20
+old   1: insert into jemp values(&empno,'&ename',&esal,&mgrno,&deptno)
+new   1: insert into jemp values(1104,'james',58234,1101,20)
+
+1 row created.
+
+SQL> /
+Enter value for empno: 1105
+Enter value for ename: ravi
+Enter value for esal: 46000
+Enter value for mgrno: 1102
+Enter value for deptno: 20
+old   1: insert into jemp values(&empno,'&ename',&esal,&mgrno,&deptno)
+new   1: insert into jemp values(1105,'ravi',46000,1102,20)
+
+1 row created.
+
+SQL> /
+Enter value for empno: 1106
+Enter value for ename: kavi
+Enter value for esal: 35000
+Enter value for mgrno: 102
+Enter value for deptno: 20\\
+old   1: insert into jemp values(&empno,'&ename',&esal,&mgrno,&deptno)
+new   1: insert into jemp values(1106,'kavi',35000,102,20\\)
+insert into jemp values(1106,'kavi',35000,102,20\\)
+                                                *
+ERROR at line 1:
+ORA-00911: invalid character 
+
+
+SQL> 
+SQL> /
+Enter value for empno: 1106
+Enter value for ename: kavi
+Enter value for esal: 35000
+Enter value for mgrno: 1102
+Enter value for deptno: 20
+old   1: insert into jemp values(&empno,'&ename',&esal,&mgrno,&deptno)
+new   1: insert into jemp values(1106,'kavi',35000,1102,20)
+
+1 row created.
+
+SQL> /
+Enter value for empno: 1107
+Enter value for ename: bhima
+Enter value for esal: 34000
+Enter value for mgrno: 1103
+Enter value for deptno: 30
+old   1: insert into jemp values(&empno,'&ename',&esal,&mgrno,&deptno)
+new   1: insert into jemp values(1107,'bhima',34000,1103,30)
+
+1 row created.
+
+SQL> /
+Enter value for empno: 1108
+Enter value for ename: bond
+Enter value for esal: 24000
+Enter value for mgrno: 1103
+Enter value for deptno: 40
+old   1: insert into jemp values(&empno,'&ename',&esal,&mgrno,&deptno)
+new   1: insert into jemp values(1108,'bond',24000,1103,40)
+
+1 row created.
+
+SQL> 1109
+SP2-0226: Invalid line number 
+SQL> /
+Enter value for empno: 1109
+Enter value for ename: vikram
+Enter value for esal: 24000
+Enter value for mgrno: 1103
+Enter value for deptno: 40
+old   1: insert into jemp values(&empno,'&ename',&esal,&mgrno,&deptno)
+new   1: insert into jemp values(1109,'vikram',24000,1103,40)
+
+1 row created.
+
+SQL> /
+Enter value for empno: 4007
+Enter value for ename: yash
+Enter value for esal: 56780
+Enter value for mgrno: 1103
+Enter value for deptno: 30
+old   1: insert into jemp values(&empno,'&ename',&esal,&mgrno,&deptno)
+new   1: insert into jemp values(4007,'yash',56780,1103,30)
+
+1 row created.
+
+SQL> /
+Enter value for empno: 4009
+Enter value for ename: pal
+Enter value for esal: 86780
+Enter value for mgrno: 1103
+Enter value for deptno: 40
+old   1: insert into jemp values(&empno,'&ename',&esal,&mgrno,&deptno)
+new   1: insert into jemp values(4009,'pal',86780,1103,40)
+
+1 row created.
+
+SQL> select *from jemp;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                                                        
+---------- -------------------- ---------- ---------- ----------                                                        
+      1104 james                     58234       1101         20                                                        
+      1105 ravi                      46000       1102         20                                                        
+      1106 kavi                      35000       1102         20                                                        
+      1107 bhima                     34000       1103         30                                                        
+      1108 bond                      24000       1103         40                                                        
+      1109 vikram                    24000       1103         40                                                        
+      4007 yash                      56780       1103         30                                                        
+      4009 pal                       86780       1103         40                                                        
+
+8 rows selected.
+
+SQL> update jemp
+  2  set mgrno=1102 where empno=1107;
+
+1 row updated.
+
+SQL> select * from jemp;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                                                        
+---------- -------------------- ---------- ---------- ----------                                                        
+      1104 james                     58234       1101         20                                                        
+      1105 ravi                      46000       1102         20                                                        
+      1106 kavi                      35000       1102         20                                                        
+      1107 bhima                     34000       1102         30                                                        
+      1108 bond                      24000       1103         40                                                        
+      1109 vikram                    24000       1103         40                                                        
+      4007 yash                      56780       1103         30                                                        
+      4009 pal                       86780       1103         40                                                        
+
+8 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> update jemp
+  2  set mgrno=1101 where empno=1102;
+
+0 rows updated.
+
+SQL> update jemp
+  2  set mgrno=1101 where empno=1105;
+
+1 row updated.
+
+SQL> update jemp
+  2  set mgrno=null,empno=1101 where ename='james';
+
+1 row updated.
+
+SQL> select * from jemp;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                                                        
+---------- -------------------- ---------- ---------- ----------                                                        
+      1101 james                     58234                    20                                                        
+      1105 ravi                      46000       1101         20                                                        
+      1106 kavi                      35000       1102         20                                                        
+      1107 bhima                     34000       1102         30                                                        
+      1108 bond                      24000       1103         40                                                        
+      1109 vikram                    24000       1103         40                                                        
+      4007 yash                      56780       1103         30                                                        
+      4009 pal                       86780       1103         40                                                        
+
+8 rows selected.
+
+SQL> update jemp
+  2  set empno=1102 where mgrno=1101;
+
+1 row updated.
+
+SQL> select * from jemp;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                                                        
+---------- -------------------- ---------- ---------- ----------                                                        
+      1101 james                     58234                    20                                                        
+      1102 ravi                      46000       1101         20                                                        
+      1106 kavi                      35000       1102         20                                                        
+      1107 bhima                     34000       1102         30                                                        
+      1108 bond                      24000       1103         40                                                        
+      1109 vikram                    24000       1103         40                                                        
+      4007 yash                      56780       1103         30                                                        
+      4009 pal                       86780       1103         40                                                        
+
+8 rows selected.
+
+SQL> update jemp
+  2  set empno=1103 where ename='kavi';
+
+1 row updated.
+
+SQL> select * from jemp;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                                                        
+---------- -------------------- ---------- ---------- ----------                                                        
+      1101 james                     58234                    20                                                        
+      1102 ravi                      46000       1101         20                                                        
+      1103 kavi                      35000       1102         20                                                        
+      1107 bhima                     34000       1102         30                                                        
+      1108 bond                      24000       1103         40                                                        
+      1109 vikram                    24000       1103         40                                                        
+      4007 yash                      56780       1103         30                                                        
+      4009 pal                       86780       1103         40                                                        
+
+8 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> create table jdept( deptno number(2), dname varchar2(20), loc number(3));
+
+Table created.
+
+SQL> insert into jdept values(&deptno,'&dname',&loc);
+Enter value for deptno: 20
+Enter value for dname: admin
+Enter value for loc: 901
+old   1: insert into jdept values(&deptno,'&dname',&loc)
+new   1: insert into jdept values(20,'admin',901)
+
+1 row created.
+
+SQL> /
+Enter value for deptno: 30
+Enter value for dname: devp
+Enter value for loc: 902
+old   1: insert into jdept values(&deptno,'&dname',&loc)
+new   1: insert into jdept values(30,'devp',902)
+
+1 row created.
+
+SQL> /
+Enter value for deptno: 80
+Enter value for dname: dba
+Enter value for loc: 901
+old   1: insert into jdept values(&deptno,'&dname',&loc)
+new   1: insert into jdept values(80,'dba',901)
+
+1 row created.
+
+SQL> /
+Enter value for deptno: 90
+Enter value for dname: tranp
+Enter value for loc: 902
+old   1: insert into jdept values(&deptno,'&dname',&loc)
+new   1: insert into jdept values(90,'tranp',902)
+
+1 row created.
+
+SQL> select *from jdept;
+
+    DEPTNO DNAME                       LOC                                                                              
+---------- -------------------- ----------                                                                              
+        20 admin                       901                                                                              
+        30 devp                        902                                                                              
+        80 dba                         901                                                                              
+        90 tranp                       902                                                                              
+
+SQL> create table jsalgrade( G char(1), lsal number(6), hsal number(6));
+
+Table created.
+
+SQL> insert into jsalgrade values('&G',&lsal,&hsal);
+Enter value for g: c
+Enter value for lsal: 9999
+Enter value for hsal: 20000
+old   1: insert into jsalgrade values('&G',&lsal,&hsal)
+new   1: insert into jsalgrade values('c',9999,20000)
+
+1 row created.
+
+SQL> /
+Enter value for g: b
+Enter value for lsal: 20001
+Enter value for hsal: 42000
+old   1: insert into jsalgrade values('&G',&lsal,&hsal)
+new   1: insert into jsalgrade values('b',20001,42000)
+
+1 row created.
+
+SQL> /
+Enter value for g: a
+Enter value for lsal: 42001
+Enter value for hsal: 59000
+old   1: insert into jsalgrade values('&G',&lsal,&hsal)
+new   1: insert into jsalgrade values('a',42001,59000)
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select *from jsalgrade;
+
+G       LSAL       HSAL                                                                                                 
+- ---------- ----------                                                                                                 
+c       9999      20000                                                                                                 
+b      20001      42000                                                                                                 
+a      42001      59000                                                                                                 
+
+SQL> select dname,ename from jdept,jemp;
+
+DNAME                ENAME                                                                                              
+-------------------- --------------------                                                                               
+admin                james                                                                                              
+admin                ravi                                                                                               
+admin                kavi                                                                                               
+admin                bhima                                                                                              
+admin                bond                                                                                               
+admin                vikram                                                                                             
+admin                yash                                                                                               
+admin                pal                                                                                                
+devp                 james                                                                                              
+devp                 ravi                                                                                               
+devp                 kavi                                                                                               
+
+DNAME                ENAME                                                                                              
+-------------------- --------------------                                                                               
+devp                 bhima                                                                                              
+devp                 bond                                                                                               
+devp                 vikram                                                                                             
+devp                 yash                                                                                               
+devp                 pal                                                                                                
+dba                  james                                                                                              
+dba                  ravi                                                                                               
+dba                  kavi                                                                                               
+dba                  bhima                                                                                              
+dba                  bond                                                                                               
+dba                  vikram                                                                                             
+
+DNAME                ENAME                                                                                              
+-------------------- --------------------                                                                               
+dba                  yash                                                                                               
+dba                  pal                                                                                                
+tranp                james                                                                                              
+tranp                ravi                                                                                               
+tranp                kavi                                                                                               
+tranp                bhima                                                                                              
+tranp                bond                                                                                               
+tranp                vikram                                                                                             
+tranp                yash                                                                                               
+tranp                pal                                                                                                
+
+32 rows selected.
+
+SQL> select dname,ename,esal from jdept,jemp
+  2  where jdept.deptno=jemp.deptno;
+
+DNAME                ENAME                      ESAL                                                                    
+-------------------- -------------------- ----------                                                                    
+admin                james                     58234                                                                    
+admin                ravi                      46000                                                                    
+admin                kavi                      35000                                                                    
+devp                 bhima                     34000                                                                    
+devp                 yash                      56780                                                                    
+
+SQL> select dname,ename,esal from jdept d , jemp e
+  2  where d.deptno=e.deptno;
+
+DNAME                ENAME                      ESAL                                                                    
+-------------------- -------------------- ----------                                                                    
+admin                james                     58234                                                                    
+admin                ravi                      46000                                                                    
+admin                kavi                      35000                                                                    
+devp                 bhima                     34000                                                                    
+devp                 yash                      56780                                                                    
+
+SQL> select ename,esal ,grade from jemp e, jsalgrade g
+  2  where esal between lsal and hsal;
+select ename,esal ,grade from jemp e, jsalgrade g
+                   *
+ERROR at line 1:
+ORA-00904: "GRADE": invalid identifier 
+
+
+SQL> select ename,esal ,egrade from jemp e, jsalgrade g
+  2  where esal between lsal and hsal;
+select ename,esal ,egrade from jemp e, jsalgrade g
+                   *
+ERROR at line 1:
+ORA-00904: "EGRADE": invalid identifier 
+
+
+SQL> select ename,esal ,g from jemp e, jsalgrade g
+  2  where esal between lsal and hsal;
+
+ENAME                      ESAL G                                                                                       
+-------------------- ---------- -                                                                                       
+kavi                      35000 b                                                                                       
+bhima                     34000 b                                                                                       
+bond                      24000 b                                                                                       
+vikram                    24000 b                                                                                       
+james                     58234 a                                                                                       
+ravi                      46000 a                                                                                       
+yash                      56780 a                                                                                       
+
+7 rows selected.
+
+SQL> select ename,esal ,g from jemp e, jsalgrade g
+  2  where esal between lsal and hsal
+  3  order by esal;
+
+ENAME                      ESAL G                                                                                       
+-------------------- ---------- -                                                                                       
+bond                      24000 b                                                                                       
+vikram                    24000 b                                                                                       
+bhima                     34000 b                                                                                       
+kavi                      35000 b                                                                                       
+ravi                      46000 a                                                                                       
+yash                      56780 a                                                                                       
+james                     58234 a                                                                                       
+
+7 rows selected.
+
+SQL> select ename,esal ,toupper (g) from jemp e, jsalgrade g
+  2  where esal between lsal and hsal
+  3  order by esal;
+select ename,esal ,toupper (g) from jemp e, jsalgrade g
+                   *
+ERROR at line 1:
+ORA-00904: "TOUPPER": invalid identifier 
+
+
+SQL> select ename,esal ,upper (g) from jemp e, jsalgrade g
+  2  where esal between lsal and hsal
+  3  order by esal;
+
+ENAME                      ESAL U                                                                                       
+-------------------- ---------- -                                                                                       
+bond                      24000 B                                                                                       
+vikram                    24000 B                                                                                       
+bhima                     34000 B                                                                                       
+kavi                      35000 B                                                                                       
+ravi                      46000 A                                                                                       
+yash                      56780 A                                                                                       
+james                     58234 A                                                                                       
+
+7 rows selected.
+
+SQL> select upper (ename),esal ,upper (g) from jemp e, jsalgrade g
+  2  where esal between lsal and hsal
+  3  order by esal;
+
+UPPER(ENAME)               ESAL U                                                                                       
+-------------------- ---------- -                                                                                       
+BOND                      24000 B                                                                                       
+VIKRAM                    24000 B                                                                                       
+BHIMA                     34000 B                                                                                       
+KAVI                      35000 B                                                                                       
+RAVI                      46000 A                                                                                       
+YASH                      56780 A                                                                                       
+JAMES                     58234 A                                                                                       
+
+7 rows selected.
+
+SQL> select ename,esal ,upper (g) from jemp e, jsalgrade g
+  2  where esal between lsal and hsal
+  3  order by esal desc;
+
+ENAME                      ESAL U                                                                                       
+-------------------- ---------- -                                                                                       
+james                     58234 A                                                                                       
+yash                      56780 A                                                                                       
+ravi                      46000 A                                                                                       
+kavi                      35000 B                                                                                       
+bhima                     34000 B                                                                                       
+bond                      24000 B                                                                                       
+vikram                    24000 B                                                                                       
+
+7 rows selected.
+
+
+SQL> select dname, d.deptno,ename,esal,e.deptno from jdept d, jemp e
+  2  where d.deptno=e.deptno;
+
+DNAME                    DEPTNO ENAME                      ESAL     DEPTNO                                              
+-------------------- ---------- -------------------- ---------- ----------                                              
+admin                        20 james                     58234         20                                              
+admin                        20 ravi                      46000         20                                              
+admin                        20 kavi                      35000         20                                              
+devp                         30 bhima                     34000         30                                              
+devp                         30 yash                      56780         30                                              
+
+SQL> select dname, d.deptno,ename,esal,e.deptno from jdept d, jemp e
+  2  where d.deptno=e.deptno(+);
+
+DNAME                    DEPTNO ENAME                      ESAL     DEPTNO                                              
+-------------------- ---------- -------------------- ---------- ----------                                              
+admin                        20 james                     58234         20                                              
+admin                        20 ravi                      46000         20                                              
+admin                        20 kavi                      35000         20                                              
+devp                         30 bhima                     34000         30                                              
+devp                         30 yash                      56780         30                                              
+tranp                        90                                                                                         
+dba                          80                                                                                         
+
+7 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select*from jdept;
+
+    DEPTNO DNAME                       LOC                                                                              
+---------- -------------------- ----------                                                                              
+        20 admin                       901                                                                              
+        30 devp                        902                                                                              
+        80 dba                         901                                                                              
+        90 tranp                       902                                                                              
+
+SQL> select*from jemp;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                                                        
+---------- -------------------- ---------- ---------- ----------                                                        
+      1101 james                     58234                    20                                                        
+      1102 ravi                      46000       1101         20                                                        
+      1103 kavi                      35000       1102         20                                                        
+      1107 bhima                     34000       1102         30                                                        
+      1108 bond                      24000       1103         40                                                        
+      1109 vikram                    24000       1103         40                                                        
+      4007 yash                      56780       1103         30                                                        
+      4009 pal                       86780       1103         40                                                        
+
+8 rows selected.
+
+SQL> select w.ename|| ' reports to ' || m.ename
+  2  res from jemp w, jemp m
+  3  where w.mgrno=m.empno;
+
+RES                                                                                                                     
+----------------------------------------------------                                                                    
+ravi reports to james                                                                                                   
+bhima reports to ravi                                                                                                   
+kavi reports to ravi                                                                                                    
+pal reports to kavi                                                                                                     
+yash reports to kavi                                                                                                    
+vikram reports to kavi                                                                                                  
+bond reports to kavi                                                                                                    
+
+7 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> cle scr
+
+SQL> select ename,dname from jdept cross join jemp;
+
+ENAME                DNAME                                                                                              
+-------------------- --------------------                                                                               
+james                admin                                                                                              
+ravi                 admin                                                                                              
+kavi                 admin                                                                                              
+bhima                admin                                                                                              
+bond                 admin                                                                                              
+vikram               admin                                                                                              
+yash                 admin                                                                                              
+pal                  admin                                                                                              
+james                devp                                                                                               
+ravi                 devp                                                                                               
+kavi                 devp                                                                                               
+
+ENAME                DNAME                                                                                              
+-------------------- --------------------                                                                               
+bhima                devp                                                                                               
+bond                 devp                                                                                               
+vikram               devp                                                                                               
+yash                 devp                                                                                               
+pal                  devp                                                                                               
+james                dba                                                                                                
+ravi                 dba                                                                                                
+kavi                 dba                                                                                                
+bhima                dba                                                                                                
+bond                 dba                                                                                                
+vikram               dba                                                                                                
+
+ENAME                DNAME                                                                                              
+-------------------- --------------------                                                                               
+yash                 dba                                                                                                
+pal                  dba                                                                                                
+james                tranp                                                                                              
+ravi                 tranp                                                                                              
+kavi                 tranp                                                                                              
+bhima                tranp                                                                                              
+bond                 tranp                                                                                              
+vikram               tranp                                                                                              
+yash                 tranp                                                                                              
+pal                  tranp                                                                                              
+
+32 rows selected.
+
+SQL> select dname,deptno,ename,esal deptno from jdept
+  2  natural join jemp;
+
+DNAME                    DEPTNO ENAME                    DEPTNO                                                         
+-------------------- ---------- -------------------- ----------                                                         
+admin                        20 james                     58234                                                         
+admin                        20 ravi                      46000                                                         
+admin                        20 kavi                      35000                                                         
+devp                         30 bhima                     34000                                                         
+devp                         30 yash                      56780                                                         
+
+SQL> select dname,deptno,ename,esal, deptno from jdept
+  2  natural join jemp;
+
+DNAME                    DEPTNO ENAME                      ESAL     DEPTNO                                              
+-------------------- ---------- -------------------- ---------- ----------                                              
+admin                        20 james                     58234         20                                              
+admin                        20 ravi                      46000         20                                              
+admin                        20 kavi                      35000         20                                              
+devp                         30 bhima                     34000         30                                              
+devp                         30 yash                      56780         30                                              
+
+SQL> select dname,deptno,ename,esal, deptno from jdept
+  2   join jemp using(deptno);
+
+DNAME                    DEPTNO ENAME                      ESAL     DEPTNO                                              
+-------------------- ---------- -------------------- ---------- ----------                                              
+admin                        20 james                     58234         20                                              
+admin                        20 ravi                      46000         20                                              
+admin                        20 kavi                      35000         20                                              
+devp                         30 bhima                     34000         30                                              
+devp                         30 yash                      56780         30                                              
+
+
+
+SQL> select dname,d.deptno,ename,esal, e.deptno from jdept d
+  2  left outer join jemp e on (d.deptno=e.deptno);
+
+DNAME                    DEPTNO ENAME                      ESAL     DEPTNO                                              
+-------------------- ---------- -------------------- ---------- ----------                                              
+admin                        20 james                     58234         20                                              
+admin                        20 ravi                      46000         20                                              
+admin                        20 kavi                      35000         20                                              
+devp                         30 bhima                     34000         30                                              
+devp                         30 yash                      56780         30                                              
+tranp                        90                                                                                         
+dba                          80                                                                                         
+
+7 rows selected.
+
+SQL> select deptno from jemp
+  2  union
+  3  select deptno from jdept;
+
+    DEPTNO                                                                                                              
+----------                                                                                                              
+        20                                                                                                              
+        30                                                                                                              
+        40                                                                                                              
+        80                                                                                                              
+        90                                                                                                              
+
+SQL> select deptno from jdept
+  2  union all
+  3  select deptno from jemp;
+
+    DEPTNO                                                                                                              
+----------                                                                                                              
+        20                                                                                                              
+        30                                                                                                              
+        80                                                                                                              
+        90                                                                                                              
+        20                                                                                                              
+        20                                                                                                              
+        20                                                                                                              
+        30                                                                                                              
+        40                                                                                                              
+        40                                                                                                              
+        30                                                                                                              
+
+    DEPTNO                                                                                                              
+----------                                                                                                              
+        40                                                                                                              
+
+12 rows selected.
+
+SQL> select deptno from jdept
+  2  minus
+  3  select deptno from jemp;
+
+    DEPTNO                                                                                                              
+----------                                                                                                              
+        80                                                                                                              
+        90                                                                                                              
+
+SQL> select dname,d.deptno,ename,esal,e.deptno from jdept d, jemp e where(d.deptno=e.deptno(+))
+  2  union
+  3  select dname,d.deptno,ename,esal,e.deptno from jdept d, jemp e where(d.deptno(+)=e.deptno);
+
+DNAME                    DEPTNO ENAME                      ESAL     DEPTNO                                              
+-------------------- ---------- -------------------- ---------- ----------                                              
+admin                        20 james                     58234         20                                              
+admin                        20 kavi                      35000         20                                              
+admin                        20 ravi                      46000         20                                              
+dba                          80                                                                                         
+devp                         30 bhima                     34000         30                                              
+devp                         30 yash                      56780         30                                              
+tranp                        90                                                                                         
+                                bond                      24000         40                                              
+                                pal                       86780         40                                              
+                                vikram                    24000         40                                              
+
+10 rows selected.
+
+SQL> select*from jemp;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                                                        
+---------- -------------------- ---------- ---------- ----------                                                        
+      1101 james                     58234                    20                                                        
+      1102 ravi                      46000       1101         20                                                        
+      1103 kavi                      35000       1102         20                                                        
+      1107 bhima                     34000       1102         30                                                        
+      1108 bond                      24000       1103         40                                                        
+      1109 vikram                    24000       1103         40                                                        
+      4007 yash                      56780       1103         30                                                        
+      4009 pal                       86780       1103         40                                                        
+
+8 rows selected.
+
+SQL> create table sqldemocg as select+ from jemp
+  2  where empno!=1101;
+create table sqldemocg as select+ from jemp
+                                  *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> create table sqldemocg as select* from jemp
+  2  where empno!=1101;
+
+Table created.
+
+SQL> select *from sqldemocg;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                                                        
+---------- -------------------- ---------- ---------- ----------                                                        
+      1102 ravi                      46000       1101         20                                                        
+      1103 kavi                      35000       1102         20                                                        
+      1107 bhima                     34000       1102         30                                                        
+      1108 bond                      24000       1103         40                                                        
+      1109 vikram                    24000       1103         40                                                        
+      4007 yash                      56780       1103         30                                                        
+      4009 pal                       86780       1103         40                                                        
+
+7 rows selected.
+
+SQL> select ename,esal from sqldemocg
+  2  where esal>(select esal from sqldemocg
+  3  where ename='bhima';
+where esal>(select esal from sqldemocg
+            *
+ERROR at line 2:
+ORA-00921: unexpected end of SQL command 
+
+
+SQL> select ename,esal from sqldemocg
+  2  where esal>(select esal from sqldemocg
+  3  where ename='bhima');
+
+ENAME                      ESAL                                                                                         
+-------------------- ----------                                                                                         
+ravi                      46000                                                                                         
+kavi                      35000                                                                                         
+yash                      56780                                                                                         
+pal                       86780                                                                                         
+
+SQL> select max(esal) from sqldemocg;
+
+ MAX(ESAL)                                                                                                              
+----------                                                                                                              
+     86780                                                                                                              
+
+SQL> select esal from sqldemocg
+  2  where
+  3  
+SQL> select max(esal) from sqldemocg
+  2  where esal<(select max(esal) from sqldemocg);
+
+ MAX(ESAL)                                                                                                              
+----------                                                                                                              
+     56780                                                                                                              
+
+SQL> select ename from sqldemocg
+  2  where max(esal);
+where max(esal)
+      *
+ERROR at line 2:
+ORA-00934: group function is not allowed here 
+
+
+SQL> select ename from sqldemocg
+  2  where esal=max;
+where esal=max
+           *
+ERROR at line 2:
+ORA-00904: "MAX": invalid identifier 
+
+
+SQL> select ename from sqldemocg
+  2  where esal
+  3  
+SQL> select ename, esal from sqldemocg
+  2  where esal=(select max(esal) from sqldemocg);
+
+ENAME                      ESAL                                                                                         
+-------------------- ----------                                                                                         
+pal                       86780                                                                                         
+
+SQL> select ename, esal from sqldemocg
+  2  where esal=max;
+where esal=max
+           *
+ERROR at line 2:
+ORA-00904: "MAX": invalid identifier 
+
+
+SQL> select ename, esal from sqldemocg
+  2  where esal=(select max(esal) from sqldemocg);
+
+ENAME                      ESAL                                                                                         
+-------------------- ----------                                                                                         
+pal                       86780                                                                                         
+
+SQL> select ename, to_char(esal, '99,999) from sqldemocg
+  2  where esal=(select max(esal) from sqldemocg);
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> select ename, to_char(esal, '99,999') from sqldemocg
+  2  where esal=(select max(esal) from sqldemocg);
+
+ENAME                TO_CHAR                                                                                            
+-------------------- -------                                                                                            
+pal                   86,780                                                                                            
+
+SQL> select ename,esal,deptno
+  2  from sqldemocg where esal in(select esal from sqldemocg where deptno=20);
+
+ENAME                      ESAL     DEPTNO                                                                              
+-------------------- ---------- ----------                                                                              
+ravi                      46000         20                                                                              
+kavi                      35000         20                                                                              
+
+SQL> select ename,esal,deptno
+  2  from sqldemocg where deptno=20);
+from sqldemocg where deptno=20)
+                              *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select ename,esal,deptno
+  2  from sqldemocg where deptno=20;
+
+ENAME                      ESAL     DEPTNO                                                                              
+-------------------- ---------- ----------                                                                              
+ravi                      46000         20                                                                              
+kavi                      35000         20                                                                              
+
+SQL> select ename,esal,deptno
+  2  from sqldemocg where esal<any(select esal from sqldemocg
+  3  where deptno=20);
+
+ENAME                      ESAL     DEPTNO                                                                              
+-------------------- ---------- ----------                                                                              
+bond                      24000         40                                                                              
+vikram                    24000         40                                                                              
+bhima                     34000         30                                                                              
+kavi                      35000         20                                                                              
+
+SQL> select *from sqldemocg;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                                                        
+---------- -------------------- ---------- ---------- ----------                                                        
+      1102 ravi                      46000       1101         20                                                        
+      1103 kavi                      35000       1102         20                                                        
+      1107 bhima                     34000       1102         30                                                        
+      1108 bond                      24000       1103         40                                                        
+      1109 vikram                    24000       1103         40                                                        
+      4007 yash                      56780       1103         30                                                        
+      4009 pal                       86780       1103         40                                                        
+
+7 rows selected.
+
+SQL> from sqldemocg where esal<any(select esal from sqldemocg
+SP2-0734: unknown command beginning "from sqlde..." - rest of line ignored.
+SQL> select ename,esal,deptno
+  2  from sqldemocg where esal<any(select esal from sqldemocg
+  3  from sqldemocg where esal>any(select esal from sqldemocg
+  4  
+SQL> select ename,esal,deptno
+  2  from sqldemocg where esal>any(select esal from sqldemocg
+  3  where deptno=20);
+
+ENAME                      ESAL     DEPTNO                                                                              
+-------------------- ---------- ----------                                                                              
+pal                       86780         40                                                                              
+yash                      56780         30                                                                              
+ravi                      46000         20                                                                              
+
+SQL> select ename,esal,deptno
+  2  from sqldemocg where esal<all(select esal from sqldemocg
+  3  where deptno=20);
+
+ENAME                      ESAL     DEPTNO                                                                              
+-------------------- ---------- ----------                                                                              
+bhima                     34000         30                                                                              
+vikram                    24000         40                                                                              
+bond                      24000         40                                                                              
+
+SQL> where deptno=20);
+SP2-0734: unknown command beginning "where dept..." - rest of line ignored.
+SQL> 
+SQL> 
+SQL> spool off;
+SQL> create table sqldemocg1 as select *from sqldemocg
+  2  where 5=6;
+
+Table created.
+
+SQL> select *from sqldemocg1;
+
+no rows selected
+
+SQL> insert into sqldemocg1 select *from sqldemocg;
+
+7 rows created.
+
+SQL> select *from sqldemocg1;;
+select *from sqldemocg1;
+                       *
+ERROR at line 1:
+ORA-00911: invalid character 
+
+
+SQL> select *from sqldemocg1;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                                                        
+---------- -------------------- ---------- ---------- ----------                                                        
+      1102 ravi                      46000       1101         20                                                        
+      1103 kavi                      35000       1102         20                                                        
+      1107 bhima                     34000       1102         30                                                        
+      1108 bond                      24000       1103         40                                                        
+      1109 vikram                    24000       1103         40                                                        
+      4007 yash                      56780       1103         30                                                        
+      4009 pal                       86780       1103         40                                                        
+
+7 rows selected.
+
+SQL> create table sqldemocg2 as select *from sqldemocg1
+  2  where deptno=40;
+
+Table created.
+
+SQL> select *from sqldemocg2;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                                                        
+---------- -------------------- ---------- ---------- ----------                                                        
+      1108 bond                      24000       1103         40                                                        
+      1109 vikram                    24000       1103         40                                                        
+      4009 pal                       86780       1103         40                                                        
+
+SQL> update sqldemocg2
+  2  set esal=(select esal from sqldemocg where empno=1104)
+  3  where empno=4009;
+
+1 row updated.
+
+SQL> select *from sqldemocg2;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                                                        
+---------- -------------------- ---------- ---------- ----------                                                        
+      1108 bond                      24000       1103         40                                                        
+      1109 vikram                    24000       1103         40                                                        
+      4009 pal                                   1103         40                                                        
+
+SQL> select ename, esal from jemp a1
+  2  where &n= (select count(a1.esal) from jemp a2 where
+  3  a2.esal>=a1.esal);
+Enter value for n: 4
+old   2: where &n= (select count(a1.esal) from jemp a2 where
+new   2: where 4= (select count(a1.esal) from jemp a2 where
+
+ENAME                      ESAL                                                                                         
+-------------------- ----------                                                                                         
+ravi                      46000                                                                                         
+
+SQL> select *from jemp;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                                                        
+---------- -------------------- ---------- ---------- ----------                                                        
+      1101 james                     58234                    20                                                        
+      1102 ravi                      46000       1101         20                                                        
+      1103 kavi                      35000       1102         20                                                        
+      1107 bhima                     34000       1102         30                                                        
+      1108 bond                      24000       1103         40                                                        
+      1109 vikram                    24000       1103         40                                                        
+      4007 yash                      56780       1103         30                                                        
+      4009 pal                       86780       1103         40                                                        
+
+8 rows selected.
+
+SQL> select rownum, empno, rowid, esal from jemp;
+
+    ROWNUM      EMPNO ROWID                    ESAL                                                                     
+---------- ---------- ------------------ ----------                                                                     
+         1       1101 AAAFG0AABAAALLJAAA      58234                                                                     
+         2       1102 AAAFG0AABAAALLJAAB      46000                                                                     
+         3       1103 AAAFG0AABAAALLJAAC      35000                                                                     
+         4       1107 AAAFG0AABAAALLJAAD      34000                                                                     
+         5       1108 AAAFG0AABAAALLJAAE      24000                                                                     
+         6       1109 AAAFG0AABAAALLJAAF      24000                                                                     
+         7       4007 AAAFG0AABAAALLJAAG      56780                                                                     
+         8       4009 AAAFG0AABAAALLJAAH      86780                                                                     
+
+8 rows selected.
+
+SQL> select *from jemp where rownum=1;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                                                        
+---------- -------------------- ---------- ---------- ----------                                                        
+      1101 james                     58234                    20                                                        
+
+SQL> select ename, esal from jemp a1
+  2    2  where &n= (select count(a1.esal) from jemp a2 where
+  3    3  a2.esal>=a1.esal);
+Enter value for n: 2
+old   2:   2  where &n= (select count(a1.esal) from jemp a2 where
+new   2:   2  where 2= (select count(a1.esal) from jemp a2 where
+  2  where 2= (select count(a1.esal) from jemp a2 where
+  *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select ename, esal from jemp a1
+  2   where &n= (select count(a1.esal) from jemp a2 where
+  3   a2.esal>=a1.esal);
+Enter value for n: 2
+old   2:  where &n= (select count(a1.esal) from jemp a2 where
+new   2:  where 2= (select count(a1.esal) from jemp a2 where
+
+ENAME                      ESAL                                                                                         
+-------------------- ----------                                                                                         
+james                     58234                                                                                         
+
+SQL> select ename, esal from jemp a1
+  2   where &n= (select count(a1.esal) from jemp a2 where
+  3   a2.esal<=a1.esal);
+Enter value for n: 2
+old   2:  where &n= (select count(a1.esal) from jemp a2 where
+new   2:  where 2= (select count(a1.esal) from jemp a2 where
+
+ENAME                      ESAL                                                                                         
+-------------------- ----------                                                                                         
+bond                      24000                                                                                         
+vikram                    24000                                                                                         
+
+SQL> /
+Enter value for n: 1
+old   2:  where &n= (select count(a1.esal) from jemp a2 where
+new   2:  where 1= (select count(a1.esal) from jemp a2 where
+
+no rows selected
+
+SQL> /
+Enter value for n: 3
+old   2:  where &n= (select count(a1.esal) from jemp a2 where
+new   2:  where 3= (select count(a1.esal) from jemp a2 where
+
+ENAME                      ESAL                                                                                         
+-------------------- ----------                                                                                         
+bhima                     34000                                                                                         
+
+SQL> select empno, ename from
+  2  (select empno,ename from jemmp order by rownum desc)
+  3  where rownum=1;
+(select empno,ename from jemmp order by rownum desc)
+                         *
+ERROR at line 2:
+ORA-00942: table or view does not exist 
+
+
+SQL> select empno, ename from
+  2  (select empno,ename from jemp order by rownum desc)
+  3  where rownum=1;
+
+     EMPNO ENAME                                                                                                        
+---------- --------------------                                                                                         
+      4009 pal                                                                                                          
+
+SQL> select empno,ename from(select empno,ename, rownum as rn
+  2  where rn=2);
+where rn=2)
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select empno,ename from(select empno,ename, rownum as rn
+  2  where rn=2);creta
+  3  
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> create or replace view myviewscg1 as
+  2  select empno,esal,ename,deptno
+  3  from jemp;
+
+View created.
+
+SQL> select *from myviewcg1;
+select *from myviewcg1
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select *from myviewscg1;
+
+     EMPNO       ESAL ENAME                    DEPTNO                                                                   
+---------- ---------- -------------------- ----------                                                                   
+      1101      58234 james                        20                                                                   
+      1102      46000 ravi                         20                                                                   
+      1103      35000 kavi                         20                                                                   
+      1107      34000 bhima                        30                                                                   
+      1108      24000 bond                         40                                                                   
+      1109      24000 vikram                       40                                                                   
+      4007      56780 yash                         30                                                                   
+      4009      86780 pal                          40                                                                   
+
+8 rows selected.
+
+SQL> delete *from myviewscg1
+  2  where empno=1101;
+delete *from myviewscg1
+       *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> delete from myviewscg1
+  2  where empno=4009;
+
+1 row deleted.
+
+SQL> select * from myviewscg1
+  2  ;
+
+     EMPNO       ESAL ENAME                    DEPTNO                                                                   
+---------- ---------- -------------------- ----------                                                                   
+      1101      58234 james                        20                                                                   
+      1102      46000 ravi                         20                                                                   
+      1103      35000 kavi                         20                                                                   
+      1107      34000 bhima                        30                                                                   
+      1108      24000 bond                         40                                                                   
+      1109      24000 vikram                       40                                                                   
+      4007      56780 yash                         30                                                                   
+
+7 rows selected.
+
+SQL> create or replace views myviewscg2(maximumsal,minimumsal)
+  2  as select max(esl),min(esal) from jemp;
+create or replace views myviewscg2(maximumsal,minimumsal)
+                  *
+ERROR at line 1:
+ORA-00922: missing or invalid option 
+
+
+SQL> create or replace view myviewscg2(maximumsal,minimumsal)
+  2  as select max(esl),min(esal) from jemp;
+as select max(esl),min(esal) from jemp
+              *
+ERROR at line 2:
+ORA-00904: "ESL": invalid identifier 
+
+
+SQL> create or replace view myviewscg2(maximumsal,minimumsal)
+  2  as select max(esal),min(esal) from jemp;
+
+View created.
+
+SQL> select *from myviewscg2;
+
+MAXIMUMSAL MINIMUMSAL                                                                                                   
+---------- ----------                                                                                                   
+     58234      24000                                                                                                   
+
+SQL> create or replace view myviewscg4 as
+  2  select empno,ename,esal,deptno
+  3  from jemp where deptno=20
+  4  with check option;
+
+View created.
+
+SQL> select *from myviewscg4;
+
+     EMPNO ENAME                      ESAL     DEPTNO                                                                   
+---------- -------------------- ---------- ----------                                                                   
+      1101 james                     58234         20                                                                   
+      1102 ravi                      46000         20                                                                   
+      1103 kavi                      35000         20                                                                   
+
+SQL> update myviewscg4
+  2  set deptno=98
+  3  where empno=1101;
+update myviewscg4
+       *
+ERROR at line 1:
+ORA-01402: view WITH CHECK OPTION where-clause violation 
+
+
+SQL> update myviewcg4;
+update myviewcg4
+               *
+ERROR at line 1:
+ORA-00971: missing SET keyword 
+
+
+SQL> create or replace view myviewcg6 as
+  2  select empno,ename,esal,deptno
+  3  from jemp
+  4  with read only;
+
+View created.
+
+SQL> select *from myviewcg6;
+
+     EMPNO ENAME                      ESAL     DEPTNO                                                                   
+---------- -------------------- ---------- ----------                                                                   
+      1101 james                     58234         20                                                                   
+      1102 ravi                      46000         20                                                                   
+      1103 kavi                      35000         20                                                                   
+      1107 bhima                     34000         30                                                                   
+      1108 bond                      24000         40                                                                   
+      1109 vikram                    24000         40                                                                   
+      4007 yash                      56780         30                                                                   
+
+7 rows selected.
+
+SQL> delete from myviewscg6
+  2  where empno=1101;
+delete from myviewscg6
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> delete from myviewcg6
+  2  where empno=1101;
+delete from myviewcg6
+            *
+ERROR at line 1:
+ORA-42399: cannot perform a DML operation on a read-only view 
+
+
+SQL> select view_name from user_views;
+
+VIEW_NAME                                                                                                               
+------------------------------                                                                                          
+AQ$DEF$_AQCALL                                                                                                          
+AQ$DEF$_AQERROR                                                                                                         
+AQ$_DEF$_AQCALL_F                                                                                                       
+AQ$_DEF$_AQERROR_F                                                                                                      
+MVIEW_EVALUATIONS                                                                                                       
+MVIEW_EXCEPTIONS                                                                                                        
+MVIEW_FILTER                                                                                                            
+MVIEW_FILTERINSTANCE                                                                                                    
+MVIEW_LOG                                                                                                               
+MVIEW_RECOMMENDATIONS                                                                                                   
+MVIEW_WORKLOAD                                                                                                          
+
+VIEW_NAME                                                                                                               
+------------------------------                                                                                          
+MYVIEWCG6                                                                                                               
+MYVIEWSCG1                                                                                                              
+MYVIEWSCG2                                                                                                              
+MYVIEWSCG4                                                                                                              
+PRODUCT_PRIVS                                                                                                           
+
+16 rows selected.
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+LOGMNR_PARAMETER$                                                                                                       
+LOGMNR_SESSION$                                                                                                         
+MVIEW$_ADV_WORKLOAD                                                                                                     
+MVIEW$_ADV_BASETABLE                                                                                                    
+MVIEW$_ADV_SQLDEPEND                                                                                                    
+MVIEW$_ADV_PRETTY                                                                                                       
+MVIEW$_ADV_TEMP                                                                                                         
+MVIEW$_ADV_FILTER                                                                                                       
+MVIEW$_ADV_LOG                                                                                                          
+MVIEW$_ADV_FILTERINSTANCE                                                                                               
+MVIEW$_ADV_LEVEL                                                                                                        
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+MVIEW$_ADV_ROLLUP                                                                                                       
+MVIEW$_ADV_AJG                                                                                                          
+MVIEW$_ADV_FJG                                                                                                          
+MVIEW$_ADV_GC                                                                                                           
+MVIEW$_ADV_CLIQUE                                                                                                       
+MVIEW$_ADV_ELIGIBLE                                                                                                     
+MVIEW$_ADV_OUTPUT                                                                                                       
+MVIEW$_ADV_EXCEPTIONS                                                                                                   
+MVIEW$_ADV_PARAMETERS                                                                                                   
+MVIEW$_ADV_INFO                                                                                                         
+MVIEW$_ADV_JOURNAL                                                                                                      
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+MVIEW$_ADV_PLAN                                                                                                         
+AQ$_QUEUE_TABLES                                                                                                        
+AQ$_QUEUES                                                                                                              
+AQ$_SCHEDULES                                                                                                           
+AQ$_INTERNET_AGENTS                                                                                                     
+AQ$_INTERNET_AGENT_PRIVS                                                                                                
+DEF$_ERROR                                                                                                              
+DEF$_DESTINATION                                                                                                        
+DEF$_CALLDEST                                                                                                           
+DEF$_DEFAULTDEST                                                                                                        
+DEF$_LOB                                                                                                                
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+DEF$_PROPAGATOR                                                                                                         
+DEF$_ORIGIN                                                                                                             
+DEF$_PUSHED_TRANSACTIONS                                                                                                
+REPCAT$_REPCAT                                                                                                          
+REPCAT$_FLAVORS                                                                                                         
+REPCAT$_REPSCHEMA                                                                                                       
+REPCAT$_SNAPGROUP                                                                                                       
+REPCAT$_REPOBJECT                                                                                                       
+REPCAT$_REPCOLUMN                                                                                                       
+REPCAT$_KEY_COLUMNS                                                                                                     
+REPCAT$_GENERATED                                                                                                       
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+REPCAT$_REPPROP                                                                                                         
+REPCAT$_REPCATLOG                                                                                                       
+REPCAT$_DDL                                                                                                             
+REPCAT$_REPGROUP_PRIVS                                                                                                  
+REPCAT$_PRIORITY_GROUP                                                                                                  
+REPCAT$_PRIORITY                                                                                                        
+REPCAT$_COLUMN_GROUP                                                                                                    
+REPCAT$_GROUPED_COLUMN                                                                                                  
+REPCAT$_CONFLICT                                                                                                        
+REPCAT$_RESOLUTION_METHOD                                                                                               
+REPCAT$_RESOLUTION                                                                                                      
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+REPCAT$_RESOLUTION_STATISTICS                                                                                           
+REPCAT$_RESOL_STATS_CONTROL                                                                                             
+REPCAT$_PARAMETER_COLUMN                                                                                                
+REPCAT$_AUDIT_ATTRIBUTE                                                                                                 
+REPCAT$_AUDIT_COLUMN                                                                                                    
+REPCAT$_FLAVOR_OBJECTS                                                                                                  
+REPCAT$_TEMPLATE_STATUS                                                                                                 
+REPCAT$_TEMPLATE_TYPES                                                                                                  
+REPCAT$_REFRESH_TEMPLATES                                                                                               
+REPCAT$_USER_AUTHORIZATIONS                                                                                             
+REPCAT$_OBJECT_TYPES                                                                                                    
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+REPCAT$_TEMPLATE_REFGROUPS                                                                                              
+REPCAT$_TEMPLATE_OBJECTS                                                                                                
+REPCAT$_TEMPLATE_PARMS                                                                                                  
+REPCAT$_OBJECT_PARMS                                                                                                    
+REPCAT$_USER_PARM_VALUES                                                                                                
+REPCAT$_TEMPLATE_SITES                                                                                                  
+REPCAT$_SITE_OBJECTS                                                                                                    
+REPCAT$_RUNTIME_PARMS                                                                                                   
+REPCAT$_TEMPLATE_TARGETS                                                                                                
+REPCAT$_EXCEPTIONS                                                                                                      
+REPCAT$_INSTANTIATION_DDL                                                                                               
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+REPCAT$_EXTENSION                                                                                                       
+REPCAT$_SITES_NEW                                                                                                       
+LOGSTDBY$PARAMETERS                                                                                                     
+LOGSTDBY$EVENTS                                                                                                         
+LOGSTDBY$APPLY_MILESTONE                                                                                                
+LOGSTDBY$SCN                                                                                                            
+LOGSTDBY$FLASHBACK_SCN                                                                                                  
+LOGSTDBY$PLSQL                                                                                                          
+LOGSTDBY$SKIP_TRANSACTION                                                                                               
+LOGSTDBY$SKIP                                                                                                           
+LOGSTDBY$SKIP_SUPPORT                                                                                                   
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+LOGSTDBY$HISTORY                                                                                                        
+LOGSTDBY$EDS_TABLES                                                                                                     
+DEF$_AQCALL                                                                                                             
+DEF$_AQERROR                                                                                                            
+SQLPLUS_PRODUCT_PROFILE                                                                                                 
+HELP                                                                                                                    
+CUSTOMER                                                                                                                
+CUSTOMER_DETAILS                                                                                                        
+PIZZA_DETAILS                                                                                                           
+WALLET                                                                                                                  
+CUSTOMER1                                                                                                               
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+ROOMDETAIL                                                                                                              
+CUSTOMERDETAILS                                                                                                         
+PRODUCT                                                                                                                 
+TRAINE                                                                                                                  
+HOTELDETAILS                                                                                                            
+BOOKINGDETAILS                                                                                                          
+NVLDEMO                                                                                                                 
+JEMP                                                                                                                    
+JDEPT                                                                                                                   
+JSALGRADE                                                                                                               
+SQLDEMOCG                                                                                                               
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+SQLDEMOCG1                                                                                                              
+SQLDEMOCG2                                                                                                              
+LOGMNR_GT_TAB_INCLUDE$                                                                                                  
+LOGMNR_GT_USER_INCLUDE$                                                                                                 
+LOGMNR_GT_XID_INCLUDE$                                                                                                  
+LOGMNRT_MDDL$                                                                                                           
+OL$                                                                                                                     
+OL$HINTS                                                                                                                
+OL$NODES                                                                                                                
+LOGMNR_DICTSTATE$                                                                                                       
+LOGMNRC_GTLO                                                                                                            
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+LOGMNRC_GTCS                                                                                                            
+LOGMNRC_GSII                                                                                                            
+LOGMNRC_GSBA                                                                                                            
+LOGMNR_SEED$                                                                                                            
+LOGMNR_DICTIONARY$                                                                                                      
+LOGMNR_OBJ$                                                                                                             
+LOGMNR_TAB$                                                                                                             
+LOGMNR_COL$                                                                                                             
+LOGMNR_ATTRCOL$                                                                                                         
+LOGMNR_TS$                                                                                                              
+LOGMNR_IND$                                                                                                             
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+LOGMNR_USER$                                                                                                            
+LOGMNR_TABPART$                                                                                                         
+LOGMNR_TABSUBPART$                                                                                                      
+LOGMNR_TABCOMPART$                                                                                                      
+LOGMNR_TYPE$                                                                                                            
+LOGMNR_COLTYPE$                                                                                                         
+LOGMNR_ATTRIBUTE$                                                                                                       
+LOGMNR_LOB$                                                                                                             
+LOGMNR_CDEF$                                                                                                            
+LOGMNR_CCOL$                                                                                                            
+LOGMNR_ICOL$                                                                                                            
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+LOGMNR_LOBFRAG$                                                                                                         
+LOGMNR_INDPART$                                                                                                         
+LOGMNR_INDSUBPART$                                                                                                      
+LOGMNR_INDCOMPART$                                                                                                      
+LOGMNR_LOGMNR_BUILDLOG                                                                                                  
+LOGMNR_NTAB$                                                                                                            
+LOGMNR_OPQTYPE$                                                                                                         
+LOGMNR_SUBCOLTYPE$                                                                                                      
+LOGMNR_KOPM$                                                                                                            
+LOGMNR_PROPS$                                                                                                           
+LOGMNR_ENC$                                                                                                             
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+LOGMNR_REFCON$                                                                                                          
+LOGMNR_PARTOBJ$                                                                                                         
+LOGMNRP_CTAS_PART_MAP                                                                                                   
+LOGSTDBY$APPLY_PROGRESS                                                                                                 
+LOGMNR_INTEGRATED_SPILL$                                                                                                
+LOGMNR_PROCESSED_LOG$                                                                                                   
+LOGMNR_UID$                                                                                                             
+LOGMNRC_DBNAME_UID_MAP                                                                                                  
+LOGMNR_LOG$                                                                                                             
+LOGMNR_ERROR$                                                                                                           
+LOGMNR_RESTART_CKPT$                                                                                                    
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+LOGMNR_GLOBAL$                                                                                                          
+LOGMNR_SESSION_EVOLVE$                                                                                                  
+LOGMNR_FILTER$                                                                                                          
+LOGMNR_AGE_SPILL$                                                                                                       
+LOGMNR_SPILL$                                                                                                           
+LOGMNR_RESTART_CKPT_TXINFO$                                                                                             
+LOGMNR_SESSION_ACTIONS$                                                                                                 
+
+172 rows selected.
+
+SQL> create index idxcg1
+  2  on jemp(empno);
+
+Index created.
+
+SQL> select_name from user_indexes;
+select_name from user_indexes
+*
+ERROR at line 1:
+ORA-24333: zero iteration count 
+
+
+SQL> select index_name from user_indexes;
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+LOGMNR_UID$_PK                                                                                                          
+LOGMNR_LOG$_PK                                                                                                          
+LOGMNR_LOG$_FLAGS                                                                                                       
+LOGMNR_LOG$_FIRST_CHANGE#                                                                                               
+LOGMNR_SESSION_EVOLVE$_PK                                                                                               
+LOGMNRC_DBNAME_UID_MAP_PK                                                                                               
+LOGMNR_PROCESSED_LOG$_PK                                                                                                
+LOGMNR_RESTART_CKPT$_PK                                                                                                 
+LOGMNR_SPILL$_PK                                                                                                        
+LOGMNR_AGE_SPILL$_PK                                                                                                    
+LOGMNR_RESTART_CKPT_TXINFO$_PK                                                                                          
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+SYS_IL0000001112C00011$$                                                                                                
+LOGMNR_SESSION_ACTION$_PK                                                                                               
+LOGMNR_INTEG_SPILL$_PK                                                                                                  
+LOGMNR_LOG$_RECID                                                                                                       
+SYS_IL0000001104C00010$$                                                                                                
+LOGMNR_PARAMETER_INDX                                                                                                   
+LOGMNR_SESSION_PK                                                                                                       
+LOGMNR_SESSION_UK1                                                                                                      
+MVIEW$_ADV_WORKLOAD_PK                                                                                                  
+MVIEW$_ADV_WORKLOAD_IDX_01                                                                                              
+MVIEW$_ADV_BASETABLE_IDX_01                                                                                             
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+MVIEW$_ADV_SQLDEPEND_IDX_01                                                                                             
+MVIEW$_ADV_PRETTY_IDX_01                                                                                                
+MVIEW$_ADV_TEMP_IDX_01                                                                                                  
+MVIEW$_ADV_FILTER_PK                                                                                                    
+MVIEW$_ADV_LOG_PK                                                                                                       
+MVIEW$_ADV_LEVEL_PK                                                                                                     
+MVIEW$_ADV_ROLLUP_PK                                                                                                    
+MVIEW$_ADV_AJG_PK                                                                                                       
+MVIEW$_ADV_FJG_PK                                                                                                       
+MVIEW$_ADV_GC_PK                                                                                                        
+MVIEW$_ADV_CLIQUE_PK                                                                                                    
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+MVIEW$_ADV_ELIGIBLE_PK                                                                                                  
+MVIEW$_ADV_OUTPUT_PK                                                                                                    
+MVIEW$_ADV_PARAMETERS_PK                                                                                                
+MVIEW$_ADV_INFO_PK                                                                                                      
+MVIEW$_ADV_JOURNAL_PK                                                                                                   
+AQ$_QUEUE_TABLES_PRIMARY                                                                                                
+I1_QUEUE_TABLES                                                                                                         
+SYS_IL0000005687C00012$$                                                                                                
+AQ$_QUEUES_PRIMARY                                                                                                      
+AQ$_QUEUES_CHECK                                                                                                        
+I1_QUEUES                                                                                                               
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+AQ$_SCHEDULES_PRIMARY                                                                                                   
+AQ$_SCHEDULES_CHECK                                                                                                     
+SYS_C001694                                                                                                             
+UNQ_PAIRS                                                                                                               
+DEF$_ERROR_PRIMARY                                                                                                      
+DEF$_DESTINATION_PRIMARY                                                                                                
+DEF$_CALLDEST_PRIMARY                                                                                                   
+DEF$_CALLDEST_N2                                                                                                        
+DEF$_DEFAULTDEST_PRIMARY                                                                                                
+SYS_IL0000006939C00003$$                                                                                                
+SYS_IL0000006939C00004$$                                                                                                
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+SYS_IL0000006939C00005$$                                                                                                
+DEF$_LOB_PRIMARY                                                                                                        
+DEF$_LOB_N1                                                                                                             
+DEF$_PROPAGATOR_PRIMARY                                                                                                 
+DEF$_PUSHED_TRAN_PRIMARY                                                                                                
+SYS_IL0000013050C00025$$                                                                                                
+SYS_C003540                                                                                                             
+SYS_IL0000013061C00025$$                                                                                                
+SYS_C003543                                                                                                             
+REPCAT$_REPCAT_PRIMARY                                                                                                  
+REPCAT$_FLAVORS_UNQ1                                                                                                    
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+REPCAT$_FLAVORS_FNAME                                                                                                   
+REPCAT$_FLAVORS_GNAME                                                                                                   
+REPCAT$_FLAVORS_FK1_IDX                                                                                                 
+REPCAT$_REPSCHEMA_PRIMARY                                                                                               
+REPCAT$_REPSCHEMA_DEST_IDX                                                                                              
+REPCAT$_REPSCHEMA_PRNT_IDX                                                                                              
+I_REPCAT$_SNAPGROUP1                                                                                                    
+REPCAT$_REPOBJECT_PRIMARY                                                                                               
+REPCAT$_REPOBJECT_GNAME                                                                                                 
+REPCAT$_REPOBJECT_PRNT_IDX                                                                                              
+REPCAT$_REPCOLUMN_PK                                                                                                    
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+REPCAT$_REPCOLUMN_FK_IDX                                                                                                
+REPCAT$_KEY_COLUMNS_PRIMARY                                                                                             
+REPCAT$_KEY_COLUMNS_PRNT_IDX                                                                                            
+REPCAT$_REPGEN_PRIMARY                                                                                                  
+REPCAT$_GENERATED_N1                                                                                                    
+REPCAT$_REPGEN_PRNT_IDX                                                                                                 
+REPCAT$_REPPROP_PRIMARY                                                                                                 
+REPCAT$_REPPROP_DBLINK_HOW                                                                                              
+REPCAT$_REPPROP_KEY_INDEX                                                                                               
+REPCAT$_REPPROP_PRNT_IDX                                                                                                
+REPCAT$_REPPROP_PRNT2_IDX                                                                                               
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+REPCAT$_REPCATLOG_PRIMARY                                                                                               
+REPCAT$_REPCATLOG_GNAME                                                                                                 
+REPCAT$_DDL_INDEX                                                                                                       
+REPCAT$_DDL                                                                                                             
+REPCAT$_REPGROUP_PRIVS_UK                                                                                               
+REPCAT$_REPGROUP_PRIVS_N1                                                                                               
+REPCAT$_REPGROUP_PRIVS_FK_IDX                                                                                           
+REPCAT$_PRIORITY_GROUP_PK                                                                                               
+REPCAT$_PRIORITY_GROUP_U1                                                                                               
+REPCAT$_PRIORITY_PK                                                                                                     
+REPCAT$_PRIORITY_F1_IDX                                                                                                 
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+REPCAT$_COLUMN_GROUP_PK                                                                                                 
+REPCAT$_GROUPED_COLUMN_PK                                                                                               
+REPCAT$_GROUPED_COLUMN_F1_IDX                                                                                           
+REPCAT$_CONFLICT_PK                                                                                                     
+REPCAT$_RESOL_METHOD_PK                                                                                                 
+REPCAT$_RESOLUTION_PK                                                                                                   
+REPCAT$_RESOLUTION_F3_IDX                                                                                               
+REPCAT$_RESOLUTION_IDX2                                                                                                 
+REPCAT$_RESOLUTION_STATS_N1                                                                                             
+REPCAT$_RESOL_STATS_CTRL_PK                                                                                             
+REPCAT$_PARAMETER_COLUMN_PK                                                                                             
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+REPCAT$_PARAMETER_COLUMN_F1_I                                                                                           
+REPCAT$_AUDIT_ATTRIBUTE_PK                                                                                              
+REPCAT$_AUDIT_COLUMN_PK                                                                                                 
+REPCAT$_AUDIT_COLUMN_F1_IDX                                                                                             
+REPCAT$_AUDIT_COLUMN_F2_IDX                                                                                             
+REPCAT$_FLAVOR_OBJECTS_PK                                                                                               
+REPCAT$_FLAVOR_OBJECTS_FG                                                                                               
+REPCAT$_FLAVOR_OBJECTS_FK1_IDX                                                                                          
+REPCAT$_FLAVOR_OBJECTS_FK2_IDX                                                                                          
+REPCAT$_TEMPLATE_STATUS_PK                                                                                              
+REPCAT$_TEMPLATE_TYPES_PK                                                                                               
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+REPCAT$_REFRESH_TEMPLATES_PK                                                                                            
+REPCAT$_REFRESH_TEMPLATES_U1                                                                                            
+REPCAT$_USER_AUTHORIZATIONS_PK                                                                                          
+REPCAT$_USER_AUTHORIZATIONS_U1                                                                                          
+REPCAT$_USER_AUTHORIZATIONS_N1                                                                                          
+REPCAT$_OBJECT_TYPE_PK                                                                                                  
+REPCAT$_TEMPLATE_REFGROUPS_PK                                                                                           
+REPCAT$_TEMPLATE_REFGROUPS_N1                                                                                           
+REPCAT$_TEMPLATE_REFGROUPS_N2                                                                                           
+SYS_IL0000007295C00006$$                                                                                                
+REPCAT$_TEMPLATE_OBJECTS_PK                                                                                             
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+REPCAT$_TEMPLATE_OBJECTS_U1                                                                                             
+REPCAT$_TEMPLATE_OBJECTS_N1                                                                                             
+SYS_IL0000007308C00004$$                                                                                                
+REPCAT$_TEMPLATE_PARMS_PK                                                                                               
+REPCAT$_TEMPLATE_PARMS_U1                                                                                               
+REPCAT$_OBJECT_PARMS_PK                                                                                                 
+REPCAT$_OBJECT_PARMS_N2                                                                                                 
+SYS_IL0000007323C00004$$                                                                                                
+REPCAT$_USER_PARM_VALUES_PK                                                                                             
+REPCAT$_USER_PARM_VALUES_U1                                                                                             
+REPCAT$_TEMPLATE_SITES_PK                                                                                               
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+REPCAT$_TEMPLATE_SITES_U1                                                                                               
+REPCAT$_SITE_OBJECTS_U1                                                                                                 
+REPCAT$_SITE_OBJECTS_N1                                                                                                 
+SYS_IL0000007349C00003$$                                                                                                
+REPCAT$_RUNTIME_PARMS_PK                                                                                                
+TEMPLATE$_TARGETS_PK                                                                                                    
+REPCAT$_TEMPLATE_TARGETS_U1                                                                                             
+SYS_IL0000007360C00003$$                                                                                                
+REPCAT$_EXCEPTIONS_PK                                                                                                   
+SYS_IL0000007367C00002$$                                                                                                
+REPCAT$_INSTANTIATION_DDL_PK                                                                                            
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+SYS_C003081                                                                                                             
+REPCAT$_SITES_NEW_PK                                                                                                    
+REPCAT$_SITES_NEW_FK2_IDX                                                                                               
+REPCAT$_SITES_NEW_FK1_IDX                                                                                               
+REPCAT$_TEMPLATE_OBJECTS_N2                                                                                             
+SYS_IL0000010832C00009$$                                                                                                
+SYS_IL0000001123C00009$$                                                                                                
+LOGSTDBY$EVENTS_IND                                                                                                     
+LOGSTDBY$EVENTS_IND_SCN                                                                                                 
+SYS_IL0000001117C00009$$                                                                                                
+SYS_IL0000001117C00012$$                                                                                                
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+SYS_IL0000001108C00008$$                                                                                                
+LOGSTDBY$EVENTS_IND_XID                                                                                                 
+SYS_C003346                                                                                                             
+SYS_IL0000010844C00003$$                                                                                                
+LOGSTDBY$SKIP_IDX1                                                                                                      
+LOGSTDBY$SKIP_IDX2                                                                                                      
+LOGSTDBY$SKIP_IND                                                                                                       
+LOGSTDBY$EDS_TABLES_PKEY                                                                                                
+IDXCG1                                                                                                                  
+DEF$_TRANORDER                                                                                                          
+HELP_TOPIC_SEQ                                                                                                          
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+SYS_C006999                                                                                                             
+SYS_C007000                                                                                                             
+SYS_C007008                                                                                                             
+SYS_C007009                                                                                                             
+SYS_C007011                                                                                                             
+SYS_C007014                                                                                                             
+SYS_C007017                                                                                                             
+SYS_C007018                                                                                                             
+LOGMNRT_MDDL$_PK                                                                                                        
+OL$SIGNATURE                                                                                                            
+OL$NAME                                                                                                                 
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+OL$HNT_NUM                                                                                                              
+SYS_IL0000006053C00021$$                                                                                                
+LOGMNRC_I3GTLO                                                                                                          
+LOGMNRC_I2GTLO                                                                                                          
+LOGMNRC_GTLO_PK                                                                                                         
+LOGMNRC_I2GTCS                                                                                                          
+LOGMNRC_GTCS_PK                                                                                                         
+LOGMNRC_GSII_PK                                                                                                         
+LOGMNRC_GSBA_PK                                                                                                         
+LOGMNR_I2SEED$                                                                                                          
+LOGMNR_I1SEED$                                                                                                          
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+LOGMNR_I1DICTIONARY$                                                                                                    
+LOGMNR_I2OBJ$                                                                                                           
+LOGMNR_I1OBJ$                                                                                                           
+LOGMNR_I2TAB$                                                                                                           
+LOGMNR_I1TAB$                                                                                                           
+LOGMNR_I3COL$                                                                                                           
+LOGMNR_I2COL$                                                                                                           
+LOGMNR_I1COL$                                                                                                           
+LOGMNR_I1ATTRCOL$                                                                                                       
+LOGMNR_I1TS$                                                                                                            
+LOGMNR_I2IND$                                                                                                           
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+LOGMNR_I1IND$                                                                                                           
+LOGMNR_I1USER$                                                                                                          
+LOGMNR_I2TABPART$                                                                                                       
+LOGMNR_I1TABPART$                                                                                                       
+LOGMNR_I2TABSUBPART$                                                                                                    
+LOGMNR_I1TABSUBPART$                                                                                                    
+LOGMNR_I2TABCOMPART$                                                                                                    
+LOGMNR_I1TABCOMPART$                                                                                                    
+LOGMNR_I1TYPE$                                                                                                          
+LOGMNR_I1COLTYPE$                                                                                                       
+LOGMNR_I1ATTRIBUTE$                                                                                                     
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+LOGMNR_I1LOB$                                                                                                           
+LOGMNR_I1CDEF$                                                                                                          
+LOGMNR_I1CCOL$                                                                                                          
+LOGMNR_I1ICOL$                                                                                                          
+LOGMNR_I1LOBFRAG$                                                                                                       
+LOGMNR_I2INDPART$                                                                                                       
+LOGMNR_I1INDPART$                                                                                                       
+LOGMNR_I1INDSUBPART$                                                                                                    
+LOGMNR_I1INDCOMPART$                                                                                                    
+LOGMNR_I1LOGMNR_BUILDLOG                                                                                                
+LOGMNR_I2NTAB$                                                                                                          
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+LOGMNR_I1NTAB$                                                                                                          
+LOGMNR_I1OPQTYPE$                                                                                                       
+LOGMNR_I1SUBCOLTYPE$                                                                                                    
+LOGMNR_I1KOPM$                                                                                                          
+LOGMNR_I1PROPS$                                                                                                         
+LOGMNR_I1ENC$                                                                                                           
+LOGMNR_I1REFCON$                                                                                                        
+LOGMNR_I1PARTOBJ$                                                                                                       
+LOGMNRP_CTAS_PART_MAP_I                                                                                                 
+LOGMNRP_CTAS_PART_MAP_PK                                                                                                
+
+241 rows selected.
+
+SQL> drop index idxcg1;
+
+Index dropped.
+
+SQL> create synonym jecg for jemp;
+
+Synonym created.
+
+SQL> grant create
+  2   synonym to naman;
+
+Grant succeeded.
+
+SQL> select *from jecg;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                                                        
+---------- -------------------- ---------- ---------- ----------                                                        
+      1101 james                     58234                    20                                                        
+      1102 ravi                      46000       1101         20                                                        
+      1103 kavi                      35000       1102         20                                                        
+      1107 bhima                     34000       1102         30                                                        
+      1108 bond                      24000       1103         40                                                        
+      1109 vikram                    24000       1103         40                                                        
+      4007 yash                      56780       1103         30                                                        
+
+7 rows selected.
+
+SQL> 
+SQL> select synonym_name from user_synonym;
+select synonym_name from user_synonym
+                         *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select synonym_name from user_synonyms;
+
+SYNONYM_NAME                                                                                                            
+------------------------------                                                                                          
+CATALOG                                                                                                                 
+COL                                                                                                                     
+JECG                                                                                                                    
+PRODUCT_USER_PROFILE                                                                                                    
+PUBLICSYN                                                                                                               
+SYSCATALOG                                                                                                              
+SYSFILES                                                                                                                
+TAB                                                                                                                     
+TABQUOTAS                                                                                                               
+
+9 rows selected.
+
+SQL> select *from tab;
+
+TNAME                          TABTYPE  CLUSTERID                                                                       
+------------------------------ ------- ----------                                                                       
+AQ$DEF$_AQCALL                 VIEW                                                                                     
+AQ$DEF$_AQERROR                VIEW                                                                                     
+AQ$_DEF$_AQCALL_F              VIEW                                                                                     
+AQ$_DEF$_AQERROR_F             VIEW                                                                                     
+AQ$_INTERNET_AGENTS            TABLE                                                                                    
+AQ$_INTERNET_AGENT_PRIVS       TABLE                                                                                    
+AQ$_QUEUES                     TABLE                                                                                    
+AQ$_QUEUE_TABLES               TABLE                                                                                    
+AQ$_SCHEDULES                  TABLE                                                                                    
+BOOKINGDETAILS                 TABLE                                                                                    
+CATALOG                        SYNONYM                                                                                  
+
+TNAME                          TABTYPE  CLUSTERID                                                                       
+------------------------------ ------- ----------                                                                       
+COL                            SYNONYM                                                                                  
+CUSTOMER                       TABLE                                                                                    
+CUSTOMER1                      TABLE                                                                                    
+CUSTOMERDETAILS                TABLE                                                                                    
+CUSTOMER_DETAILS               TABLE                                                                                    
+DEF$_AQCALL                    TABLE                                                                                    
+DEF$_AQERROR                   TABLE                                                                                    
+DEF$_CALLDEST                  TABLE                                                                                    
+DEF$_DEFAULTDEST               TABLE                                                                                    
+DEF$_DESTINATION               TABLE                                                                                    
+DEF$_ERROR                     TABLE                                                                                    
+
+TNAME                          TABTYPE  CLUSTERID                                                                       
+------------------------------ ------- ----------                                                                       
+DEF$_LOB                       TABLE                                                                                    
+DEF$_ORIGIN                    TABLE                                                                                    
+DEF$_PROPAGATOR                TABLE                                                                                    
+DEF$_PUSHED_TRANSACTIONS       TABLE                                                                                    
+HELP                           TABLE                                                                                    
+HOTELDETAILS                   TABLE                                                                                    
+JDEPT                          TABLE                                                                                    
+JECG                           SYNONYM                                                                                  
+JEMP                           TABLE                                                                                    
+JSALGRADE                      TABLE                                                                                    
+LOGMNRC_DBNAME_UID_MAP         TABLE                                                                                    
+
+TNAME                          TABTYPE  CLUSTERID                                                                       
+------------------------------ ------- ----------                                                                       
+LOGMNRC_GSBA                   TABLE                                                                                    
+LOGMNRC_GSII                   TABLE                                                                                    
+LOGMNRC_GTCS                   TABLE                                                                                    
+LOGMNRC_GTLO                   TABLE                                                                                    
+LOGMNRP_CTAS_PART_MAP          TABLE                                                                                    
+LOGMNRT_MDDL$                  TABLE                                                                                    
+LOGMNR_AGE_SPILL$              TABLE                                                                                    
+LOGMNR_ATTRCOL$                TABLE                                                                                    
+LOGMNR_ATTRIBUTE$              TABLE                                                                                    
+LOGMNR_CCOL$                   TABLE                                                                                    
+LOGMNR_CDEF$                   TABLE                                                                                    
+
+TNAME                          TABTYPE  CLUSTERID                                                                       
+------------------------------ ------- ----------                                                                       
+LOGMNR_COL$                    TABLE                                                                                    
+LOGMNR_COLTYPE$                TABLE                                                                                    
+LOGMNR_DICTIONARY$             TABLE                                                                                    
+LOGMNR_DICTSTATE$              TABLE                                                                                    
+LOGMNR_ENC$                    TABLE                                                                                    
+LOGMNR_ERROR$                  TABLE                                                                                    
+LOGMNR_FILTER$                 TABLE                                                                                    
+LOGMNR_GLOBAL$                 TABLE                                                                                    
+LOGMNR_GT_TAB_INCLUDE$         TABLE                                                                                    
+LOGMNR_GT_USER_INCLUDE$        TABLE                                                                                    
+LOGMNR_GT_XID_INCLUDE$         TABLE                                                                                    
+
+TNAME                          TABTYPE  CLUSTERID                                                                       
+------------------------------ ------- ----------                                                                       
+LOGMNR_ICOL$                   TABLE                                                                                    
+LOGMNR_IND$                    TABLE                                                                                    
+LOGMNR_INDCOMPART$             TABLE                                                                                    
+LOGMNR_INDPART$                TABLE                                                                                    
+LOGMNR_INDSUBPART$             TABLE                                                                                    
+LOGMNR_INTEGRATED_SPILL$       TABLE                                                                                    
+LOGMNR_KOPM$                   TABLE                                                                                    
+LOGMNR_LOB$                    TABLE                                                                                    
+LOGMNR_LOBFRAG$                TABLE                                                                                    
+LOGMNR_LOG$                    TABLE                                                                                    
+LOGMNR_LOGMNR_BUILDLOG         TABLE                                                                                    
+
+TNAME                          TABTYPE  CLUSTERID                                                                       
+------------------------------ ------- ----------                                                                       
+LOGMNR_NTAB$                   TABLE                                                                                    
+LOGMNR_OBJ$                    TABLE                                                                                    
+LOGMNR_OPQTYPE$                TABLE                                                                                    
+LOGMNR_PARAMETER$              TABLE                                                                                    
+LOGMNR_PARTOBJ$                TABLE                                                                                    
+LOGMNR_PROCESSED_LOG$          TABLE                                                                                    
+LOGMNR_PROPS$                  TABLE                                                                                    
+LOGMNR_REFCON$                 TABLE                                                                                    
+LOGMNR_RESTART_CKPT$           TABLE                                                                                    
+LOGMNR_RESTART_CKPT_TXINFO$    TABLE                                                                                    
+LOGMNR_SEED$                   TABLE                                                                                    
+
+TNAME                          TABTYPE  CLUSTERID                                                                       
+------------------------------ ------- ----------                                                                       
+LOGMNR_SESSION$                TABLE                                                                                    
+LOGMNR_SESSION_ACTIONS$        TABLE                                                                                    
+LOGMNR_SESSION_EVOLVE$         TABLE                                                                                    
+LOGMNR_SPILL$                  TABLE                                                                                    
+LOGMNR_SUBCOLTYPE$             TABLE                                                                                    
+LOGMNR_TAB$                    TABLE                                                                                    
+LOGMNR_TABCOMPART$             TABLE                                                                                    
+LOGMNR_TABPART$                TABLE                                                                                    
+LOGMNR_TABSUBPART$             TABLE                                                                                    
+LOGMNR_TS$                     TABLE                                                                                    
+LOGMNR_TYPE$                   TABLE                                                                                    
+
+TNAME                          TABTYPE  CLUSTERID                                                                       
+------------------------------ ------- ----------                                                                       
+LOGMNR_UID$                    TABLE                                                                                    
+LOGMNR_USER$                   TABLE                                                                                    
+LOGSTDBY$APPLY_MILESTONE       TABLE                                                                                    
+LOGSTDBY$APPLY_PROGRESS        TABLE                                                                                    
+LOGSTDBY$EDS_TABLES            TABLE                                                                                    
+LOGSTDBY$EVENTS                TABLE                                                                                    
+LOGSTDBY$FLASHBACK_SCN         TABLE                                                                                    
+LOGSTDBY$HISTORY               TABLE                                                                                    
+LOGSTDBY$PARAMETERS            TABLE                                                                                    
+LOGSTDBY$PLSQL                 TABLE                                                                                    
+LOGSTDBY$SCN                   TABLE                                                                                    
+
+TNAME                          TABTYPE  CLUSTERID                                                                       
+------------------------------ ------- ----------                                                                       
+LOGSTDBY$SKIP                  TABLE                                                                                    
+LOGSTDBY$SKIP_SUPPORT          TABLE                                                                                    
+LOGSTDBY$SKIP_TRANSACTION      TABLE                                                                                    
+MVIEW$_ADV_AJG                 TABLE                                                                                    
+MVIEW$_ADV_BASETABLE           TABLE                                                                                    
+MVIEW$_ADV_CLIQUE              TABLE                                                                                    
+MVIEW$_ADV_ELIGIBLE            TABLE                                                                                    
+MVIEW$_ADV_EXCEPTIONS          TABLE                                                                                    
+MVIEW$_ADV_FILTER              TABLE                                                                                    
+MVIEW$_ADV_FILTERINSTANCE      TABLE                                                                                    
+MVIEW$_ADV_FJG                 TABLE                                                                                    
+
+TNAME                          TABTYPE  CLUSTERID                                                                       
+------------------------------ ------- ----------                                                                       
+MVIEW$_ADV_GC                  TABLE                                                                                    
+MVIEW$_ADV_INFO                TABLE                                                                                    
+MVIEW$_ADV_JOURNAL             TABLE                                                                                    
+MVIEW$_ADV_LEVEL               TABLE                                                                                    
+MVIEW$_ADV_LOG                 TABLE                                                                                    
+MVIEW$_ADV_OUTPUT              TABLE                                                                                    
+MVIEW$_ADV_PARAMETERS          TABLE                                                                                    
+MVIEW$_ADV_PLAN                TABLE                                                                                    
+MVIEW$_ADV_PRETTY              TABLE                                                                                    
+MVIEW$_ADV_ROLLUP              TABLE                                                                                    
+MVIEW$_ADV_SQLDEPEND           TABLE                                                                                    
+
+TNAME                          TABTYPE  CLUSTERID                                                                       
+------------------------------ ------- ----------                                                                       
+MVIEW$_ADV_TEMP                TABLE                                                                                    
+MVIEW$_ADV_WORKLOAD            TABLE                                                                                    
+MVIEW_EVALUATIONS              VIEW                                                                                     
+MVIEW_EXCEPTIONS               VIEW                                                                                     
+MVIEW_FILTER                   VIEW                                                                                     
+MVIEW_FILTERINSTANCE           VIEW                                                                                     
+MVIEW_LOG                      VIEW                                                                                     
+MVIEW_RECOMMENDATIONS          VIEW                                                                                     
+MVIEW_WORKLOAD                 VIEW                                                                                     
+MYVIEWCG6                      VIEW                                                                                     
+MYVIEWSCG1                     VIEW                                                                                     
+
+TNAME                          TABTYPE  CLUSTERID                                                                       
+------------------------------ ------- ----------                                                                       
+MYVIEWSCG2                     VIEW                                                                                     
+MYVIEWSCG4                     VIEW                                                                                     
+NVLDEMO                        TABLE                                                                                    
+OL$                            TABLE                                                                                    
+OL$HINTS                       TABLE                                                                                    
+OL$NODES                       TABLE                                                                                    
+PIZZA_DETAILS                  TABLE                                                                                    
+PRODUCT                        TABLE                                                                                    
+PRODUCT_PRIVS                  VIEW                                                                                     
+PRODUCT_USER_PROFILE           SYNONYM                                                                                  
+PUBLICSYN                      SYNONYM                                                                                  
+
+TNAME                          TABTYPE  CLUSTERID                                                                       
+------------------------------ ------- ----------                                                                       
+REPCAT$_AUDIT_ATTRIBUTE        TABLE                                                                                    
+REPCAT$_AUDIT_COLUMN           TABLE                                                                                    
+REPCAT$_COLUMN_GROUP           TABLE                                                                                    
+REPCAT$_CONFLICT               TABLE                                                                                    
+REPCAT$_DDL                    TABLE                                                                                    
+REPCAT$_EXCEPTIONS             TABLE                                                                                    
+REPCAT$_EXTENSION              TABLE                                                                                    
+REPCAT$_FLAVORS                TABLE                                                                                    
+REPCAT$_FLAVOR_OBJECTS         TABLE                                                                                    
+REPCAT$_GENERATED              TABLE                                                                                    
+REPCAT$_GROUPED_COLUMN         TABLE                                                                                    
+
+TNAME                          TABTYPE  CLUSTERID                                                                       
+------------------------------ ------- ----------                                                                       
+REPCAT$_INSTANTIATION_DDL      TABLE                                                                                    
+REPCAT$_KEY_COLUMNS            TABLE                                                                                    
+REPCAT$_OBJECT_PARMS           TABLE                                                                                    
+REPCAT$_OBJECT_TYPES           TABLE                                                                                    
+REPCAT$_PARAMETER_COLUMN       TABLE                                                                                    
+REPCAT$_PRIORITY               TABLE                                                                                    
+REPCAT$_PRIORITY_GROUP         TABLE                                                                                    
+REPCAT$_REFRESH_TEMPLATES      TABLE                                                                                    
+REPCAT$_REPCAT                 TABLE                                                                                    
+REPCAT$_REPCATLOG              TABLE                                                                                    
+REPCAT$_REPCOLUMN              TABLE                                                                                    
+
+TNAME                          TABTYPE  CLUSTERID                                                                       
+------------------------------ ------- ----------                                                                       
+REPCAT$_REPGROUP_PRIVS         TABLE                                                                                    
+REPCAT$_REPOBJECT              TABLE                                                                                    
+REPCAT$_REPPROP                TABLE                                                                                    
+REPCAT$_REPSCHEMA              TABLE                                                                                    
+REPCAT$_RESOLUTION             TABLE                                                                                    
+REPCAT$_RESOLUTION_METHOD      TABLE                                                                                    
+REPCAT$_RESOLUTION_STATISTICS  TABLE                                                                                    
+REPCAT$_RESOL_STATS_CONTROL    TABLE                                                                                    
+REPCAT$_RUNTIME_PARMS          TABLE                                                                                    
+REPCAT$_SITES_NEW              TABLE                                                                                    
+REPCAT$_SITE_OBJECTS           TABLE                                                                                    
+
+TNAME                          TABTYPE  CLUSTERID                                                                       
+------------------------------ ------- ----------                                                                       
+REPCAT$_SNAPGROUP              TABLE                                                                                    
+REPCAT$_TEMPLATE_OBJECTS       TABLE                                                                                    
+REPCAT$_TEMPLATE_PARMS         TABLE                                                                                    
+REPCAT$_TEMPLATE_REFGROUPS     TABLE                                                                                    
+REPCAT$_TEMPLATE_SITES         TABLE                                                                                    
+REPCAT$_TEMPLATE_STATUS        TABLE                                                                                    
+REPCAT$_TEMPLATE_TARGETS       TABLE                                                                                    
+REPCAT$_TEMPLATE_TYPES         TABLE                                                                                    
+REPCAT$_USER_AUTHORIZATIONS    TABLE                                                                                    
+REPCAT$_USER_PARM_VALUES       TABLE                                                                                    
+ROOMDETAIL                     TABLE                                                                                    
+
+TNAME                          TABTYPE  CLUSTERID                                                                       
+------------------------------ ------- ----------                                                                       
+SQLDEMOCG                      TABLE                                                                                    
+SQLDEMOCG1                     TABLE                                                                                    
+SQLDEMOCG2                     TABLE                                                                                    
+SQLPLUS_PRODUCT_PROFILE        TABLE                                                                                    
+SYSCATALOG                     SYNONYM                                                                                  
+SYSFILES                       SYNONYM                                                                                  
+TAB                            SYNONYM                                                                                  
+TABQUOTAS                      SYNONYM                                                                                  
+TRAINE                         TABLE                                                                                    
+WALLET                         TABLE                                                                                    
+
+197 rows selected.
+
+SQL> create sequence seqcg1
+  2  start with 2019
+  3  increment by 2
+  4  maxvalue 4000;
+
+Sequence created.
+
+SQL> select seqcg1.nextval from dual;
+
+   NEXTVAL                                                                                                              
+----------                                                                                                              
+      2019                                                                                                              
+
+SQL> select seqcg1.nextval from dual;
+
+   NEXTVAL                                                                                                              
+----------                                                                                                              
+      2021                                                                                                              
+
+SQL> /
+
+   NEXTVAL                                                                                                              
+----------                                                                                                              
+      2023                                                                                                              
+
+SQL> select seqcg1.currval from dual;
+
+   CURRVAL                                                                                                              
+----------                                                                                                              
+      2023                                                                                                              
+
+SQL> select *from jemp;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                                                        
+---------- -------------------- ---------- ---------- ----------                                                        
+      1101 james                     58234                    20                                                        
+      1102 ravi                      46000       1101         20                                                        
+      1103 kavi                      35000       1102         20                                                        
+      1107 bhima                     34000       1102         30                                                        
+      1108 bond                      24000       1103         40                                                        
+      1109 vikram                    24000       1103         40                                                        
+      4007 yash                      56780       1103         30                                                        
+
+7 rows selected.
+
+SQL> insert into jemp(empno) values(seqcg1.nextval);
+
+1 row created.
+
+SQL> insert into jemp(empno) values(seqcg1.nextval);
+
+1 row created.
+
+SQL> select *from jemp;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                                                        
+---------- -------------------- ---------- ---------- ----------                                                        
+      1101 james                     58234                    20                                                        
+      1102 ravi                      46000       1101         20                                                        
+      1103 kavi                      35000       1102         20                                                        
+      1107 bhima                     34000       1102         30                                                        
+      1108 bond                      24000       1103         40                                                        
+      1109 vikram                    24000       1103         40                                                        
+      4007 yash                      56780       1103         30                                                        
+      2027                                                                                                              
+      2025                                                                                                              
+
+9 rows selected.
+
+SQL> select sequence_name from user_sequences;
+
+SEQUENCE_NAME                                                                                                           
+------------------------------                                                                                          
+CUSTOMERESEQ9                                                                                                           
+CUSTOMERESQ                                                                                                             
+CUSTOMERSEQ                                                                                                             
+CUSTOMERSEQ9                                                                                                            
+CUSTSEQ                                                                                                                 
+LOGMNR_EVOLVE_SEQ$                                                                                                      
+LOGMNR_SEQ$                                                                                                             
+LOGMNR_UIDS$                                                                                                            
+MVIEW$_ADVSEQ_GENERIC                                                                                                   
+MVIEW$_ADVSEQ_ID                                                                                                        
+PIZZASEQ                                                                                                                
+
+SEQUENCE_NAME                                                                                                           
+------------------------------                                                                                          
+PIZZASEQ9                                                                                                               
+REPCAT$_EXCEPTIONS_S                                                                                                    
+REPCAT$_FLAVORS_S                                                                                                       
+REPCAT$_FLAVOR_NAME_S                                                                                                   
+REPCAT$_REFRESH_TEMPLATES_S                                                                                             
+REPCAT$_REPPROP_KEY                                                                                                     
+REPCAT$_RUNTIME_PARMS_S                                                                                                 
+REPCAT$_TEMPLATE_OBJECTS_S                                                                                              
+REPCAT$_TEMPLATE_PARMS_S                                                                                                
+REPCAT$_TEMPLATE_REFGROUPS_S                                                                                            
+REPCAT$_TEMPLATE_SITES_S                                                                                                
+
+SEQUENCE_NAME                                                                                                           
+------------------------------                                                                                          
+REPCAT$_TEMP_OUTPUT_S                                                                                                   
+REPCAT$_USER_AUTHORIZATIONS_S                                                                                           
+REPCAT$_USER_PARM_VALUES_S                                                                                              
+REPCAT_LOG_SEQUENCE                                                                                                     
+SEQCG1                                                                                                                  
+TEMPLATE$_TARGETS_S                                                                                                     
+WALLETSEQ                                                                                                               
+
+29 rows selected.
+
+SQL> alter sequence seqcg1 maxvalue 14000;
+
+Sequence altered.
+
+SQL> spool off;
