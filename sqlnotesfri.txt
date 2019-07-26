@@ -1,0 +1,183 @@
+SQL> cle scr;
+
+
+
+SQL> dbms_output.put_line('welcome to plsql');
+SP2-0734: unknown command beginning "dbms_outpu..." - rest of line ignored.
+SQL> begin
+  2  dbms_output.put_line('welcome to plsql');
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+SQL> set serveroutput on
+SQL> /
+welcome to plsql                                                                
+
+PL/SQL procedure successfully completed.
+
+SQL> begin
+  2  dbms_output.put_line('my name is naman');
+  3  dbms_output.put_line('my designation is analyst');
+  4  dbms_output.put_line('my location is bangalore');
+  5  end;
+  6  /
+my name is naman                                                                
+my designation is analyst                                                       
+my location is bangalore                                                        
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  v_name varchar2(20):='Naman';
+  3  v_joindate date:='12-dec-2012';
+  4  v_locid number(4):=2020;
+  5  v_city varchar2(20):='Panipat';
+  6  begin
+  7  dbms_output.put_line('my name is'||v_name);
+  8  dbms_output.put_line('my join date is'||v_joindate);
+  9  dbms_output.put_line('my join loc id is'||v_locid);
+ 10  dbms_output.put_line('my join city is'||v_city);
+ 11  end;
+ 12  /
+my name isNaman                                                                 
+my join date is12-DEC-12                                                        
+my join loc id is2020                                                           
+my join city isPanipat                                                          
+
+PL/SQL procedure successfully completed.
+
+SQL> cle scr;
+
+
+
+SQL> declare
+  2  a number(4):=2;
+  3  b number(4):=4;
+  4  c number(4);
+  5  x number(6);
+  6  begin
+  7  c:= 2*a*b;
+  8  x:=a+b+c;
+  9  dbms_output.put_line(x);
+ 10  end;
+ 11  /
+22                                                                              
+
+PL/SQL procedure successfully completed.
+
+SQL> spool off;
+SQL> spool c:/sql_naman/sqlnotesfri.txt append
+SQL> declare v_choice char(1):='&v_choice';
+  2  begin
+  3  if
+  4  v_choice='A' then
+  5  dbms_output.put_line('accenture');
+  6  elseif v_choice='B' then
+  7  dbms_output.put_line('capgemini');
+  8  else
+  9  dbms_output.put_line('ennter only A/B...!');
+ 10  end if;
+ 11  end;
+ 12  /
+Enter value for v_choice: a
+old   1: declare v_choice char(1):='&v_choice';
+new   1: declare v_choice char(1):='a';
+elseif v_choice='B' then
+       *
+ERROR at line 6:
+ORA-06550: line 6, column 8: 
+PLS-00103: Encountered the symbol "V_CHOICE" when expecting one of the 
+following: 
+:= . ( @ % ; 
+ORA-06550: line 11, column 4: 
+PLS-00103: Encountered the symbol ";" when expecting one of the following: 
+if 
+
+
+SQL> declare  v_choice char(1):='&v_choice';
+  2  begin
+  3  if
+  4  v_choice='A' then
+  5  dbms_output.put_line('accenture');
+  6  elsif v_choice='B'; then
+  7  dbms_output.put_line('birlasoft');
+  8  elsif v_choice='C'; then
+  9  dbms_output.put_line('capgemini');
+ 10  else
+ 11  dbms_output.put_line('ennter only A/B/C...!');
+ 12  end if;
+ 13  end;
+ 14  /
+Enter value for v_choice: B
+old   1: declare  v_choice char(1):='&v_choice';
+new   1: declare  v_choice char(1):='B';
+elsif v_choice='B'; then
+                  *
+ERROR at line 6:
+ORA-06550: line 6, column 19: 
+PLS-00103: Encountered the symbol ";" when expecting one of the following: 
+* & - + / at mod remainder rem then <an exponent (**)> and or 
+|| multiset 
+The symbol ";" was ignored. 
+ORA-06550: line 8, column 19: 
+PLS-00103: Encountered the symbol ";" when expecting one of the following: 
+* & - + / at mod remainder rem then <an exponent (**)> and or 
+|| multiset 
+The symbol ";" was ignored. 
+
+
+SQL> declare  v_choice char(1):='&v_choice';
+  2  begin
+  3  if
+  4  v_choice='A' then
+  5  dbms_output.put_line('accenture');
+  6  elsif v_choice='B' then
+  7  dbms_output.put_line('birlasoft');
+  8  elsif v_choice='C' then
+  9  dbms_output.put_line('capgemini');
+ 10  else
+ 11  dbms_output.put_line('ennter only A/B/C...!');
+ 12  end if;
+ 13  end;
+ 14  /
+Enter value for v_choice: C
+old   1: declare  v_choice char(1):='&v_choice';
+new   1: declare  v_choice char(1):='C';
+capgemini                                                                       
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for v_choice: A
+old   1: declare  v_choice char(1):='&v_choice';
+new   1: declare  v_choice char(1):='A';
+accenture                                                                       
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for v_choice: f
+old   1: declare  v_choice char(1):='&v_choice';
+new   1: declare  v_choice char(1):='f';
+ennter only A/B/C...!                                                           
+
+PL/SQL procedure successfully completed.
+
+
+SQL> /
+Enter value for m1: 80
+old   2:    m1 number(3) :=&m1;
+new   2:    m1 number(3) :=80;
+Enter value for m2: 90
+old   3:    m2 number(3) :=&m2;
+new   3:    m2 number(3) :=90;
+Enter value for m3: 70
+old   4:    m3 number(3) :=&m3;
+new   4:    m3 number(3) :=70;
+distinction                                                                     
+
+PL/SQL procedure successfully completed.
+
+SQL> spool off;

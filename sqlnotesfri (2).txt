@@ -1,0 +1,117 @@
+
+
+SQL>  declare
+  2   a number(4) :=&a;
+  3    b number(4) :=&b;
+  4    c number(5);
+  5    v_ename varchar2(20):= '&v_ename';
+  6    v_jdate date :='&v_jdate';
+  7    begin
+  8      c:=a+b;
+  9  dbms_output.put_line('the ename is ' || v_ename);
+ 10  dbms_output.put_line('the result is ' || c);
+ 11  dbms_output.put_line('the jdate is ' || v_jdate);
+ 12  end;
+ 13  /
+Enter value for a: 12
+old   2:  a number(4) :=&a;
+new   2:  a number(4) :=12;
+Enter value for b: 12.
+old   3:   b number(4) :=&b;
+new   3:   b number(4) :=12.;
+Enter value for v_ename: naman
+old   5:   v_ename varchar2(20):= '&v_ename';
+new   5:   v_ename varchar2(20):= 'naman';
+Enter value for v_jdate: 12-dec-2012
+old   6:   v_jdate date :='&v_jdate';
+new   6:   v_jdate date :='12-dec-2012';
+the ename is naman                                                              
+the result is 24                                                                
+the jdate is 12-DEC-12                                                          
+
+PL/SQL procedure successfully completed.
+
+SQL> select *from jemp;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                
+---------- -------------------- ---------- ---------- ----------                
+      1101 james                     58234                    20                
+      1102 ravi                      46000       1101         20                
+      1103 kavi                      35000       1102         20                
+      1107 bhima                     34000       1102         30                
+      1108 bond                      24000       1103         40                
+      1109 vikram                    24000       1103         40                
+      4007 yash                      56780       1103         30                
+      2027                                                                      
+      2025                                                                      
+
+9 rows selected.
+
+SQL> declare
+  2  v_enamw varchar2(20);
+  3  v_esal/
+  4  /
+v_esal/
+      *
+ERROR at line 3:
+ORA-06550: line 3, column 7: 
+PLS-00103: Encountered the symbol "/" when expecting one of the following: 
+constant exception <an identifier> 
+<a double-quoted delimited-identifier> table long double ref 
+char time timestamp interval date binary national character 
+nchar 
+
+
+SQL> declare
+  2  v_ename varchar2(20);
+  3  v_esal number(6);
+  4  v_empno number(5):=&v_empno;
+  5  begin
+  6  select ename,esal into v_ename, v_esal
+  7  from jemp where empno=v_empno;
+  8  dbms_output.put_line(v_ename ||' '||v_esal);
+  9  end;
+ 10  /
+Enter value for v_empno: 1109
+old   4: v_empno number(5):=&v_empno;
+new   4: v_empno number(5):=1109;
+vikram 24000                                                                    
+
+PL/SQL procedure successfully completed.
+
+
+
+SQL> declare
+  2  max1 number(6);
+  3  min1 number(6);
+  4  begin
+  5  select max(esal),min(esal) into max1 , min1
+  6  from jemp;
+  7  dbms_output.put_line('maximum salary............ minimum salary');
+  8  dbms_output.put_line(max1||'                             '||min1);
+  9  end;
+ 10  /
+maximum salary............ minimum salary                                       
+58234                             24000                                         
+
+PL/SQL procedure successfully completed.
+
+
+SQL> declare
+  2  v_ename jemp.ename%type;
+  3  v_esal jemp.esal%type;
+  4  v_empno jemp.empno%type:=&v_empno;
+  5  begin
+  6  select ename, esal into v_ename, v_esal
+  7  from jemp where empno=v_empno;
+  8  dbms_output.put_line(v_ename||'    '|| v_esal);
+  9  end;
+ 10  /
+Enter value for v_empno: 4007
+old   4: v_empno jemp.empno%type:=&v_empno;
+new   4: v_empno jemp.empno%type:=4007;
+yash    56780                                                                   
+
+PL/SQL procedure successfully completed.
+
+SQL> spool off;

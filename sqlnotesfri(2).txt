@@ -1,0 +1,312 @@
+
+
+SQL> declare
+  2  v_rec jemp%rowtype;
+  3  v_empno number(4):=&v_empno;
+  4  begin
+  5  select * into v_rec from jemp
+  6  where empno=v_empno;
+  7  dbms_output.put_line(' emp details');
+  8  dbms_output.put_line( v_rec.empno||'   '||v_rec.ename||'  '||v_rec.esal);
+  9  end;
+ 10  /
+Enter value for v_empno: 4007
+old   3: v_empno number(4):=&v_empno;
+new   3: v_empno number(4):=4007;
+emp details                                                                     
+4007   yash  56780                                                              
+
+PL/SQL procedure successfully completed.
+
+SQL> select *from jemp;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                
+---------- -------------------- ---------- ---------- ----------                
+      1101 james                     58234                    20                
+      1102 ravi                      46000       1101         20                
+      1103 kavi                      35000       1102         20                
+      1107 bhima                     34000       1102         30                
+      1108 bond                      24000       1103         40                
+      1109 vikram                    24000       1103         40                
+      4007 yash                      56780       1103         30                
+      2027                                                                      
+      2025                                                                      
+
+9 rows selected.
+
+
+SQL> declare
+  2  v_empno number(4):=3001;
+  3  v_ename varchar2(20):='virat';
+  4  v_deptno number(4):=30;
+  5  begin
+  6  insert into jemp(empno, ename , deptno)
+  7  values(v_empno, v_ename, v_deptno);
+  8  commit;
+  9  end;
+ 10  /
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  v_esal number(5):= 45000;
+  3  v_mgrno number(5):=1001;
+  4  v_empno number(5):=&v_empno;
+  5  begin
+  6  update jemp
+  7  set esal=v_esal, mgrno=v_mgrno
+  8  where empno=v_empno;
+  9  commit;
+ 10  end;
+ 11  /
+Enter value for v_empno: 3001
+old   4: v_empno number(5):=&v_empno;
+new   4: v_empno number(5):=3001;
+
+PL/SQL procedure successfully completed.
+
+
+
+
+
+
+SQL> declare
+  2  x number(5):=100;
+  3  begin
+  4  declare
+  5  x number(5):=200;
+  6  begin
+  7  dbms_output.put_line('inner block');
+  8  dbms_output.put_line(x);
+  9  end;
+ 10  dbms_output.put_line('outer block');
+ 11  dbms_output.put_line(x);
+ 12  end;
+ 13  /
+inner block                                                                     
+200                                                                             
+outer block                                                                     
+100                                                                             
+
+PL/SQL procedure successfully completed.
+
+
+
+SQL> <<outer>>
+  2  declare
+  3  x number(5):=100;
+  4  begin
+  5  <<inner>>
+  6  declare
+  7  x number(5):=200;
+  8  begin
+  9  dbms_output.put_line('inner block');
+ 10  dbms_output.put_line(x);
+ 11  dbms_output.put_line(x+outer.x);
+ 12  end;
+ 13  dbms_output.put_line('outer block');
+ 14  dbms_output.put_line(x);
+ 15  dbms_output.put_line(x);
+ 16  end;
+ 17  /
+inner block                                                                     
+200                                                                             
+300                                                                             
+outer block                                                                     
+100                                                                             
+100                                                                             
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  n number(4):=&n;
+  3  begin
+  4  if n>0 then
+  5  dbms_output.put_line('valid number');
+  6  end if;
+  7  end;
+  8  /
+Enter value for n: 90
+old   2: n number(4):=&n;
+new   2: n number(4):=90;
+valid number                                                                    
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  n number(4):=&n;
+  3  begin
+  4  if n>0 then
+  5  dbms_output.put_line('valid number');
+  6  else
+  7  dbms_output.put_line('invalid number');
+  8  end if;
+  9  end;
+ 10  /
+Enter value for n: 89
+old   2: n number(4):=&n;
+new   2: n number(4):=89;
+valid number                                                                    
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for n: -4
+old   2: n number(4):=&n;
+new   2: n number(4):=-4;
+invalid number                                                                  
+
+PL/SQL procedure successfully completed.
+
+
+SQL> declare
+  2  n number(4):=&n;
+  3  begin
+  4  if (mod(n,2))=0 then
+  5  dbms_output.put_line('even number');
+  6  else
+  7  dbms_output.put_line('odd number');
+  8  end if;
+  9  end;
+ 10  /
+Enter value for n: 5
+old   2: n number(4):=&n;
+new   2: n number(4):=5;
+odd number                                                                      
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for n: 4
+old   2: n number(4):=&n;
+new   2: n number(4):=4;
+even number                                                                     
+
+PL/SQL procedure successfully completed.
+
+SQL> select *from jemp
+  2  ;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                
+---------- -------------------- ---------- ---------- ----------                
+      1101 james                     58234                    20                
+      1102 ravi                      46000       1101         20                
+      1103 kavi                      35000       1102         20                
+      1107 bhima                     34000       1102         30                
+      1108 bond                      24000       1103         40                
+      1109 vikram                    24000       1103         40                
+      4007 yash                      56780       1103         30                
+      2027                                                                      
+      2025                                                                      
+
+9 rows selected.
+
+
+
+SQL> declare
+  2  v_ename varchar2(20);
+  3  v_esal number(6):=1000;
+  4  begin
+  5  select ename into v_ename from jemp where empno=&v_empno;
+  6  if v_ename= 'ravi' then
+  7  update jemp
+  8  set esal=esal+1000
+  9  where ename='ravi';
+ 10  end if;
+ 11  end;
+ 12  /
+Enter value for v_empno: 1102
+old   5: select ename into v_ename from jemp where empno=&v_empno;
+new   5: select ename into v_ename from jemp where empno=1102;
+
+PL/SQL procedure successfully completed.
+
+SQL> spool off;
+SQL>   declare
+  2    v_n1 number(4) :=&v_n1;
+  3    v_n2 number(4) :=&v_n2;
+  4    v_oper char(1) :='&v_oper';
+  5    v_res number(4) ;
+  6    begin
+  7  v_res := case v_oper when '+'then v_n1+v_n2
+  8  
+  9       when '-' then v_n1-v_n2
+ 10  when '*' then v_n1*v_n2
+ 11  when '/' then v_n1/v_n2 end;
+ 12  dbms_output.put_line('res is   ' ||v_res);
+ 13  end;
+ 14  /
+Enter value for v_n1: 2
+old   2:   v_n1 number(4) :=&v_n1;
+new   2:   v_n1 number(4) :=2;
+Enter value for v_n2: 3
+old   3:   v_n2 number(4) :=&v_n2;
+new   3:   v_n2 number(4) :=3;
+Enter value for v_oper: *
+old   4:   v_oper char(1) :='&v_oper';
+new   4:   v_oper char(1) :='*';
+res is   6                                                                      
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2        v_choice char(1):= '&v_choice';
+  3        v_award varchar2(20);
+  4        begin
+  5        v_award:= case v_choice when 'A' then 'Accenture'
+  6        when 'B' then 'Bhel' else 'only A/B' end;
+  7        dbms_output.put_line('ur choice is '||v_choice);
+  8        dbms_output.put_line('ur award is '||v_award);
+  9        end;
+ 10        /
+Enter value for v_choice: A
+old   2:       v_choice char(1):= '&v_choice';
+new   2:       v_choice char(1):= 'A';
+ur choice is A                                                                  
+ur award is Accenture                                                           
+
+
+  1   declare
+  2       v_n1 number(4) :=&v_n1;
+  3       v_n2 number(4) :=&v_n2;
+  4       v_oper char(1) :='&v_oper';
+  5       v_res number(4) ;
+  6       begin
+  7     v_res := case v_oper when '+'then v_n1+v_n2
+  8          when '-' then v_n1-v_n2
+  9     when '*' then v_n1*v_n2
+ 10     when '/' then v_n1/v_n2 
+ 11  else null end;
+ 12     dbms_output.put_line('res is   ' ||v_res);
+ 13*    end;
+ 14  /
+Enter value for v_n1: 9
+old   2:      v_n1 number(4) :=&v_n1;
+new   2:      v_n1 number(4) :=9;
+Enter value for v_n2: 8
+old   3:      v_n2 number(4) :=&v_n2;
+new   3:      v_n2 number(4) :=8;
+Enter value for v_oper: +
+old   4:      v_oper char(1) :='&v_oper';
+new   4:      v_oper char(1) :='+';
+res is   17                                                                     
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for v_n1: 98
+old   2:      v_n1 number(4) :=&v_n1;
+new   2:      v_n1 number(4) :=98;
+Enter value for v_n2: 87
+old   3:      v_n2 number(4) :=&v_n2;
+new   3:      v_n2 number(4) :=87;
+Enter value for v_oper: @
+old   4:      v_oper char(1) :='&v_oper';
+new   4:      v_oper char(1) :='@';
+res is                                                                          
+
+PL/SQL procedure successfully completed.
+
+
+
+SQL> spool off;
