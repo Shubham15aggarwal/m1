@@ -1,0 +1,413 @@
+SQL> insert into designation_masters
+  2  values(&design_code,'&design_name');
+Enter value for design_code: 101
+Enter value for design_name: prof
+old   2: values(&design_code,'&design_name')
+new   2: values(101,'prof')
+
+1 row created.
+
+SQL> /
+Enter value for design_code: 102
+Enter value for design_name: lecturer
+old   2: values(&design_code,'&design_name')
+new   2: values(102,'lecturer')
+
+1 row created.
+
+SQL> 103
+SP2-0226: Invalid line number
+SQL> /
+Enter value for design_code: 103
+Enter value for design_name: analyst
+old   2: values(&design_code,'&design_name')
+new   2: values(103,'analyst')
+
+1 row created.
+
+SQL> insert into department_masters
+  2  values(&dept_code,'&dept_name');
+Enter value for dept_code: 10
+Enter value for dept_name: cs
+old   2: values(&dept_code,'&dept_name')
+new   2: values(10,'cs')
+
+1 row created.
+
+SQL> 20
+SP2-0226: Invalid line number
+SQL> civil
+SP2-0042: unknown command "civil" - rest of line ignored.
+SQL> /
+Enter value for dept_code: 10
+Enter value for dept_name: cs
+old   2: values(&dept_code,'&dept_name')
+new   2: values(10,'cs')
+insert into department_masters
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C007354) violated
+
+
+SQL> /
+Enter value for dept_code: 20
+Enter value for dept_name: civil
+old   2: values(&dept_code,'&dept_name')
+new   2: values(20,'civil')
+
+1 row created.
+
+SQL> /
+Enter value for dept_code: 30
+Enter value for dept_name: it
+old   2: values(&dept_code,'&dept_name')
+new   2: values(30,'it')
+
+1 row created.
+
+SQL> insert into student_masters
+  2  values(&student_code,'&student_name',&dept_code,'&student_dob','&student_address');
+Enter value for student_code: 100
+Enter value for student_name: shubham
+Enter value for dept_code: 10
+Enter value for student_dob: 12-dec-1998
+Enter value for student_address: panipat
+old   2: values(&student_code,'&student_name',&dept_code,'&student_dob','&student_address')
+new   2: values(100,'shubham',10,'12-dec-1998','panipat')
+
+1 row created.
+
+SQL> /
+Enter value for student_code: 101
+Enter value for student_name: naman
+Enter value for dept_code: 20
+Enter value for student_dob: 30-jul-1995
+Enter value for student_address: luckhnow
+old   2: values(&student_code,'&student_name',&dept_code,'&student_dob','&student_address')
+new   2: values(101,'naman',20,'30-jul-1995','luckhnow')
+
+1 row created.
+
+SQL> /
+Enter value for student_code: 102
+Enter value for student_name: kanika
+Enter value for dept_code: 30
+Enter value for student_dob: 28-feb-1996
+Enter value for student_address: karnal
+old   2: values(&student_code,'&student_name',&dept_code,'&student_dob','&student_address')
+new   2: values(102,'kanika',30,'28-feb-1996','karnal')
+
+1 row created.
+
+SQL> insert into student_marks
+  2  values(&student_code,&student_year,&subject1,&subject2,&subject3);
+Enter value for student_code: 100
+Enter value for student_year: 2
+Enter value for subject1: 34
+Enter value for subject2: 65
+Enter value for subject3: 23
+old   2: values(&student_code,&student_year,&subject1,&subject2,&subject3)
+new   2: values(100,2,34,65,23)
+
+1 row created.
+
+SQL> /
+Enter value for student_code: 101
+Enter value for student_year: 3
+Enter value for subject1: 65
+Enter value for subject2: 878
+Enter value for subject3: 34
+old   2: values(&student_code,&student_year,&subject1,&subject2,&subject3)
+new   2: values(101,3,65,878,34)
+
+1 row created.
+
+SQL> /
+Enter value for student_code: 102
+Enter value for student_year: 1
+Enter value for subject1: 80
+Enter value for subject2: 70
+Enter value for subject3: 90
+old   2: values(&student_code,&student_year,&subject1,&subject2,&subject3)
+new   2: values(102,1,80,70,90)
+
+1 row created.
+
+SQL> insert into staff_members
+  2  values(&staff_code,'&staff_name',&design_code,&dept_code,'&hiredate','&staff_dob','&staff_address',&mgr_code,&staff_sal);
+Enter value for staff_code: 201
+Enter value for staff_name: vidhi
+Enter value for design_code: 101
+Enter value for dept_code: 10
+Enter value for hiredate: 31-jan-2015
+Enter value for staff_dob: 21-feb-1998
+Enter value for staff_address: karnal
+Enter value for mgr_code: 301
+Enter value for staff_sal: 20000
+old   2: values(&staff_code,'&staff_name',&design_code,&dept_code,'&hiredate','&staff_dob','&staff_address',&mgr_code,&staff_sal)
+new   2: values(201,'vidhi',101,10,'31-jan-2015','21-feb-1998','karnal',301,20000)
+insert into staff_members
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into staff_masters
+  2* values(&staff_code,'&staff_name',&design_code,&dept_code,'&hiredate','&staff_dob','&staff_address',&mgr_code,&staff_sal);
+SQL> /
+Enter value for staff_code: 201
+Enter value for staff_name: vidhi
+Enter value for design_code: 101
+Enter value for dept_code: 10
+Enter value for hiredate: 31-dec-1998
+Enter value for staff_dob: 23-feb-1987
+Enter value for staff_address: karnal
+Enter value for mgr_code: 301
+Enter value for staff_sal: 30000
+old   2: values(&staff_code,'&staff_name',&design_code,&dept_code,'&hiredate','&staff_dob','&staff_address',&mgr_code,&staff_sal);
+new   2: values(201,'vidhi',101,10,'31-dec-1998','23-feb-1987','karnal',301,30000);
+values(201,'vidhi',101,10,'31-dec-1998','23-feb-1987','karnal',301,30000);
+                                                                         *
+ERROR at line 2:
+ORA-00911: invalid character
+
+
+SQL> desc staff_masters
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STAFF_CODE                                NOT NULL NUMBER(8)
+ STAFF_NAME                                NOT NULL VARCHAR2(50)
+ DESIGN_CODE                                        NUMBER(5)
+ DEPT_CODE                                          NUMBER(5)
+ HIREDATE                                           DATE
+ STAFF_DOB                                          DATE
+ STAFF_ADDRESS                                      VARCHAR2(240)
+ MGR_CODE                                           NUMBER(8)
+ STAFF_SAL                                          NUMBER(10,2)
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into staff_masters
+  2* values(&staff_code,'&staff_name',&design_code,&dept_code,'&hiredate','&staff_dob','&staff_address',&mgr_code,&staff_sal);
+  3
+SQL> /
+Enter value for staff_code: 201
+Enter value for staff_name: vidhi
+Enter value for design_code: 101
+Enter value for dept_code: 10
+Enter value for hiredate: 31-dec-1996
+Enter value for staff_dob: 23-feb-2013
+Enter value for staff_address: karnal
+Enter value for mgr_code: 301
+Enter value for staff_sal: 3000
+old   2: values(&staff_code,'&staff_name',&design_code,&dept_code,'&hiredate','&staff_dob','&staff_address',&mgr_code,&staff_sal);
+new   2: values(201,'vidhi',101,10,'31-dec-1996','23-feb-2013','karnal',301,3000);
+values(201,'vidhi',101,10,'31-dec-1996','23-feb-2013','karnal',301,3000);
+                                                                        *
+ERROR at line 2:
+ORA-00911: invalid character
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into staff_masters
+  2  values(&staff_code,
+  3  '&staff_name',
+  4  &design_code,
+  5  &dept_code,
+  6  '&hiredate',
+  7  '&staff_dob',
+  8  '&staff_address',
+  9  &mgr_code,
+ 10* &staff_sal);
+ 11
+SQL> insert into staff_masters
+  2  values(&staff_code,
+  3  '&staff_name',
+  4  &design_code,
+  5  &dept_code,
+  6  '&hiredate',
+  7  '&staff_dob',
+  8  '&staff_address',
+  9  &mgr_code,
+ 10  &staff_sal);
+Enter value for staff_code: 201
+old   2: values(&staff_code,
+new   2: values(201,
+Enter value for staff_name: vidhi
+old   3: '&staff_name',
+new   3: 'vidhi',
+Enter value for design_code: 101
+old   4: &design_code,
+new   4: 101,
+Enter value for dept_code: 10
+old   5: &dept_code,
+new   5: 10,
+Enter value for hiredate: 31-dec-1998
+old   6: '&hiredate',
+new   6: '31-dec-1998',
+Enter value for staff_dob: 31-jul-1970
+old   7: '&staff_dob',
+new   7: '31-jul-1970',
+Enter value for staff_address: karnal
+old   8: '&staff_address',
+new   8: 'karnal',
+Enter value for mgr_code: 301
+old   9: &mgr_code,
+new   9: 301,
+Enter value for staff_sal: 3000
+old  10: &staff_sal)
+new  10: 3000)
+
+1 row created.
+
+SQL> /
+Enter value for staff_code: 202
+old   2: values(&staff_code,
+new   2: values(202,
+Enter value for staff_name: raman
+old   3: '&staff_name',
+new   3: 'raman',
+Enter value for design_code: 102
+old   4: &design_code,
+new   4: 102,
+Enter value for dept_code: 20
+old   5: &dept_code,
+new   5: 20,
+Enter value for hiredate: 15-jul-1990
+old   6: '&hiredate',
+new   6: '15-jul-1990',
+Enter value for staff_dob: 16-sep-2000
+old   7: '&staff_dob',
+new   7: '16-sep-2000',
+Enter value for staff_address: delhi
+old   8: '&staff_address',
+new   8: 'delhi',
+Enter value for mgr_code: 302
+old   9: &mgr_code,
+new   9: 302,
+Enter value for staff_sal: 32000
+old  10: &staff_sal)
+new  10: 32000)
+
+1 row created.
+
+SQL> /
+Enter value for staff_code: 203
+old   2: values(&staff_code,
+new   2: values(203,
+Enter value for staff_name: rahul
+old   3: '&staff_name',
+new   3: 'rahul',
+Enter value for design_code: 103
+old   4: &design_code,
+new   4: 103,
+Enter value for dept_code: 30
+old   5: &dept_code,
+new   5: 30,
+Enter value for hiredate: 13-aug-2010
+old   6: '&hiredate',
+new   6: '13-aug-2010',
+Enter value for staff_dob: 14-aug-1998
+old   7: '&staff_dob',
+new   7: '14-aug-1998',
+Enter value for staff_address: gurugram
+old   8: '&staff_address',
+new   8: 'gurugram',
+Enter value for mgr_code: 3033
+old   9: &mgr_code,
+new   9: 3033,
+Enter value for staff_sal: 32000
+old  10: &staff_sal)
+new  10: 32000)
+
+1 row created.
+
+SQL> insert into book_masters
+  2  values(&book_code,'&book_name',&book_pub_year,'&book_pub_author');
+Enter value for book_code: 501
+Enter value for book_name: cs
+Enter value for book_pub_year: 2007
+Enter value for book_pub_author: shubham
+old   2: values(&book_code,'&book_name',&book_pub_year,'&book_pub_author')
+new   2: values(501,'cs',2007,'shubham')
+
+1 row created.
+
+SQL> /
+Enter value for book_code: 502
+Enter value for book_name: it
+Enter value for book_pub_year: 2008
+Enter value for book_pub_author: chetan
+old   2: values(&book_code,'&book_name',&book_pub_year,'&book_pub_author')
+new   2: values(502,'it',2008,'chetan')
+
+1 row created.
+
+SQL> /
+Enter value for book_code: 503
+Enter value for book_name: ec
+Enter value for book_pub_year: 2009
+Enter value for book_pub_author: naman
+old   2: values(&book_code,'&book_name',&book_pub_year,'&book_pub_author')
+new   2: values(503,'ec',2009,'naman')
+
+1 row created.
+
+SQL> insert into book_transactions
+  2  values(&book_code,&student_code,&staff_code,'&book_issue_date','&book_expected_return_date','&book_actual_return_date');
+Enter value for book_code: 501
+Enter value for student_code: 100
+Enter value for staff_code: 201
+Enter value for book_issue_date: 15-sep-2019
+Enter value for book_expected_return_date: 18-sep-2019
+Enter value for book_actual_return_date: 18-sep-2019
+old   2: values(&book_code,&student_code,&staff_code,'&book_issue_date','&book_expected_return_date','&book_actual_return_date')
+new   2: values(501,100,201,'15-sep-2019','18-sep-2019','18-sep-2019')
+
+1 row created.
+
+SQL> /
+Enter value for book_code: 501
+Enter value for student_code: 102
+Enter value for staff_code: /
+Enter value for book_issue_date:
+Enter value for book_expected_return_date:
+Enter value for book_actual_return_date: /
+old   2: values(&book_code,&student_code,&staff_code,'&book_issue_date','&book_expected_return_date','&book_actual_return_date')
+new   2: values(501,102,/,'','','/')
+values(501,102,/,'','','/')
+               *
+ERROR at line 2:
+ORA-00936: missing expression
+
+
+SQL> /
+Enter value for book_code: 502
+Enter value for student_code: 101
+Enter value for staff_code: 202
+Enter value for book_issue_date: 19-oct-2019
+Enter value for book_expected_return_date: 21-oct-2019
+Enter value for book_actual_return_date: 21-oct-2019
+old   2: values(&book_code,&student_code,&staff_code,'&book_issue_date','&book_expected_return_date','&book_actual_return_date')
+new   2: values(502,101,202,'19-oct-2019','21-oct-2019','21-oct-2019')
+
+1 row created.
+
+SQL> /
+Enter value for book_code: 503
+Enter value for student_code: 102
+Enter value for staff_code: 203
+Enter value for book_issue_date: 19-nov-2019
+Enter value for book_expected_return_date: 29-nov-2019
+Enter value for book_actual_return_date: 30-nov-2019
+old   2: values(&book_code,&student_code,&staff_code,'&book_issue_date','&book_expected_return_date','&book_actual_return_date')
+new   2: values(503,102,203,'19-nov-2019','29-nov-2019','30-nov-2019')
+
+1 row created.
