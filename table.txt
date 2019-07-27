@@ -1,0 +1,74 @@
+
+ create table designation_masters
+    (design_code number(5) primary key not null,
+    design_name varchar2(50));
+
+
+ 
+
+
+
+
+create table department_masters
+    (dept_code number(4) primary key not null,
+    dept_name varchar2(50));
+
+
+
+
+
+ create table student_masters
+    (student_code number(6) primary key not null,
+    student_name varchar2(50),
+    dept_code number(4) references department_masters (dept_code),
+   student_dob date,
+   student_address varchar2(240));
+
+
+`
+
+
+ create table student_marks
+    (student_code number(6) references student_masters(student_code),
+    student_year number(5) not null,
+    subject1 number(3),
+    subject2 number(3),
+    subject3 number(3));
+
+
+
+
+
+ create table staff_masters
+    (staff_code number(8) primary key not null,
+    staff_name varchar2(50) not null,
+    design_code number(5) references designation_masters(design_code),
+    dept_code number(5) references department_masters (dept_code),
+  hiredate date,
+    staff_dob date,
+    staff_address varchar2(240),
+    mgr_code number(8),
+  staff_sal number(10,2));
+
+
+
+
+
+
+ create table book_masters
+    (book_code number(5) primary key,
+    book_name varchar2(20) not null,
+    book_pub_year number,
+    book_pub_author varchar2(50) not null);
+
+
+
+
+
+      create table book_transactions(
+      book_code number(5) references book_masters(book_code),
+      student_code number(5) references student_masters( student_code),
+     staff_code number(5) references staff_masters(staff_code),
+     book_issue_date date not null,
+     book_expected_return_date date not null,
+     book_actual_return_date date);
