@@ -1,0 +1,108 @@
+
+public class PersonDetails602 {
+	String firstName;
+	String lastName;
+	char gender;
+	int age;
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public char getGender() {
+		return gender;
+	}
+	public void setGender(char gender) {
+		this.gender = gender;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		if(age<=15) {
+			throw new InvalidAgeException();
+		}
+		this.age = age;
+	}
+	public PersonDetails602() {
+		
+	}
+	@Override
+	public String toString() {
+		return "Person Details [First Name = " + firstName + ", Last Name = " + lastName + ", Gender = " + gender + ", Age = "
+				+ age + "]";
+	}
+	
+
+}
+
+
+
+
+import java.util.Scanner;
+
+public class Person602 {
+	public static void main(String args[]) {
+		
+		try{
+			Scanner sc = new Scanner(System.in);
+			String firstName = sc.nextLine();
+			String lastName = sc.nextLine();
+			String gender = sc.next();
+			int age = sc.nextInt();
+			PersonDetails602 p1 = new PersonDetails602();
+			p1.setFirstName(firstName);
+			p1.setLastName(lastName);
+			p1.setGender(gender.charAt(0));
+			p1.setAge(age);
+			System.out.println(p1.toString());
+			sc.close();
+		} catch (InvalidAgeException e1){
+			System.out.println("Age should be above 15 years. Invalid.");
+		}
+	}
+}
+
+
+
+
+
+public class InvalidAgeException extends RuntimeException {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public InvalidAgeException() {
+		
+	}
+
+	public InvalidAgeException(String message) {
+		super(message);
+		
+	}
+
+	public InvalidAgeException(Throwable cause) {
+		super(cause);
+		
+	}
+
+	public InvalidAgeException(String message, Throwable cause) {
+		super(message, cause);
+		
+	}
+
+	public InvalidAgeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+		
+	}
+
+}
