@@ -1,0 +1,90 @@
+import java.util.Scanner;
+
+
+    class E_Capg
+    {
+        int Id;
+        String Name;
+        int Age;
+        long Salary;
+        long Basic;
+        long Pf;
+        long hra;
+        
+        void GetData()           // Defining GetData()
+        {
+
+            
+            Scanner sc = new Scanner(System.in);
+            System.out.print("\n\tEnter Employee Id : ");
+            Id = Integer.parseInt(sc.nextLine());
+
+            System.out.print("\n\tEnter Employee Name : ");
+            Name = sc.nextLine();
+
+            System.out.print("\n\tEnter Employee Age : ");
+            Age = Integer.parseInt(sc.nextLine());
+
+            System.out.print("\n\tEnter Employee Basic Salary : ");
+            Basic = Integer.parseInt(sc.nextLine());
+            System.out.print("\n\tEnter Employee PF : ");
+            Pf = Integer.parseInt(sc.nextLine());
+            System.out.print("\n\tEnter Employee hra : ");
+            hra = Integer.parseInt(sc.nextLine());
+
+        }
+        void calSal(){
+            System.out.print("\n\t Total Salary of "+Name+"is" + (Basic+Pf+hra));
+            
+        }
+         int getId(){
+             return this.Id;
+         }
+        void PutData()           // Defining PutData()
+        {
+            System.out.print("\n\t" + Id + "\t" +Name + "\t" +Age + "\t" +Basic+"\t"+Pf+"\t"+hra);
+        }
+        
+        public static void E_Capg(String args[])
+        {
+Scanner sc1 = new Scanner(System.in);
+            E_Capg[] Emp = new E_Capg[10];
+            int i;
+            int j=9;
+
+            for(i=0;i<10;i++)
+                Emp[i] =  new E_Capg();   // Allocating memory to each object
+
+            for(i=0;i<10;i++)
+            {
+                System.out.print("\nEnter details of "+ (i+1) +" Employee\n");
+                Emp[i].GetData();
+            }
+         
+         System.out.print("Choose one of the Options 1. Add new employee 2.Total salary of an employee 3.Display employee details");
+         int opt = sc1.nextInt();
+         if(opt==1){ j++;
+            Emp[j] =  new E_Capg();
+             Emp[j].PutData();
+             
+         }
+         else if(opt==2){
+             int flag=0;
+             System.out.print("Type the Id of the Employee");
+             int empId = sc1.nextInt();
+             for(i=0;i<10;i++){
+                if (empId==Emp[i].getId()){
+                    Emp[i].calSal();
+                    flag++;
+                }}
+               if (flag==0) 
+             System.out.print("No such Employee");
+         }
+         else if(opt==3){
+            System.out.print("\nDetails of Employees\n");
+            for(i=0;i<10;i++)
+                Emp[i].PutData();
+         }
+
+        }
+    }
