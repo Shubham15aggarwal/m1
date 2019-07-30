@@ -69,7 +69,7 @@ Scanner sc1 = new Scanner(System.in);
        
          int opt = sc1.nextInt();
          if(opt==1){ j++;
-         Emp[j-1] =  new Main();
+         Emp[j-1] =  new EmpCG();
              Emp[j-1].GetData();
              
          }
