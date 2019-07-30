@@ -55,7 +55,7 @@ Scanner sc1 = new Scanner(System.in);
             int j=2;
 
             for(i=0;i<j;i++)
-                Emp[i] =  new Main();   // Allocating memory to each object
+                Emp[i] =  new EmpCG();   // Allocating memory to each object
 
             for(i=0;i<j;i++)
             {
