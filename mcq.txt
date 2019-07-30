@@ -1,0 +1,168 @@
+Q. Which is the subset of SQL commands used to manipulate oracle database structures including tables? 
+1). Data definition language. 
+
+
+Q. Which commands allows the removal of all rows from a table but flushes a table 
+more efficiently since no rollback information is retained? 
+1). TRUNCATE command. 
+
+
+Q. Which is not the constraint among the following? 
+3). Null 
+
+Q. Which two statements about creating constraints are true? 
+3). Constraints can be created after the table is created. 
+4). Constraints can be created at the same time the table is created 
+Solution :
+option [3,4] are correct 
+
+
+Q. In hierarchical model parents and children are tied together by links called ________. 
+3). Pointers 
+ 
+
+Q. Determine the output of the below query: 
+
+SELECT 36/2-5*10 
+FROM dual; 
+2). -32 
+
+Q. Predict the output of the below query: 
+
+SELECT ename || NULL 
+FROM emp 
+WHERE empno= 7369 
+1). SMITH 
+
+
+
+Q. Which of the following statements are true about the COUNT function? 
+2). The COUNT(*) function counts the number of rows with duplicates and NULL values 
+
+
+Q. Which of the following statements are true about the COUNT function? 
+2). The COUNT(*) function counts the number of rows with duplicates and NULL values 
+
+Q. The database administrator is responsible for: 
+2). Database design. 
+
+
+
+day 2
+Q. What will be the outcome of the following query? 
+
+SELECT REPLACE(9999.00-1,'8',88) 
+FROM dual; 
+3). 99988 
+
+Q. What is true about Character functions? 
+2). They accept NUMBER values 
+4). They accept values of all data type 
+
+
+Q. What will the outcome of the following query? 
+
+SELECT NVL (NULL,'1') 
+FROM dual; 
+2). 1 
+
+Q. What will be the outcome of the query given below? 
+
+SELECT 100+NULL+999 
+FROM dual; 
+3). NULL 
+
+Q. What will be the outcome of the following query? 
+
+SELECT lpad (1000 +300.66, 14, '*') 
+FROM dual; 
+3). 1300.66 
+
+
+Q. Predict the outcome of the below query :
+
+SELECT department_id ,job,count(*) 
+FROM employees  
+GROUP BY department_id ,job 
+ORDER BY department_id ,count(*); 
+1). It executes successfully. 
+
+Q. Which of the follwing are used to select data that has hierarchial relationship? 
+2). GROUP BY 
+
+
+ Q. What is the result of the following query? 
+1). 4 
+
+Q. Which of the following group functions can be used with DATE values? 
+2). MIN 
+4). COUNT 
+Solution :
+
+Q. Which of the following offers a poor performance? 
+3). NOT EXISTS 
+4). NOT IN 
+
+
+day 3
+
+
+Q. Sub-query can be used in GROUP BY clause: 
+2). FALSE 
+
+
+Q. Which one is correct syntax for applying UNION operator? 
+
+
+2). SELECT column_name(s) FROM table_name1
+UNION
+SELECT column_name(s) FROM table_name2
+
+
+Q. Normalization is used to minimize duplicate of information. 
+1). True. 
+
+
+Q. ( SELECT course id 
+FROM SECTION
+WHERE semester = 'Fall' AND YEAR= 2009)
+EXCEPT
+( SELECT course id
+FROM SECTION
+WHERE semester = 'Spring' AND YEAR= 2010);
+
+This query displays: 
+4). Tuples from first part which do not have second part. 
+
+
+Q. A table T_COUNT has 12 number values as 1, 2, 3, 32, 1, 1, null, 24, 12, null, 32, null.  
+Predict the output of the below query.
+
+SELECT COUNT (num) 
+FROM t_count; 
+3). 9 
+
+
+Q. Which key contains only the minimum number of attributes necessary for unique identification 
+of each entity occurrence? 
+2). Candidate key. 
+
+
+Q. What will be the outcome of the query that follows? 
+
+SELECT first_name, last_name, min(salary) 
+FROM employees 
+GROUP BY department_id  
+HAVING MIN(salary) > (SELECT min(salary) 
+                                        FROM employees 
+                                        WHERE department_id = 100); 
+1). It executes successfully and gives the names and minimum salary greater than department 
+100 of all employees 
+
+Q. What is the function of the union operation? 
+2). It combines the results of two different queries which have the same set of attributes in 
+the select clause 
+
+
+Q. What is the correct syntax for CREATE INDEX statement? 
+3). CREATE INDEX index_name ON table_name(column1, column2, ...) 
