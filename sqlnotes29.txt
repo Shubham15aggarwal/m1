@@ -1,0 +1,965 @@
+SQL> select sysdate from dual;
+
+SYSDATE                                                                         
+---------                                                                       
+29-JUL-19                                                                       
+
+SQL> declare
+  2  n number(4):=1;
+  3  begin
+  4  loop
+  5  dbms_output.put_line(n);
+  6  n:=n+1;
+  7  exit when n>10;
+  8  end loop;
+  9  endl
+ 10  /
+endl
+   *
+ERROR at line 9:
+ORA-06550: line 9, column 4: 
+PLS-00103: Encountered the symbol "end-of-file" when expecting one of the 
+following: 
+:= . ( @ % ; 
+
+
+SQL> declare
+  2  n number(4):=1;
+  3  loop
+  4  dbms_output.put_line(n);
+  5  n:=n+1;
+  6  exit when n>10;
+  7  end loop;
+  8  end;
+  9  /
+n:=n+1;
+ *
+ERROR at line 5:
+ORA-06550: line 5, column 2: 
+PLS-00103: Encountered the symbol "=" when expecting one of the following: 
+constant exception <an identifier> 
+<a double-quoted delimited-identifier> table long double ref 
+char time timestamp interval date binary national character 
+nchar 
+The symbol "<an identifier>" was substituted for "=" to continue. 
+ORA-06550: line 6, column 6: 
+PLS-00103: Encountered the symbol "WHEN" when expecting one of the following: 
+constant exception <an identifier> 
+<a double-quoted delimited-identifier> table long double ref 
+char time timestamp interval date binary national chara 
+ORA-06550: line 7, column 1: 
+PLS-00103: Encountered the symbol "END"  
+
+
+SQL> declare
+  2  n number(4):=1;
+  3  begin
+  4  loop
+  5  dbms_output.put_line(n);
+  6  n:=n+1;
+  7  exit when n>10;
+  8  end loop;
+  9  end;
+ 10  /
+
+PL/SQL procedure successfully completed.
+
+SQL> set serveroutput on;
+SQL> /
+1                                                                               
+2                                                                               
+3                                                                               
+4                                                                               
+5                                                                               
+6                                                                               
+7                                                                               
+8                                                                               
+9                                                                               
+10                                                                              
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  n number(4):=20;
+  3  begin loop
+  4  dbms_output.put_line('evn odd');if(mod(n,2)=)
+  5  /d
+  6  
+  7  
+  8  
+  9  /
+dbms_output.put_line('evn odd');if(mod(n,2)=)
+                                            *
+ERROR at line 4:
+ORA-06550: line 4, column 45: 
+PLS-00103: Encountered the symbol ")" when expecting one of the following: 
+( - + all case mod new null <an identifier> 
+<a double-quoted delimited-identifier> <a bind variable> 
+continue any avg count current max min prior some sql stddev 
+sum variance execute forall merge time timestamp interval 
+date <a string literal with character set specification> 
+<a number> <a single-quoted SQL string> pipe 
+<an alternatively-quoted string literal with character set specification> 
+<an alternative 
+
+
+SQL> declare
+  2  n number(4):=20;
+  3  e number(4);
+  4  o number(4);
+  5  begin loop
+  6  e:=n
+  7  +2;
+  8  o:=n+1;
+  9  /
+o:=n+1;
+      *
+ERROR at line 8:
+ORA-06550: line 8, column 7: 
+PLS-00103: Encountered the symbol "end-of-file" when expecting one of the 
+following: 
+( begin case declare end exit for goto if loop mod null 
+pragma raise return select update while with <an identifier> 
+<a double-quoted delimited-identifier> <a bind variable> << 
+continue close current delete fetch lock insert open rollback 
+savepoint set sql execute commit forall merge pipe purge 
+
+
+SQL> declare
+  2  n number(4):=20;
+  3  e number(4);
+  4  o number(4);
+  5  begin loop;
+  6  e:=n;
+  7  o:=n+1;
+  8  dbms_output.put_line(e||'   '||o);
+  9  n=n+2;
+ 10  exit when n>40;
+ 11  end loop;
+ 12  end;
+ 13  /
+begin loop;
+          *
+ERROR at line 5:
+ORA-06550: line 5, column 11: 
+PLS-00103: Encountered the symbol ";" when expecting one of the following: 
+( begin case declare exit for goto if loop mod null pragma 
+raise return select update while with <an identifier> 
+<a double-quoted delimited-identifier> <a bind variable> << 
+continue close current delete fetch lock insert open rollback 
+savepoint set sql execute commit forall merge pipe purge 
+The symbol "exit" was substituted for ";" to continue. 
+ORA-06550: line 9, column 2: 
+PLS-00103: Encountered the symbol "=" when expecting one of the following: 
+:= . ( @ % ; 
+The symbol ":= was inserted before "=" to continue. 
+
+
+SQL> 
+SQL>  declare
+  2      n number(4):=20;
+  3     e number(4);
+  4     o number(4);
+  5     begin loop
+  6     e:=n;
+  7     o:=n+1;
+  8      dbms_output.put_line(e||'   '||o);
+  9     n=n+2;
+ 10   exit when n>40;
+ 11     end loop;
+ 12     end;
+ 13     /
+   n=n+2;
+    *
+ERROR at line 9:
+ORA-06550: line 9, column 5: 
+PLS-00103: Encountered the symbol "=" when expecting one of the following: 
+:= . ( @ % ; 
+The symbol ":= was inserted before "=" to continue. 
+
+
+SQL>  declare
+  2      n number(4):=20;
+  3     e number(4);
+  4     o number(4);
+  5     begin loop
+  6     e:=n;
+  7     o:=n+1;
+  8      dbms_output.put_line(e||'   '||o);
+  9     n:=n+2;
+ 10   exit when n>40;
+ 11     end loop;
+ 12     end;
+ 13     /
+20   21                                                                         
+22   23                                                                         
+24   25                                                                         
+26   27                                                                         
+28   29                                                                         
+30   31                                                                         
+32   33                                                                         
+34   35                                                                         
+36   37                                                                         
+38   39                                                                         
+40   41                                                                         
+
+PL/SQL procedure successfully completed.
+
+SQL>  declare
+  2      n number(4):=20;
+  3     e number(4);
+  4     o number(4);
+  5     dbms_output.put.line('even odd');
+  6     begin loop
+  7     e:=n;
+  8     o:=n+1;
+  9      dbms_output.put_line(e||'   '||o);
+ 10     n:=n+2;
+ 11   exit when n>40;
+ 12     end loop;
+ 13     end;
+ 14     /
+   dbms_output.put.line('even odd');
+              *
+ERROR at line 5:
+ORA-06550: line 5, column 15: 
+PLS-00103: Encountered the symbol "." when expecting one of the following: 
+constant exception <an identifier> 
+<a double-quoted delimited-identifier> table long double ref 
+char time timestamp interval date binary national character 
+nchar 
+The symbol "<an identifier>" was substituted for "." to continue. 
+
+
+SQL>  declare
+  2      n number(4):=20;
+  3     e number(4);
+  4     o number(4);
+  5     dbms_output.put_line('even odd');
+  6     begin loop
+  7     e:=n;
+  8     o:=n+1;
+  9      dbms_output.put_line(e||'   '||o);
+ 10     n:=n+2;
+ 11   exit when n>40;
+ 12     end loop;
+ 13     end;
+ 14     /
+   dbms_output.put_line('even odd');
+              *
+ERROR at line 5:
+ORA-06550: line 5, column 15: 
+PLS-00103: Encountered the symbol "." when expecting one of the following: 
+constant exception <an identifier> 
+<a double-quoted delimited-identifier> table long double ref 
+char time timestamp interval date binary national character 
+nchar 
+The symbol "<an identifier>" was substituted for "." to continue. 
+
+
+SQL>  declare
+  2      n number(4):=20;
+  3     e number(4);
+  4     o number(4);
+  5     dbms_output.put_line('even odd');
+  6     begin
+  7     dbms_output.put_line('even odd');
+  8   loop
+  9     e:=n;
+ 10     o:=n+1;
+ 11      dbms_output.put_line(e||'   '||o);
+ 12     n:=n+2;
+ 13   exit when n>40;
+ 14     end loop;
+ 15     end;
+ 16     /
+   dbms_output.put_line('even odd');
+              *
+ERROR at line 5:
+ORA-06550: line 5, column 15: 
+PLS-00103: Encountered the symbol "." when expecting one of the following: 
+constant exception <an identifier> 
+<a double-quoted delimited-identifier> table long double ref 
+char time timestamp interval date binary national character 
+nchar 
+The symbol "<an identifier>" was substituted for "." to continue. 
+
+
+SQL>  declare
+  2      n number(4):=20;
+  3     e number(4);
+  4     o number(4);
+  5     begin
+  6     dbms_output.put_line('even odd');
+  7   loop
+  8     e:=n;
+  9     o:=n+1;
+ 10      dbms_output.put_line(e||'   '||o);
+ 11     n:=n+2;
+ 12   exit when n>40;
+ 13     end loop;
+ 14     end;
+ 15     /
+even odd                                                                        
+20   21                                                                         
+22   23                                                                         
+24   25                                                                         
+26   27                                                                         
+28   29                                                                         
+30   31                                                                         
+32   33                                                                         
+34   35                                                                         
+36   37                                                                         
+38   39                                                                         
+40   41                                                                         
+
+PL/SQL procedure successfully completed.
+
+SQL>  declare
+  2  n number(4):=1;
+  3  begin
+  4  while n<10 loop
+  5  dbms_output.put_line(n);
+  6  n:=n+2;
+  7  end loop;
+  8  end;
+  9  /
+1                                                                               
+3                                                                               
+5                                                                               
+7                                                                               
+9                                                                               
+
+PL/SQL procedure successfully completed.
+
+SQL> create table writedemo as select empno,ename,esal,deptno where 5=5;
+create table writedemo as select empno,ename,esal,deptno where 5=5
+                                                         *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> create table writedemo as select empno,ename,esal,deptno from jemp where 5=5;
+
+Table created.
+
+SQL> desc writedemo
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER(4)
+ ENAME                                              VARCHAR2(20)
+ ESAL                                               NUMBER(6)
+ DEPTNO                                             NUMBER(2)
+
+SQL> select * from whiledemo;
+select * from whiledemo
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select * from writedemo;
+
+     EMPNO ENAME                      ESAL     DEPTNO                           
+---------- -------------------- ---------- ----------                           
+      1101 james                     58234         20                           
+      1102 ravi                      46000         20                           
+      1103 kavi                      35000         20                           
+      1107 bhima                     34000         30                           
+      1108 bond                      24000         40                           
+      1109 vikram                    24000         40                           
+      4007 yash                      56780         30                           
+      3001 virat                     45000         30                           
+
+8 rows selected.
+
+SQL> drop table writedemo;
+
+Table dropped.
+
+SQL> create table writedemo as select empno,ename,esal,deptno from jemp where 7=5;
+
+Table created.
+
+SQL> select * from writedemo;
+
+no rows selected
+
+SQL> desc writedemo
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER(4)
+ ENAME                                              VARCHAR2(20)
+ ESAL                                               NUMBER(6)
+ DEPTNO                                             NUMBER(2)
+
+SQL> declare
+  2  n number(4)/
+  3  
+  4  /
+n number(4)/
+           *
+ERROR at line 2:
+ORA-06550: line 2, column 12: 
+PLS-00103: Encountered the symbol "/" when expecting one of the following: 
+:= ; not null default character 
+
+
+SQL> rename table writedemo to whiledemo;
+rename table writedemo to whiledemo
+       *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> rename writedemo to whiledemo;
+
+Table renamed.
+
+SQL> select * from writedemo;
+select * from writedemo
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select * from whiledemo;
+
+no rows selected
+
+SQL> declare
+  2  v_empno number(4):=2001;
+  3  v_ename varchar2(20):='smith';
+  4  n number(4):=1;
+  5  begin
+  6  while n<10 loop
+  7  insert into whiledemo(empno,empname) values (v_empno,v_ename||n);
+  8  v_empno:=v_empno+1;
+  9  n:=n+1;
+ 10  end loop;
+ 11  end;
+ 12  /
+insert into whiledemo(empno,empname) values (v_empno,v_ename||n);
+                            *
+ERROR at line 7:
+ORA-06550: line 7, column 29: 
+PL/SQL: ORA-00904: "EMPNAME": invalid identifier 
+ORA-06550: line 7, column 1: 
+PL/SQL: SQL Statement ignored 
+
+
+SQL> declare
+  2  v_empno number(4):=2001;
+  3  v_ename varchar2(20):='smith';
+  4  n number(4):=1;
+  5  begin
+  6  while n<10 loop
+  7  insert into whiledemo(empno,ename) values (v_empno,v_ename||n);
+  8  v_empno:=v_empno+1;
+  9  n:=n+1;
+ 10  end loop;
+ 11  end;
+ 12  /
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from whiledemo;
+
+     EMPNO ENAME                      ESAL     DEPTNO                           
+---------- -------------------- ---------- ----------                           
+      2001 smith1                                                               
+      2002 smith2                                                               
+      2003 smith3                                                               
+      2004 smith4                                                               
+      2005 smith5                                                               
+      2006 smith6                                                               
+      2007 smith7                                                               
+      2008 smith8                                                               
+      2009 smith9                                                               
+
+9 rows selected.
+
+SQL> begin
+  2  for i in 1..10 loop
+  3  dbms_output.put_line(i);_
+  4  end loop;
+  5  end;
+  6  /
+dbms_output.put_line(i);_
+                        *
+ERROR at line 3:
+ORA-06550: line 3, column 25: 
+PLS-00103: Encountered the symbol "_" when expecting one of the following: 
+( begin case declare end exit for goto if loop mod null 
+pragma raise return select update while with <an identifier> 
+<a double-quoted delimited-identifier> <a bind variable> << 
+continue close current delete fetch lock insert open rollback 
+savepoint set sql execute commit forall merge pipe purge 
+The symbol "_" was ignored. 
+
+
+SQL> begin
+  2  for i in 1..10 loop
+  3  dbms_output.put_line(i);
+  4  end loop;
+  5  end;
+  6  /
+1                                                                               
+2                                                                               
+3                                                                               
+4                                                                               
+5                                                                               
+6                                                                               
+7                                                                               
+8                                                                               
+9                                                                               
+10                                                                              
+
+PL/SQL procedure successfully completed.
+
+SQL> begin
+  2  for i in reverse 1..10 loop
+  3  dbms_output.put_line(i);
+  4  end loop;
+  5  end;
+  6  /
+10                                                                              
+9                                                                               
+8                                                                               
+7                                                                               
+6                                                                               
+5                                                                               
+4                                                                               
+3                                                                               
+2                                                                               
+1                                                                               
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  n number:=&n;
+  3  begin
+  4  for i in 1..10 loop
+  5  n:n*i;
+  6  dbms_output.put_line(n||'*'||i||'='||r);
+  7  end loop;
+  8  end;/
+  9  /
+Enter value for n: 
+old   2: n number:=&n;
+new   2: n number:=;
+SP2-0552: Bind variable "N" not declared.
+SQL>  declare
+  2     n number(4):=&n;
+  3     r number(4);
+  4     begin
+  5     for i in 1..10 loop
+  6    r:=n*i;
+  7    dbms_output.put_line(n||'*'||i||'='||r);
+  8    end loop;
+  9      end;
+ 10  /
+Enter value for n: 2
+old   2:    n number(4):=&n;
+new   2:    n number(4):=2;
+2*1=2                                                                           
+2*2=4                                                                           
+2*3=6                                                                           
+2*4=8                                                                           
+2*5=10                                                                          
+2*6=12                                                                          
+2*7=14                                                                          
+2*8=16                                                                          
+2*9=18                                                                          
+2*10=20                                                                         
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  n  number(4);
+  3  begin
+  4  for i 65..90 loop
+  5  dbms_ouput.put_line(char(i));
+  6  end loop;
+  7  end;
+  8  /
+for i 65..90 loop
+      *
+ERROR at line 4:
+ORA-06550: line 4, column 7: 
+PLS-00103: Encountered the symbol "65" when expecting one of the following: 
+in 
+The symbol "in" was substituted for "65" to continue. 
+
+
+SQL> declare
+  2      n char(4);
+  3      begin
+  4      for i 65..90 loop
+  5      n:=select char(i) from dual;
+  6       dbms_ouput.put_line(n);
+  7      end loop;
+  8      end;
+  9      /
+    for i 65..90 loop
+          *
+ERROR at line 4:
+ORA-06550: line 4, column 11: 
+PLS-00103: Encountered the symbol "65" when expecting one of the following: 
+in 
+The symbol "in" was substituted for "65" to continue. 
+ORA-06550: line 5, column 8: 
+PLS-00103: Encountered the symbol "SELECT" when expecting one of the following: 
+( - + case mod new not null <an identifier> 
+<a double-quoted delimited-identifier> <a bind variable> 
+continue avg count current exists max min prior  
+
+
+SQL>  declare
+  2      n  number(4);
+  3      begin
+  4      for i 65..90 loop
+  5      dbms_ouput.put_line(char(i));
+  6      end loop;
+  7      end;
+  8      /
+    for i 65..90 loop
+          *
+ERROR at line 4:
+ORA-06550: line 4, column 11: 
+PLS-00103: Encountered the symbol "65" when expecting one of the following: 
+in 
+The symbol "in" was substituted for "65" to continue. 
+
+
+SQL>  declare
+  2      n  number(4);
+  3      begin
+  4      for i in 65..90 loop
+  5      dbms_ouput.put_line(char(i));
+  6      end loop;
+  7      end;
+  8      /
+    dbms_ouput.put_line(char(i));
+                        *
+ERROR at line 5:
+ORA-06550: line 5, column 25: 
+PLS-00222: no function with name 'CHAR' exists in this scope 
+ORA-06550: line 5, column 5: 
+PL/SQL: Statement ignored 
+
+
+SQL>  declare
+  2      n  number(4);
+  3      begin
+  4      for i in 65..90 loop
+  5      dbms_ouput.put_line(chr(i));
+  6      end loop;
+  7      end;
+  8      /
+    dbms_ouput.put_line(chr(i));
+    *
+ERROR at line 5:
+ORA-06550: line 5, column 5: 
+PLS-00201: identifier 'DBMS_OUPUT.PUT_LINE' must be declared 
+ORA-06550: line 5, column 5: 
+PL/SQL: Statement ignored 
+
+
+SQL> 
+SQL>     begin
+  2      for i in 65..90 loop
+  3      dbms_ouput.put_line(chr(i));
+  4      end loop;
+  5      end;
+  6      /
+    dbms_ouput.put_line(chr(i));
+    *
+ERROR at line 3:
+ORA-06550: line 3, column 5: 
+PLS-00201: identifier 'DBMS_OUPUT.PUT_LINE' must be declared 
+ORA-06550: line 3, column 5: 
+PL/SQL: Statement ignored 
+
+
+SQL> 
+SQL>     begin
+  2      for i in 65..90 loop
+  3      dbms_output.put_line(chr(i));
+  4      end loop;
+  5      end;
+  6      /
+A                                                                               
+B                                                                               
+C                                                                               
+D                                                                               
+E                                                                               
+F                                                                               
+G                                                                               
+H                                                                               
+I                                                                               
+J                                                                               
+K                                                                               
+L                                                                               
+M                                                                               
+N                                                                               
+O                                                                               
+P                                                                               
+Q                                                                               
+R                                                                               
+S                                                                               
+T                                                                               
+U                                                                               
+V                                                                               
+W                                                                               
+X                                                                               
+Y                                                                               
+Z                                                                               
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL>    declare
+  2  n number(4);
+  3   begin
+  4      for i in 65..90 loop
+  5      dbms_output.put_line(chr(i));
+  6      end loop;
+  7      end;
+  8      /
+A                                                                               
+B                                                                               
+C                                                                               
+D                                                                               
+E                                                                               
+F                                                                               
+G                                                                               
+H                                                                               
+I                                                                               
+J                                                                               
+K                                                                               
+L                                                                               
+M                                                                               
+N                                                                               
+O                                                                               
+P                                                                               
+Q                                                                               
+R                                                                               
+S                                                                               
+T                                                                               
+U                                                                               
+V                                                                               
+W                                                                               
+X                                                                               
+Y                                                                               
+Z                                                                               
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL>    declare
+  2  n number(4);
+  3   begin
+  4      for i in 65..90 loop
+  5      dbms_output.put_line(char(i));
+  6      end loop;
+  7      end;
+  8      /
+    dbms_output.put_line(char(i));
+                         *
+ERROR at line 5:
+ORA-06550: line 5, column 26: 
+PLS-00222: no function with name 'CHAR' exists in this scope 
+ORA-06550: line 5, column 5: 
+PL/SQL: Statement ignored 
+
+
+SQL> declare
+  2  v_str varchar2(30)='&v_str';
+  3  n number(4):=0;
+  4  begin
+  5  for i in 1..length(v_str) loop
+  6  if substr(v_str,i,1) in ('A','E','I','O','U') then
+  7  n:=n+1;
+  8  end if;
+  9  end loop;
+ 10  dbms_output.put_line(n);
+ 11  end;
+ 12  /
+Enter value for v_str: shubham aggarwal
+old   2: v_str varchar2(30)='&v_str';
+new   2: v_str varchar2(30)='shubham aggarwal';
+v_str varchar2(30)='shubham aggarwal';
+                  *
+ERROR at line 2:
+ORA-06550: line 2, column 19: 
+PLS-00103: Encountered the symbol "=" when expecting one of the following: 
+:= ; not null default character 
+The symbol ":= was inserted before "=" to continue. 
+
+
+SQL> declare
+  2  v_str varchar2(30):='&v_str';
+  3  n number(4):=0;
+  4  begin
+  5  for i in 1..length(v_str) loop
+  6  if substr(v_str,i,1) in ('A','E','I','O','U') then
+  7  n:=n+1;
+  8  end if;
+  9  end loop;
+ 10  dbms_output.put_line(n);
+ 11  end;
+ 12  /
+Enter value for v_str: shubham
+old   2: v_str varchar2(30):='&v_str';
+new   2: v_str varchar2(30):='shubham';
+0                                                                               
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for v_str: SHUBHAM
+old   2: v_str varchar2(30):='&v_str';
+new   2: v_str varchar2(30):='SHUBHAM';
+2                                                                               
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  v_str varchar2(30):='&v_str';
+  3  n number(4):=0;
+  4  begin
+  5  for i in 1..length(v_str) loop
+  6  if substr(v_str,i,1) in ('A','E','I','O','U','a','e','i','o','u') then
+  7  n:=n+1;
+  8  end if;
+  9  end loop;
+ 10  dbms_output.put_line(n);
+ 11  end;
+ 12  /
+Enter value for v_str: shubham
+old   2: v_str varchar2(30):='&v_str';
+new   2: v_str varchar2(30):='shubham';
+2                                                                               
+
+PL/SQL procedure successfully completed.
+
+SQL> cle scr
+
+SQL> select * from jemp;
+
+     EMPNO ENAME                      ESAL      MGRNO     DEPTNO                
+---------- -------------------- ---------- ---------- ----------                
+      1101 james                     58234                    20                
+      1102 ravi                      46000       1101         20                
+      1103 kavi                      35000       1102         20                
+      1107 bhima                     34000       1102         30                
+      1108 bond                      24000       1103         40                
+      1109 vikram                    24000       1103         40                
+      4007 yash                      56780       1103         30                
+      3001 virat                     45000       1101         30                
+
+8 rows selected.
+
+SQL> declare
+  2  v_deptno number(2)=&v_deptno;
+  3  begin
+  4  /
+Enter value for v_deptno: 
+old   2: v_deptno number(2)=&v_deptno;
+new   2: v_deptno number(2)=;
+v_deptno number(2)=;
+                  *
+ERROR at line 2:
+ORA-06550: line 2, column 19: 
+PLS-00103: Encountered the symbol "=" when expecting one of the following: 
+:= ; not null default character 
+
+
+SQL> declare
+  2  v_ename jemp.ename&type;
+  3  v_deptno jemp%type:=&v_deptno;
+  4  begin
+  5  select ename into v_ename from jemp
+  6  where deptno=v_deptno;
+  7  dbms_output.put_line(v_ename);
+  8  end;
+  9  /
+Enter value for type: 20
+old   2: v_ename jemp.ename&type;
+new   2: v_ename jemp.ename20;
+Enter value for v_deptno: /
+old   3: v_deptno jemp%type:=&v_deptno;
+new   3: v_deptno jemp%type:=/;
+v_deptno jemp%type:=/;
+                    *
+ERROR at line 3:
+ORA-06550: line 3, column 21: 
+PLS-00103: Encountered the symbol "/" when expecting one of the following: 
+( - + case mod new not null <an identifier> 
+<a double-quoted delimited-identifier> <a bind variable> 
+continue avg count current exists max min prior sql stddev 
+sum variance execute forall merge time timestamp interval 
+date <a string literal with character set specification> 
+<a number> <a single-quoted SQL string> pipe 
+<an alternatively-quoted string literal with character set specification> 
+<an alternatively 
+
+
+SQL> declare
+  2  v_ename jemp.ename&type;
+  3  v_deptno jemp.deptno%type:=&v_deptno;
+  4  begin
+  5  select ename into v_ename from jemp
+  6  where deptno=v_deptno;
+  7  dbms_output.put_line(v_ename);
+  8  end;
+  9  /
+Enter value for type: 20
+old   2: v_ename jemp.ename&type;
+new   2: v_ename jemp.ename20;
+Enter value for v_deptno: /
+old   3: v_deptno jemp.deptno%type:=&v_deptno;
+new   3: v_deptno jemp.deptno%type:=/;
+v_deptno jemp.deptno%type:=/;
+                           *
+ERROR at line 3:
+ORA-06550: line 3, column 28: 
+PLS-00103: Encountered the symbol "/" when expecting one of the following: 
+( - + case mod new not null <an identifier> 
+<a double-quoted delimited-identifier> <a bind variable> 
+continue avg count current exists max min prior sql stddev 
+sum variance execute forall merge time timestamp interval 
+date <a string literal with character set specification> 
+<a number> <a single-quoted SQL string> pipe 
+<an alternatively-quoted string literal with character set specification> 
+<an alternatively 
+
+
+SQL> 
+SQL> SQL> declare
+SP2-0734: unknown command beginning "SQL> decla..." - rest of line ignored.
+SQL>     v_ename jemp.ename%type;
+SP2-0734: unknown command beginning "v_ename je..." - rest of line ignored.
+SQL>     v_deptno jemp.deptno%type:=&v_deptno;
+SP2-0734: unknown command beginning "v_deptno j..." - rest of line ignored.
+SQL>     begin
+  2      select ename into v_ename from jemp
+  3      where deptno=v_deptno;
+  4      dbms_output.put_line(v_ename);
+  5      end;
+  6      /
+    where deptno=v_deptno;
+                 *
+ERROR at line 3:
+ORA-06550: line 3, column 18: 
+PL/SQL: ORA-00904: "V_DEPTNO": invalid identifier 
+ORA-06550: line 2, column 5: 
+PL/SQL: SQL Statement ignored 
+ORA-06550: line 4, column 26: 
+PLS-00201: identifier 'V_ENAME' must be declared 
+ORA-06550: line 4, column 5: 
+PL/SQL: Statement ignored 
+
+
+SQL> 
