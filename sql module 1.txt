@@ -1,0 +1,90 @@
+SQL> select sysdate from dual;
+
+SYSDATE                                                                         
+---------                                                                       
+31-JUL-19                                                                       
+
+SQL> create table employees(emp_id number(6) primary key, first_name varchar2(20), last_name varchar2(25) not null,
+  2  email varchar2(25) not null, phone_number varchar2(20), hire_date date not null, job_id varchar2(10) not null,
+  3  salary number(8,2), commisio_pct number(2,2), manager_id number(6), department_id number(4));
+
+
+Table created.
+
+SQL> insert into employees values(1001,'atul','agrawal','atul@gmail.com',987456123,'1-jan-2010','at',15000,null,1101,101);
+
+1 row created.
+
+SQL> insert into employees values(1002,'ralph','patel','ralph@gmail.com',9874456128,'1-jan-2010','at',15000,null,1102,101);
+
+1 row created.
+
+SQL> insert into employees values(1003,'ankur','patel','ankur@gmail.com',9874456144,'1-jan-2007','at',15000,null,1103,101);
+
+1 row created.
+
+SQL> insert into employees values(1004,'ateet','agrawal','ankur@gmail.com',9874456144,'1-dec-2007','ab',15000,null,1103,102);
+
+1 row created.
+
+SQL> select emp_id,last_name,first_name,concat(substr(first_name,1,1),substr(last_name,1,7)) as userid, salary from employees;
+
+    EMP_ID LAST_NAME                 FIRST_NAME                                 
+---------- ------------------------- --------------------                       
+USERID                               SALARY                                     
+-------------------------------- ----------                                     
+      1001 agrawal                   atul                                       
+aagrawal                              15000                                     
+                                                                                
+      1002 patel                     ralph                                      
+rpatel                                15000                                     
+                                                                                
+      1003 patel                     ankur                                      
+apatel                                15000                                     
+                                                                                
+
+    EMP_ID LAST_NAME                 FIRST_NAME                                 
+---------- ------------------------- --------------------                       
+USERID                               SALARY                                     
+-------------------------------- ----------                                     
+      1004 agrawal                   ateet                                      
+aagrawal                              15000                                     
+                                                                                
+SQL> select count(*) as no_of_emp, to_char(hire_date,'yyyy') as year from employees group by to_char(hire_date,'yyyy');
+
+ NO_OF_EMP YEAR                                                                 
+---------- ----                                                                 
+         2 2010                                                                 
+         2 2007                                                                 
+
+SQL> select count(*) as no_of_emp, job_id as year from employees group by job_id;
+
+ NO_OF_EMP YEAR                                                                 
+---------- ----------                                                           
+         1 ab                                                                   
+         3 at                                                                   
+
+
+
+SQL> select manager_id, salary from employees outer
+  2  where salary in (select min(salary) as low_sal from employees
+  3  where manager_id is not null and salary>6000 group by manager_id) order by salary desc;
+
+MANAGER_ID     SALARY                                                           
+---------- ----------                                                           
+      1101      15000                                                           
+      1103      15000                                                           
+      1103      15000                                                           
+      1102      15000                                                           
+
+
+SQL> select to_char(first_name||' '||last_name) as name, salary,department_id from employees where salary in (select min(salary) from employees);
+
+NAME                                               SALARY DEPARTMENT_ID         
+---------------------------------------------- ---------- -------------         
+atul agrawal                                        15000           101         
+ralph patel                                         15000           101         
+ankur patel                                         15000           101         
+ateet agrawal                                       15000           102         
+
+SQL> spool off

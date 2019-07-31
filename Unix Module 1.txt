@@ -1,0 +1,32 @@
+Que 1)
+
+chmod 654 file1
+ls -l file1
+
+Que2)
+
+echo "Enter Two numbers : "
+read num1 
+read num2 
+  
+# Input type of operation 
+echo "Enter Choice :"
+echo "1. Addition of numbers"
+echo "2. Subtraction of numbers"
+echo "3. Multiplication of numbers"
+echo "4. Division of numbers"
+read choice 
+  
+# Switch Case to perform 
+# calulator operations 
+case $choice in
+  1)res=`echo $a + $b | bc` 
+  ;; 
+  2)res=`echo $a - $b | bc` 
+  ;; 
+  3)res=`echo $a \* $b | bc` 
+  ;; 
+  4)res=`echo "scale=2; $a / $b" | bc` 
+  ;; 
+esac
+echo "Result is : $res"
