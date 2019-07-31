@@ -1,0 +1,87 @@
+//Java Program which fetches details of employee,add new employee and calculate net salary. 
+import java.util.Scanner;
+public class XYZ
+{
+    
+    int Id;
+    String Name;
+    int Basic;
+    long Pf;
+    long Hra;
+    
+    void setData(){       //Initialising the variables
+        System.out.println("Enter the Employee ID");
+        Scanner sc= new Scanner(System.in);
+        Id=Integer.parseInt(sc.nextLine());
+        System.out.println("Enter the Employee Name");
+        Name = sc.nextLine();
+        System.out.println("Enter the Basic Salary");
+        Basic=Integer.parseInt(sc.nextLine());
+        Pf= (Basic/10);
+        Hra= (Basic/20);
+         System.out.println("Record Entered Successfully");
+    }
+    int getId(){             //Getter Method
+        return this.Id;
+    }
+    void printData(){  
+         	System.out.println("\n\tName \t Id \t BasicSalary\t ProvidentFund\t\t HRA");
+         		System.out.println("\t"+Name +"\t"+Id+"\t\t"+Basic+"\t\t"+Pf+"\t\t"+Hra);
+    }
+    void netSal(){
+        System.out.println("The total Salary of \t"+Name+"\t is\t"+(Basic+Pf+Hra));
+    }
+	public static void main(String[] args) {
+	
+	Scanner sc2= new Scanner(System.in);
+	System.out.println("XYZ Company");
+		XYZ[] emp= new XYZ[10]; //Class Object creation
+		int i;
+		int j=2;
+		
+		for(i=0;i<j;i++)
+		{emp[i] = new XYZ(); //Allocation of memory to objects
+		emp[i].setData();}
+		while(true){ //Loop continues till user press 4 or wrong credentials
+			
+                         System.out.println("Choose among the following option \n"+
+			"1.Add a New Employee 2. Calculate Net Salary of an employee 3.Display the employee details 4.Exit");
+		    int opt =sc2.nextInt();
+		    if(opt==1){ j++;
+		    emp[j-1]= new XYZ(); //Allocating Memory to new object
+		    emp[j-1].setData();
+		        
+		    }
+		    else if(opt==2) {
+		        int flag=0;
+		        System.out.println("Enter the Employee ID");
+		        int empid =sc2.nextInt();
+		        for(i=0;i<j;i++)
+		        {if(empid==emp[i].getId()){
+		        flag++;
+		        emp[i].netSal();
+		        }
+		        }
+		        if (flag==0)
+		            System.out.println("Wrong ID");
+		        
+		    }
+		        else if(opt==3){ 
+		         int flag=0;
+		        System.out.println("Enter the Employee ID");
+		        int empid =sc2.nextInt();
+		        for(i=0;i<j;i++)
+		        {if(empid==emp[i].getId()){
+		        flag++;
+		        emp[i].printData();
+		        }
+		        }
+		        if (flag==0)
+		            System.out.println("Wrong ID");
+		           
+		          }
+		       else if(opt==4)
+		       System.exit(0);   //Program Exits
+		}  
+	} 
+}
