@@ -1,0 +1,39 @@
+Section 1
+que 1
+Code:-
+import numpy as np
+a=[8.3,2.4,3.3,6.5]
+a=np.array(a)
+res_ceil=[]
+res_floor=[]
+res_rint=[]
+for x in a: #accesing element of array
+    res_ceil.append(np.ceil(x))
+    res_floor.append(np.floor(x))
+    res_rint.append(np.rint(x))
+print("ceil  on element of array a is",res_ceil)
+print("floor on element of array a is",res_floor)
+print("rint on element array a is",res_rint)
+
+output:-
+ceil on element of array a is [9.0, 3.0, 4.0, 7.0]                                                                                       
+floor on element of array a is [8.0, 2.0, 3.0, 6.0]                                                                            
+rint on element array a is [8.0, 2.0, 3.0, 6.0] 
+
+
+Que 2)
+
+Code:-
+word=input("enter word")
+word=word.lower()
+if(word==word[::-1]): #check whether string is same as its reverse or not
+    print('is pallindrome')
+else:
+    print('not pallindrome')
+
+Output:-
+enter word Ankur                                                                                                               
+not pallindrome
+
+enter word Naman                                                                                                               
+is pallindrome 
