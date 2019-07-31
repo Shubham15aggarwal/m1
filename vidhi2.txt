@@ -1,0 +1,22 @@
+SQL> select e.first_name,e.last_name ,e.superior_emp_id, b.name,d.name from employee e,department d,branch b where b.branch_id in (1,2) and e.dept_id=d.dept_id and e.assigned_branch_id=b.branch_id;
+
+FIRST_NAME           LAST_NAME            SUPERIOR_EMP_ID NAME                 NAME
+-------------------- -------------------- --------------- -------------------- --------------------
+ab                   bc1                             1001 citi1                shubham1
+abb                  bc11                            1002 citi2                shubham2
+
+SQL> select * from acc_transaction where to_char(txn_date,'yyyy')=2002;
+
+no rows selected
+
+SQL> select * from customer c,account a where c.cust_id in ( select cust_id from account group by cust_id,open_date,last_activity_date having count(*)>1);
+
+no rows selected
+
+SQL> select e.Dept_id, d.Name from Employee e, Department d where e.Dept_id != d.Dept_id;
+
+   DEPT_ID NAME
+---------- --------------------
+       101 shubham2
+       102 shubham1
+
