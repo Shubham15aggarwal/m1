@@ -1,0 +1,11 @@
+create or replace procedure pcg1()
+is avail number(20);
+pend number(20);
+diff number(20);
+begin 
+select avail_balance,pending_balance,avail_balance-pending_balance into avail,pend,diff where open_branch_id in (select open_branch_id from account
+ group by open_branch_id g=having count(*)>1);
+exception
+when others then 
+dbms_output.put_line("not valid");
+end pcg1;
