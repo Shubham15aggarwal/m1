@@ -1,0 +1,62 @@
+SQL> create or replace procedure procg123 is
+  2  d varchar2(20);
+  3  begin
+  4  for i in 0..6 loop
+  5  select to_char((hire_date+i),'day') into d from employees where emp_id=1001;
+  6  dbms_output.put_line(d);
+  7  end loop;
+  8  end procg123;
+
+Procedure created.
+
+SQL> exec procg123
+
+PL/SQL procedure successfully completed.
+
+SQL> set serveroutput on
+SQL> /
+
+Procedure created.
+
+SQL> exec procg123
+friday
+saturday
+sunday
+monday
+tuesday
+wednesday
+thursday
+
+PL/SQL procedure successfully completed.
+
+
+Que 2)
+SQL> create table newsal(empno number(6), ename varchar2(20), esal number(6));
+
+Table created.
+
+
+SQL> create or replace procedure proc1(v_empno in number,v_name in varchar2,
+  2  v_esal in number) is
+  3  begin
+  4  insert into newsal(empno,ename,esal) values(v_empno,v_name,v_esal);
+  5  if v_esal<8000 then
+  6  update newsal set esal=esal+700 where empno=v_empno;
+  7  end if;
+  8  end;
+  9  /
+
+Procedure created.
+
+
+SQL> exec proc1(50,'vidhi',6000)
+
+PL/SQL procedure successfully completed.
+
+SQL> select* from newsal;
+
+     EMPNO ENAME                      ESAL
+---------- -------------------- ----------
+        50 vidhi                      6700
+
+
