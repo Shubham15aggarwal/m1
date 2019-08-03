@@ -1,0 +1,142 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class Person
+    {
+       private String name; 
+       private double balance; 
+       private float age;
+      
+      public Person(String name, double balance)
+      {
+         this.name = name; 
+         if (balance > 500.0)                     
+            this.balance = balance; 
+      }
+
+     
+      public void deposit(double depositAmount)                        
+      {                                                                
+         if (depositAmount > 0.0) 
+            balance = balance + depositAmount; 
+      }  
+      
+      public void withdraw(double withdrawAmt)                        
+      {                                                                
+         if (withdrawAmt > 0.0 && balance>(withdrawAmt+500)) 
+            balance = balance - withdrawAmt;
+      }      
+      
+      public double getBalance()           
+      {                                    
+         return balance;                   
+      }                                    
+
+     
+      public void setName(String name)
+      {
+         this.name = name;
+      }
+
+      
+      public String getName()
+      {
+         return name;
+      }
+   }
+    
+    public class Account
+    {
+       public static void main(String[] args)
+       {
+           double depositAmount;
+           String accname;
+           double withdrawAmt;
+           int opt;
+          Person account1 = new Person("Smith", 2000.00); 
+         Person account2 = new Person("Kathy", 3000.00); 
+         Person accounts = new Person("Smith balance :",2000.00);
+          Person accountk = new Person("Kathy balance :",3000.00);
+         System.out.println(accounts + "\n" + accountk);
+         Scanner input = new Scanner(System.in);
+         Random rand = new Random();
+        System.out.println("Enter Account Holder Name");
+         accname=input.nextLine();
+         if(accname.equals("Smith")){
+             System.out.println("Account No:" + rand.nextInt(1000000));
+         System.out.printf("%s balance: $%.2f%n",
+            account1.getName(), account1.getBalance());
+             System.out.println("Select options 1.Deposit 2.Withdraw 3.Checkbalance");
+               opt=input.nextInt();
+              if(opt==1){
+         System.out.print("Enter deposit amount for Smith: "); 
+           depositAmount= input.nextDouble(); 
+         System.out.printf("%nadding %.2f to account1 balance%n%n",
+            depositAmount);
+         account1.deposit(depositAmount); 
+         System.out.printf("%s balance: $%.2f%n",
+            account1.getName(), account1.getBalance());
+         }
+              if(opt==2){
+                System.out.print("Enter Withdraw amount from Smith:"); 
+                withdrawAmt= input.nextDouble();
+                System.out.printf("%nWithdrawing %.2f from Smith balance%n%n",
+            withdrawAmt);
+            account1.withdraw(withdrawAmt);
+            System.out.printf("%s balance: $%.2f%n%n",
+            account1.getName());
+         }}
+            if(accname.equals("Kathy")){
+                System.out.println("Account No:" + rand.nextInt(1000000));
+         System.out.printf("%s balance: $%.2f%n%n",
+            account2.getName(), account2.getBalance());
+             System.out.println("Select options 1.Deposit 2.Withdraw 3.Checkbalance");
+           opt=input.nextInt();
+              if(opt==1){
+         System.out.print("Enter deposit amount for Kathy: "); 
+         depositAmount = input.nextDouble(); 
+         System.out.printf("%nadding %.2f to account2 balance%n%n",
+            depositAmount);
+         account2.deposit(depositAmount); 
+            
+         System.out.printf("%s balance: $%.2f%n%n",
+            account2.getName());
+            }
+            if(opt==2){
+                System.out.print("Enter Withdraw amount from Kathy:"); 
+                withdrawAmt= input.nextDouble();
+                System.out.printf("%nWithdrawing %.2f from Kathy balance%n%n",
+            withdrawAmt);
+            account2.withdraw(withdrawAmt);
+            System.out.printf("%s balance: $%.2f%n%n",
+            account2.getName(), account2.getBalance());
+            }
+            }
+      } 
+   } 
+
+
+
+
+class CurrAcc extends Person{
+    int overdraftLimit = 3000;
+    public boolean withdraw(double withdrawAmt)                        
+      {     if(withdrawAmt>3000)
+         return false;
+         
+         if (withdrawAmt > 0.0 && balance>(withdrawAmt+500)) 
+            balance = balance - withdrawAmt;
+            return true;
+      }   
+}
+
+
+
+class SavingsAcc extends Person{
+    final int minbal=500;
+    withdraw(double withrawAmt){                        
+      {                                                                
+         if (withdrawAmt > 0.0 && balance>(withdrawAmt+minbal)) 
+            balance = balance - withdrawAmt;
+      }   } 
+}
