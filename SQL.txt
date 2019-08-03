@@ -1,0 +1,247 @@
+1)Retrieve the details (Name, Salary and dept code) of the employees who     are  working in department 20, 30 and 40.
+QUERY:SELECT STAFF_NAME,STAFF_SAL,DEPT_CODE 
+FROM STAFF_MASTERS 
+WHERE DEPT_CODE IN(20,30,40);
+
+2)List the details of the employees with user defined Column headers.
+QUERY:SELECT STAFF_NAME AS FIRST NAME, STAFF_CODE AS STAFF_ID,HIRE DATE AS JOINING_DATE FROM STAFF_MASTERS;
+
+3)Display the code, subjects and total marks for every student. Total Marks will be calculated as Subject1+Subject2+Subject3. (Refer Student_Marks table)
+QUERY:SELECT STUDENT    CODE,SUBJECT1,SUBJECT2,SUBJECT3,(SUBJECT1+SUBJECT2+SUBJECT3) AS TOTAL MARKS FROM STUDENT_MARKS;
+
+4) List the details of the staff whose designations are either PROFESSOR or LECTURER.
+      QUERY:SELECT STAFF_CODE,STAFF_NAME,DESIGN_CODE,  FROM           STAFF_MASTERS INNER JOIN DESGINATION_MASTERS
+ ON STAFF_MASTERS.DESIGN_CODE=DESGINATION_MASTERS.DESIGN
+CODE
+ WHERE DESIGN_NAME=’Professor’ OR DESIGN_NAME=’Lecturer’;
+
+5)List the code, name, and department number of the employees who have experience of more than 18 years.
+QUERY: SELECT STAFF_NAME,STAFF_CODE,DEPT_CODE FROM STAFF_MASTERS WHERE(SYSDATE- HIREDATE/365)>18;
+
+6) List the name and Designations of the staff who have joined before Jan 2003.
+QUERY::SELECT STAFF_NAME,DESIGN_NAME 
+FROM STAFF_MASTERS INNER JOIN DESIGNATION_MASTERS
+ ON STAFF_MASTERS.DESIGN_CODE=DESIGNATION_MASTERS.DESIGN_CODE WHERE HIREDATE<’01-JAN-2003’;
+
+7) List the name, designation, and income for 10 years of the employees who are working in departments 10 and 30.
+SELECT STAFF_NAME,STAFF_SAL*10 AS SAL_10YRS,DESIGN_NAME FROM STAFF_MASTERS INNER JOIN DESIGNATION_MASTER   ON STAFF_MASTER.DESIGN_CODE=DESIGNATION_MASTERS.DESIGN_CODE WHERE DEPT_CODE IN(10,30) ;
+
+8) List the name and experience (in years) of employees who are working as LECTURER. 
+QUERY:SELECT STAFF_NAME,(SYSDATE-HIREDATE)/365 AS EXPERIENCE FROM STAFF_MASTERS INNER JOIN DESIGNATION_MASTERS 
+ON STAFF_MASTERS.DESIGN_CODE=DESIGNATION_MASTERS.DESIGN_CODE WHERE STAFF_NAME=’LECTURER’;
+
+9)Display name concatenated with dept code separated by comma and space. Name the column as ‘Student Info’.
+SELECT SUDENT_NAME||’,’||’ ‘||DEPT_CODE  AS  STUDENT INFO FROM  STUDENT_MASTERS;
+
+10) List the Name and Salary of the staff who are earning between 12000 and 25000. Sort them based on their salaries and name.
+SELECT STAFF_NAME,STAFF_SAL FROM STAFF_MASTERS WHERE STAFF_SAL BETWEEN 12000 AND 25000
+ORDER BY STAFF_SALAND STAFF_NAME;
+
+11) Display employees who do not have manager.
+SELECT STAFF_CODE FROM STAFF_MASTER WHERE  MGR_CODE IS NULL;
+
+12) Write a query which will display name, department code and date of birth of all students who were born between January 1, 1981 and March 31, 1983. Sort it based on date of birth (ascending).
+SELECT STUDENT_NAME, DEPT_CODE,STUDENT_DOB  FROM STUDENT_MASTERS WHERE STUDENT_DOB BETWEEN ‘01-JAN-1981’ AND ‘31-MAR-1983’
+ ORDER BY STUDENT_DOB;
+
+13)Get the Department number, and sum of Salary of all non managers where the sum is greater than 2000
+SELECT DEPTNO,SUM(SAL) FROM EMP WHERE JOB!=’MANAGER’ GROUP BY DEPTNO  HAVING SUM(SAL)>20000;
+
+15)Display the name and department code of students. If student does not belong to any department, display “No Department”. Label the column as “Department”. (Hint: Use NVL function)
+        SELECT STUDENT_NAME,NVL(TO_CHAR(DEPT_CODE),’NO DEPARMENT) AS       DEPARTMENT FROM STUDENT_MASTERS;
+
+16)  Display the name and salary of the staff. Salary should be represented as X. Each X represents a 1000 in salary. 
+Sample Output 
+JOHN       10000        XXXXXXXXXX 
+ALLEN    12000        XXXXXXXXXXXX
+SELECT STAFF_NAME,STAFF_SAL RPAD(‘STAFF_NAME’,STAFF_SAL/1000,’X’) FROM STAFF_MASTERS;
+
+
+
+
+				SECOND  ASSSIGNMENT
+
+
+1.	Display name and date of birth of students where date of birth must be displayed in the format similar to “January, 12 1981” for those who were born on Saturday or Sunday. 
+
+
+
+
+
+
+2.	Display each staff name and number of months they worked for the organization. Label the column as ‘Months Worked’. Order your result by number of months employed. Round the number of months to closest whole number. 
+
+
+SELECT STAFF_NAME ,ROUND((SYSDATE-HIREDATE)/30) FROM STAFF_MASTERS;
+
+3. List the details of the employees, whose names start with ‘A’ and end with ‘S’.
+
+SELECT * FROM STAFF_MEMBERS WHERE STAFF_NAME LIKE ‘A%’ AND STAFF_NAME LIKE’%S’;
+
+4)List the name and job of the employees whose names should contain N as the second or third character, and ending with either ‘N’ or ‘S’.
+SELECT ENAME,JOB FROM EMP WHERE (ENAME LIKE ‘_N%’) OR ENAME LIKE‘__N%’) AND  (ENAME LIKE ‘%N’) OR ENAME LIKE’%S’); 
+
+5)Create a query which will display Staff Name, Salary of each staff. Format the salary to be 15 character long and left padded with ‘$’.
+SELECT STAFF_NAME ,STAFF_SAL,LPAD(STAFF_SAL,15,’$’) FROM STAFF_MASTERS;\
+
+6). List the names of the Employees having ‘_’ character in their name.
+
+
+
+7)List the details of the staff who have joined in first half of December month (irrespective of the year). 
+ SELECT HIREDATE FROM STAFF_MASTERS WHERE TO_CHAR(HIREDATE,’MON’)=’DEC’);
+
+8)Write a query that displays Staff Name, Salary, and Grade of all staff. Grade depends on the following table. 
+SELECT STAFF_NAME,STAFF_SAL S,
+CASE
+WHEN S>=50000 THEN ‘A’
+WHEN S>25000 AND S<50000 THEN ‘B’
+WHEN S>=10000 AND S<25000 THEN ‘C’
+ELSE ‘OTHERS’ THEN ‘D’
+END
+FROM STAFF_MASTERS;
+
+9)Display the Staff Name, Hire date and day of the week on which staff was hired. Label the column as DAY. Order the result by the day of the week starting with Monday.
+
+
+
+11. Show staff names with the respective numbers of asterisk from Staff table except first and last characters. For example: KING will be replaced with K**G. 
+
+SELECT SUBSTR(STAFF_NAME,1,1)||LPAD(‘*’,LENGTH(STAFF_NAME)-2,’*’)||
+SUBSTR(STAFF_NAME,LENGTH(STAFF_NAME),1) FROM STAFF_MASTERS;
+
+
+12. Show all staffs who were hired in the first half of the month
+
+SELECT TO_CHAR(HIREDATE,’DD’)FROM STAFF_MASTERS WHERE TO_CHAR(HIREDATE,’DD’) BETWEEN 1 AND 15;
+
+13. Display the staff name, hire date and day of the week on which the staff joined. Order the results by the day of the week starting with Monday. 
+
+
+
+14. Write a query to find the position of third occurrence of ‘i’ in the given word ‘Mississippi’. 
+
+SELECT INSTR(‘MISSISSIPPI’,’I’,1,3) FROM DUAL;
+
+15. Write a query to find the pay date for the month. Pay date is the last Friday of the month. Display the date in the format “Twenty Eighth of January, 2002”. Label the heading as PAY DATE.
+
+SELECTUPPER(TO_CHAR(TO_DATE(TO_CHAR(NEXT_DAY(LAST_DAY(SYSDATE),’FRIDAY’)7,’DD’)),J),’JSP))||’OF’||TO_CHAR(NEXT_DAY(LAST_DAY(SYSDATE),’FRIDAY’)-7,’MONTH,YYYY’) AS PAY_DATE FROM DUAL;
+
+16)Display the Highest, Lowest, Total & Average salary of all staff. Label the columns Maximum, Minimum, Total and Average respectively. Round the result to nearest whole number.
+SELECT (MAX(STAFF_SAL),MIN(STAFF_SAL),ROUND(AVG(STAFF_SAL)),SUM(STAFF_SAL) FROM STAFF_MASTERS;
+
+17)Edit the above query and display the same for each Department Name.
+
+SELECT DEPT_NAME,STAFF_MASTERS.DEPT_CODE,STAFF_SAL AS S,MAX(S),MIN(S),ROUND(AVG(S)),SUM(S) FROM STAFF_MASTERS,DEPARTMENT_MASTERS WHERE STAFF_MASTERS.DEPT_CODE=DEPARTMENT_MASTERS.DEPT_CODE GROUP BY DEPT_NAME,STAFF_MASTERS.DEPT_CODE;
+
+18)Write a query to display number of people in each Department. Output should display Department Code, Department Name and Number of People.
+SELECT STAFF_MASTERS.DEPT_CODE,DEPT_CODE,COUNT(STAFF_MASTERS.STAFF_CODE) FROM STAFF_MASTERS,DEPARTMENT_CODE WHERE STAFF_MASTERS.DEPT_MASTERS=DEPARTMENT_MASTERS.DEPT_CODE GROUP BY STAFF_MASTERS.DEPT_CODE,DEPT_NAME;
+
+19)Determine the number of managers without listing them. Label the column as ‘Total Number of Managers’.
+
+SELECT COUNT(JOB) AS TOTAL_NO_OF_MANAGERS FROM EMP WHERE JOB=’MANAGER’; 
+
+20. Display Manager Code, Manager Name and salary of lowest paid staff in that manager’s team. Exclude any group where minimum salary is less than 10000. Order the result on descending order of salary
+SELECT MGR,ENAME,JOB,SAL FROM EMP WHERE JOB=’MANAGER’ AND SAL>2000;
+
+
+
+
+						
+
+
+
+
+
+					ASSIGNMENT 3
+1)who earns more than 20000 Write a query which displays Staff Name, Department Code, Department Name, and Salary for all staff.
+ SELECT STAFF_NAME,STAFF_DEPT_CODE,DEPT_NAME,SATFF_SAL FROM STAFF_MASTERS,DEPARTMENT_MASTERS WHERE STAFF_MASTERS.DEPT_CODE=DEPARTMENT_MASTERS.DEPT_CODE  AND SAL>2000;
+
+2)  Write a query to display Staff Name, Department Code, and Department Name for all staff who do not work in Department code 10 and have ‘A’ in their name 
+
+       SELECT STAFF_NAME,STAFF_MASTER.DEPT_CODE,DEPT_NAME  FROM STAFF_MASTERS,DEPARTMENT_MASTERS WHERE STAFF_MASTERS .DEPT_CODE=DEPARTMENT_MASTERS.DEPT_CODE AND STAFF_MASTERS.DEPT_CODE !=10 AND STAFF_NAME LIKE (%A%);
+
+3) Display Staff Code, Staff Name, Department Name, and his manager’s number and name. Label the columns Staff#, Staff, Mgr#, Manager.
+SELECT S.STAFF_CODE AS STAFF#,S.STAFF_NAME AS */STAFF,D.DEPT_NAME,E.MGR AS MGR#,E.ENAME AS MANAGER FROM
+STAFF_MASTERS S,DEPARTMENT_MASTERS D,EMP E WHERE S.DEPT_CODE=D.DEPT_CODE AND D.DEPT_CODE=E.DEPTNO;
+
+4)Create a query that will display Student Code, Student Name, Department Name, Subjec1, Subject2, and Subject3 for all students who are getting 60 and above in each subject from department 10 and 20.
+SELECT S.STUDENT_CODE,S.STUDENT_NAME,D.DEPT_NAME,SM.SUBJECT1,SM.SUBJECT2,SM.SUBJECT3 FROM STUDENT_MASTERS S,STUDENT_MARKS SM,DEPARTMENT_MASTERS D WHERE S.STUDENT_CODE=SM.STUDENTS_MARKS AND S.DEPT_CODE=D.DEPT_CODE AND SM.SUBJECT1>=60 AND SM.SUBJECT2>=60 AND SM.SUBJECT3>=60 AND D.DEPT_NAME IN(10,20);
+
+5)Create a query that will display Student Code, Student Name, Book Code, and Book Name for all students whose expected book return date is today.
+SELECT S.STUDENT_CODE,S.STUDENT_NAME,B.BOOK_NAME,B.BOOK_CODE FROM STUDENT_MASTERS S,BOOK_TRANSACTIONS BT,BOOK_MASTERS B  WHERE S.STUDENT_CODE=BT.STUDENT_CODE AND BT.BOOK_CODE=B.BOOK_CODE AND BOOK_EXPECTED_RETURNED_DATE=’SYSDATE’;
+
+6)Create a query that will display Staff Code, Staff Name, Department Name, Designation, Book Code, Book Name, and Issue Date. For only those staff who have taken any book in last 30 days.
+
+
+SELECT    S.STAFF_CODE,S.STAFF_NAME,D.DEPT_NAME,DE.DESIGN_CODE,BM.BOOK_CODE,BM.BOOK_NAME,BT.BOOK_ISSUE_DATE FROM STAFF_MASTERS S,DEPARTMENT_MASTERS D,DESIGNATION_MASTERS DE,BOOK_MASTERS BM,BOOK_TRANSACTIONS BT WHERE S.DEPT_CODE=D.DEPT_CODE AND S.DEPT_CODE=DE.DEPT_CODE AND S.STAFF_CODE=BM.STAFF_CODE AND BM.BOOK_CODE=BT.BOK_CODE AND
+
+
+
+7. Generate a report which contains the following information. 
+Staff Code Staff Name Designation Department Name
+
+Department Head 
+For all staff excluding HOD (List should not contain the details of Department head).
+SELECT S.STAFF_NAME,S.STAFF_CODE,DE.DESIGN_NAME,D.DEPT_NAME FROM  STAFF_MASTERS S,DESIGNATION_MASTERS DE,DEPARTMENT_MASTERS D WHERE S.DEPT_CODE=D.DEPT_CODE sAND S.DESIGN_CODE=DE.DESIGN_CODE AND DEPT_NAME!=’HOD’;
+
+8. Generate a report which contains the following information 
+Student Code Student Name Department Name Total Marks 
+HOD Name 
+Sort the output on Department Name and Total Marks.
+
+SELECT SM.STUDENT_CODE,SM.STUDENT_NAME,DE DEPT_NAME,(SUBJECT1+SUBJECT2+SUBJECT3) AS TOTAL_MARKS
+ DES.DESIGN_NAME FROM STUDENT_MASTERS,
+
+
+1) Create the Customer table with the following columns.
+Customerid Number(5)
+CustomerName Number(10)
+Address1 Varchar2(30)
+Address2 Varchar2(30)
+sol:
+ CREATE TABLE CUSTOMER(CUSTOMERID NUMBER(5),CUSTOMERNAME VARCHAR2(10),ADDRESS1 VARCHAR2(30),address2 varchar2(30));
+
+2) Modify the Customer table CustomerName column of datatype with Varchar2(30). CustomerName should not accept Nulls.
+sol:
+ALTER TABLE CUSTOMER MODIFY CUSTOMERNAME VARCHAR2(30) NOT NULL;
+
+3) Add the following Columns to the Customer table.
+Gender Varchar2(1)
+Age Number(3)
+PhoneNo Number(10)
+sol:
+ ALTER TABLE CUSTOMER ADD (GENDER VARCHAR2(1),AGE NUMBER(3),PHONENUM NUMBER(10));
+
+4) Insert rows with the following data in to the Customer table.
+Insert into customer values: (1000, ‘Allen’, ‘#115 Chicago’, ‘#115 Chicago’, ‘M’, ‘25, 7878776’)
+In similar manner, add the below records to the Customer table:
+1000, Allen, #115 Chicago, #115 Chicago, M, 25, 7878776
+1001, George, #116 France, #116 France, M, 25, 434524
+1002, Becker, #114 New York, #114 New York, M, 45, 431525
+sol:
+INSERT INTO CUSTOMER VALUES(1000,'ALLEN','#115 CHICAGO','#115 CHICAGO','M',25,654321464);
+
+5) Add the Primary key constraint for Customerld with the name Custld_Prim.
+sol:
+Alter table customer add constraints Custid_prim PRIMARY KEY (customerid);
+
+6) Insert the row given below in the Customer table and see the message generated by the Oracle server.
+1002, John, #114 Chicago, #114 Chicago, M, 45, 439525.
+sol:
+ unique constraint (SYSTEM.CUSTID_PRIM) violated.
+
+7) Disable the constraint on CustomerId, and insert the following data:
+ 1002, Becker, #114 New York, #114 New york , M, 45, 431525
+ 1003, Nanapatekar, #115 India, #115 India , M, 45, 431525
+sol:
+Alter table customer drop CONSTRAINTS Custid_prim;
+INSERT INTO CUSTOMER VALUES(1002,'BECKER','#114 CHICAGO','#117 CHICAGO','M',25,654321);
+INSERT INTO CUSTOMER VALUES(1003,'NANAPATEKAR','#114 CHICAGO','#117 CHICAGO','M',25,654321);
+
+8) Enable the constraint on CustomerId of the Customer table, and see the message generated by the Oracle server.
+sol:
+
+9) Drop the constraint Custld_Prim on CustomerId and insert the following Data. Alter Customer table, drop constraint Custid_Prim.
+1002, Becker, #114 New York, #114 New york , M, 45, 431525, 15000.50
+1003, Nanapatekar, #115 India, #115 India , M, 45, 431525, 20000.

@@ -1,0 +1,142 @@
+Que1)
+name1=input(" ")
+print("hello ,"+ name1)
+
+Que2)
+a=int(input('no. 1'))
+b=int(input('no 2'))
+if(a+b>=0):
+    print("positive")
+else:
+    print("negative")
+
+Que 3)
+a= int(input())
+while(True):
+    b=int(input("enter no: "))
+    if(a==b):
+        break
+print('correct')
+
+Que 4)
+name=input('name')
+lastname=input('last name')
+wholename=name+lastname
+print(wholename)
+
+Que5)
+msg=input('enter message')
+res=[]
+for word in msg:
+    for x in word:
+       res.append(x.swapcase())
+print(str(res))
+
+Que6)
+a=[1,2,3,4]
+sum1=0
+mul1=1
+for x in a:
+    sum1=sum1+x
+    mul1=mul1*x
+print(sum1)
+print(mul1)
+
+Que 7)
+a=['1','2','3','4','a','b','c','d']
+x=input("enter")
+flag=False
+for z in a:
+    if(z==x):
+        flag=True
+print(flag)
+
+Que 8)
+a=['1','2','3','4','a','b','c','d']
+b=['1','5','7','9','e','f','b','a','g']
+flag=False
+for x in a:
+    for y in b:
+        if(x==y):
+            flag=True
+print(flag)
+
+Que9)
+histogram=[4,9,10,1,3]
+for x in histogram:
+    print(x*"*")
+
+Day 2:
+Que 1)
+ a=int(input('no.'))
+b=input('char')
+def gen_char(a,b):
+    c=b
+    while(a>1):
+        c=c+b
+        a=a-1
+    return c
+print(gen_char(a,b))
+
+Que3)
+words=['ankur','neet','Hari','ramprasad',’ateet’]
+def find_longest(a):
+    res=[]
+    for x in a:
+        res.append(len(x))
+    z=max(res)
+    w=res.index(z)
+    print(words[w])
+find_longest(words)
+
+que4)
+words=['ankur','neet','Hari','ramprasad','ateet']
+def filter_longest(words):
+    res=[]
+    a=int(input('no.'))
+    for x in words:
+        if len(x)>a:
+            res.append(x)
+    print(res)
+filter_longest(words)
+
+que 5)
+a=input("enter ")
+def func(a):
+    res=[]
+    for words in a:
+        for letters in words:
+            if letters.isalpha():
+                res.append(letters)
+    z=res
+    z.reverse()
+    if(z==res):
+        return True
+    else:
+        return False
+
+print(func(a))
+
+que6)
+a=input("enter")
+def check_panagram(a):
+    b=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+    flag=False
+    for x in b:
+        if x in a:
+            flag=True
+        else:
+            break
+    return flag
+
+print(check_panagram(a))
+
+que 3)
+words=['ankur','neet','Hari','ramprasad','ateet']
+res=[]
+for x in words:
+	res.append(len(x))
+for i in range (0, len(res)):
+	print("%s maps to %d"%(words[i],res[i]))
+
+

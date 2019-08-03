@@ -1,0 +1,170 @@
+#!/bin/bash
+username=`whoami`
+if [ $username = $1 ]
+then
+echo "$user logged in"
+else
+echo "user not logged in"
+fi
+________________________________________________________________
+#!/bin/bash
+list=`ls .`
+for file in $list
+do
+echo  `cat $file`
+done
+________________________________________________________________
+#!/bin/bash
+if [ -e $1 ]
+then
+echo "file do exists"
+if [ -r $1 ]
+then
+echo "read r"
+fi
+if [ -w $1 ]
+then
+echo "write w"
+fi
+if [ -x $1 ]
+then
+echo "execute e"
+fi
+else
+echo "file not exist"
+fi
+________________________________________________________________
+#!/bin/bash
+if [ $1 -gt $2 ]
+then
+if [ $1 -gt $3 ]
+then
+echo "$1 is largest"
+else
+echo "$3 is large"
+fi
+else
+if [ $2 -gt $3 ]
+then
+echo "$2 is largest"
+else
+echo "$3 is large"
+fi
+fi
+________________________________________________________________
+#!/bin/bash
+res=`grep $1 $2`
+echo $res
+________________________________________________________________
+#!/bin/bash
+echo "choose the operation"
+echo "1)creating a file"
+echo "2)creating a directory"
+echo "3)copying a file"
+echo "4)moving a file"
+echo "enter the choice"
+read ch
+case $ch in
+1)echo "enter the file name"
+read filename
+if [ -e $filename ]
+then
+echo "file already exists"
+else
+echo `touch $filename`
+fi;;
+____________________________________________
+2)echo "enter the directory name"
+read dirname
+if [ -e $dirname ]
+then
+echo "directory already exists"
+else
+echo `mkdir $dirname`
+fi ;;
+____________________________________________
+3)echo "enter the source file"
+read csfile
+echo enter the destination path and filename
+read cdfile
+if [ -e $csfile ]
+then
+if [ -r $csfile ]
+then
+echo `cp $csfile $cdfile`
+fi
+else
+echo "source not found"
+fi;;
+____________________________________________
+4)echo "enter the source file"
+read msfile
+echo "enter the destination file"
+read mdfile
+if [ -e $msfile]
+then
+echo `mv $msfile $mdfile`
+fi
+;;
+____________________________________________
+5)echo "invalid choice"
+esac
+____________________________________________
+#!/bin/bash
+yesno(){
+if [ $ch = 'y' ]
+then
+return 0
+elsif [ $ch = 'n' ]
+return 1
+else
+echo "invalid choice"
+fi
+}
+echo $1
+echo "enter y/n"
+read ch
+c=yesno
+echo $?
+________________________________________________________________
+#!/bin/bash
+list=`users`
+for user in $list
+do
+if [ $user = $1 -o $user = $2 -o $user = $3 -o $user = $4 ]
+then
+echo $user
+fi
+done
+________________________________________________________________
+#!/bin/bash
+echo "enter first name"
+read fname
+echo "enter last name"
+read lname
+echo "$fname $lname"
+________________________________________________________________
+#!/bin/bash
+echo `find $HOME -mtime -1 -print`
+________________________________________________________________
+#!/bin/bash
+list=`ls`
+for file in $list
+do
+if [ -r $file ]
+then
+echo `ls -l $file`
+fi
+done
+________________________________________________________________
+#!/bin/bash
+echo `ls $1 $2 | head`
+________________________________________________________________
+#!/bin/bash
+echo $0
+echo $$
+________________________________________________________________
+#!/bin/bash
+echo `cat $2 $3 > $1`
+echo `cat $1`
+________________________________________________________________
